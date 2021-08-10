@@ -1,0 +1,189 @@
+/*
+ push 및 pop에 더하여 스택 원소 중 최소값을 반환하는 메쏘드 findMin을 지원하는 스택 ADT를 설계한다. 이들 세 개의 메쏘드를 의사코드로 작성하고 C프로그램으로 구현하라.
+ 
+ 프로그래밍 지침
+ - 삽입, 삭제, 최소값 반환을 하나의 프로그램을 묶어서 구현할 것.
+ - main함수에서 '반복적으로' 사용자의 명령코드 p(ush), o(pop), f(indmin)에 따라 해당 메쏘드를 호출하여 처리하는 방식으로 작성할 것.
+ - 예를 들어, "p 14"명령은 push(14)를 호출, "o"명령은 pop()을 호출, "f" 명령은 findMin()을 호출한다.
+ -q(uit)명령이 입력되면 프로그램 종료.
+ 
+ <입력>
+ p 4
+ p 4
+ p 2
+ p 3
+ f
+ o 2
+ p 1
+ f
+ o
+ f
+ o
+ f
+ o
+ o
+ f
+ q
+ 
+ 
+ <출력>
+ 4
+ 4 - 4
+ 2 - 4 - 4
+ 3 - 2 - 4 - 4
+ 2
+ 2 - 3 - 2 - 4 - 4
+ 1 - 2 - 3 - 2 - 4 - 4
+ 1
+ 2 - 3 - 2 - 4 - 4
+ 2
+ 3 - 2 - 4 - 4
+ 2
+ 2 - 4 - 4
+ 4 - 4
+ 4
+ (프로그램 종료)
+ */
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define TRUE 1
+#define FALSE 0
+
+typedef struct ArrayStack{
+    int *data;
+    int topIndex;
+}Stack;
+
+void initStack(Stack *pstack);
+void push(Stack *pstack, int num);
+void pop(Stack *pstack);
+void findMin(Stack *pstack);
+void pushMillion(Stack *pstack);
+void popMillion(Stack *pstack);
+int main(){
+    Stack arr;
+    int num = 0;
+    char cmd = '\0';
+    
+    //초기화
+    initStack(&arr);
+    
+    while(1){
+        scanf("%c", &cmd);
+        getchar();
+        
+        switch(cmd){
+            case 'p':
+                scanf("%d", &num);
+                getchar();
+                push(&arr, num);
+                break;
+                
+            case 'o':
+                pop(&arr);
+                break;
+                
+            case 'f':
+                findMin(&arr);
+                break;
+            case 'P':
+                pushMillion(&arr);
+                break;
+            case 'O':
+                popMillion(&arr);
+                break;
+                
+            case 'q':
+                free(arr.data);
+                exit(-1);
+                break;
+        }
+    }
+    
+    return 0;
+}
+
+int isEmpty(Stack *pstack){
+    if(pstack->topIndex == -1)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+//stack 초기화 함수
+void initStack(Stack *pstack){
+    pstack->topIndex = -1;
+    pstack->data = (int *)malloc(sizeof(int) * 100);
+}
+
+void push(Stack *pstack, int num){
+    pstack->topIndex += 1;
+    pstack->data[pstack->topIndex] = num;
+    
+    
+    //print
+    for(int i = pstack->topIndex; i >= 0; i--){
+        printf("%d", pstack->data[i]);
+        if(i != 0)
+            printf(" - ");
+    }
+    printf("\n");
+}
+
+//최소값 찾기
+void findMin(Stack *pstack){
+    
+    if(isEmpty(pstack))
+        printf("Data is not Exist\n");
+    else{
+        int min = pstack->data[pstack->topIndex];
+        for(int i = (pstack->topIndex) - 1; i >= 0; i--){
+            if(min > pstack->data[i])
+                min = pstack->data[i];
+        }
+        printf("%d\n", min);
+    }
+}
+
+void pop(Stack *pstack){
+    
+    if(isEmpty(pstack))
+        printf("not Data\n");
+    else{
+        pstack->topIndex -= 1;
+        
+        //print
+        for(int i = pstack->topIndex; i >= 0; i--){
+            printf("%d", pstack->data[i]);
+            if(i != 0)
+                printf(" - ");
+        }
+        printf("\n");
+    }
+    
+}
+
+//void pushMillion(Stack *pstack){
+//    int num = 1;
+//    pstack->topIndex = -1;
+//    for(int i = 0; i < 1000001; i++){
+//        pstack->topIndex += 1;
+//        pstack->data[i] = num;
+//    }
+//
+//    printf("pushMillion (1000001), cputime = \n");
+//}
+//void popMillion(Stack *pstack){
+//
+//    pstack->topIndex = 1000001;
+//    for(int i = 1000001; i >= 0; i--){
+//        pstack->topIndex -= 1;
+//    }
+//
+//}
+
+

@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//부모 인덱스 반환
+int parent(int idx){
+    return idx / 2;
+}
+
+//왼쪽 자식 인덱스 반환
+int leftChild(int idx){
+    return idx * 2;
+}
+//오른쪽 자식 인덱스 반환
+int rightChild(int idx){
+    return (idx *2) + 1;
+}
+
+//swap
+void swapElement(int *tree, int idx1, int idx2){
+    int tmp = tree[idx1];
+    tree[idx1] = tree[idx2];
+    tree[idx2] = tmp;
+}
+
+//힙 내 위치 i에 저장된 키를 크기에 맞는 위치로 상향 이동
+void upHeap(int *tree, int* n, int idx){
+    // n == root || 가르키는 인덱스가 root 일 경우 종료
+    if(*n == 1 || idx == 1)
+        return;
+    
+    //부모 값이 더 클 경우 종료
+    if(tree[idx] < tree[parent(idx)])
+        return;
+    
+    //swap
+    swapElement(tree, idx, parent(idx));
+    
+    //재귀 호출
+    upHeap(tree, n, parent(idx));
+    
+}
+
+//힙 내 위치 i에 저장된 키를 크기에 맞는 위치로 하향 이동
+void downHeap(int* tree, int *n, int idx){
+    
+    //자식 노드가 존재 하지 않다면 종료
+    if(*n < leftChild(idx) && *n < rightChild(idx))
+        return;
+    
+    // root의 왼쪽 자식 idx 저장 시킴
+    int biggerLoc = leftChild(idx);
+    
+    //오른쪽 자식이 존재한 경우
+    if(*n >= rightChild(idx)){
+        //둘 중 값이 더 큰 것이 biggerLoc이 됌
+        if(tree[rightChild(idx)] > tree[biggerLoc])
+            biggerLoc = rightChild(idx);
+    }
+    
+    //기존 idx 값이 더 클 경우 종료
+    if(tree[idx] > tree[biggerLoc])
+        return;
+    
+    swapElement(tree, idx, biggerLoc);
+    downHeap(tree, n, biggerLoc);
+    
+}
+
+void insertItem(int* tree, int* n, int key){
+    //n 위치에 키 삽입
+    tree[++(*n)] = key;
+    //정렬
+    int idx = *n;
+    upHeap(tree, n, idx);
+    printf("0\n");
+}
+
+int removeMax(int* tree, int *n){
+    int key = tree[1]; //루트 키 보관
+    tree[1] = tree[(*n)--]; // 힙의 마지막 키를 루트로 이동
+    
+    downHeap(tree, n, 1); //힙 조정
+    
+    //삭제된 키 반환
+    return key;
+}
+
+void printHeap(int *tree, int *n){
+    //힙에 저장된 키들을 레벨 순서로 인쇄
+    for(int i = 1; i <= *n; i++)
+        printf(" %d", tree[i]);
+    printf("\n");
+}
+
+int main(void){
+    char cmd = '\0';
+    int  key = 0;
+    int tree[101]; //힙
+    int  n = 0; //힙의 크기
+    
+    while(1){
+        scanf("%c", &cmd);
+        getchar();
+        switch (cmd) {
+                
+            case 'i':
+                scanf("%d", &key);
+                getchar();
+                insertItem(tree, &n, key);
+                break;
+            case 'd':
+                printf("%d\n", removeMax(tree, &n));
+                break;
+            case 'p':
+                printHeap(tree, &n);
+                break;
+            default:
+                exit(1);
+                break;
+        }
+    }
+    
+    return 0;
+}

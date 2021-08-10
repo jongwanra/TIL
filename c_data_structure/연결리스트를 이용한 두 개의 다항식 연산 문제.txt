@@ -1,0 +1,127 @@
+//연결리스트를 이용한 두 개의 다항식 연산 문제
+/*
+입력 예시 - 1
+3        ↦ 첫 번째 다항식의 항의 개수
+5 3 3 2 3 1     ↦ 5x3 + 3x2 + 3x
+3       ↦ 두 번째 다항식의 항의 개수
+2 6 2 3 1 0     ↦ 2x6 + 2x3 + 1
+
+입력예시 - 2
+2   ↦ 첫 번째 다항식의 항의 개수
+2 7 3 0  ↦ 2x7 + 3
+3   ↦ 두 번째 다항식의 항의 개수
+-3 10 3 7 -3 0    ↦ -3x10 + 3x7 -3
+*/
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct NODE{
+    int coef; //항의 계수
+    int exp; //항의 차수
+    struct NODE *next; //다음 노드를 가리킴
+}node;
+
+node* addPoly(node* x, node* y);
+node* appendTerm(node* tail, int c, int e);
+
+int main(){
+    int N1, N2; // 항의 개수
+    int c = 0, e = 0;
+    node *head1 = NULL, *head2 = NULL;
+    node *tail1 = NULL, *tail2 = NULL;
+    node *cur1 = NULL, *cur2 = NULL;
+    node * remover = NULL; // 동적할당 해제를 위함
+    
+    head1 = (node *)malloc(sizeof(node));
+    head2 = (node *)malloc(sizeof(node));
+    tail1 = head1;
+    tail2 = head2;
+    tail1->next = NULL;
+    tail2->next = NULL;
+    
+    scanf("%d", &N1);
+    for(int i = 0; i < N1; i++){
+        scanf("%d %d", &c, &e); //계수와 차수 입력받기
+        tail1 = appendTerm(tail1, c, e);
+    }
+    scanf("%d", &N2);
+    for(int i = 0; i < N2; i++){
+        scanf("%d %d", &c, &e); //계수와 차수 입력받기
+        tail2 = appendTerm(tail2, c, e);
+    }
+    
+    cur1 = addPoly(head1, head2);
+    
+    while(cur1->next != NULL){
+            remover = cur1;
+            cur1 = cur1->next;
+            printf(" %d %d", cur1->coef, cur1->exp);
+            free(remover);
+        }
+    
+    cur1 = head1;
+    cur2 = head2;
+
+    //첫 번째 다항식 삭제
+    while(cur1->next != NULL){
+        remover = cur1;
+        cur1 = cur1->next;
+        free(remover);
+    }
+    //두 번째 다항식 삭제
+    while(cur2->next != NULL){
+        remover = cur2;
+        cur2 = cur2->next;
+        free(remover);
+    }
+    return 0;
+}
+
+
+node* appendTerm(node* tail, int c, int e){
+    node* newNode = NULL;
+    newNode = (node *)malloc(sizeof(node));
+    newNode->coef = c;
+    newNode->exp = e;
+    newNode->next = NULL;
+    
+    tail->next = newNode;
+    tail = newNode;
+    
+    return tail;
+}
+
+node* addPoly(node* x, node* y){
+    node* result = (node *)malloc(sizeof(node)); // new header
+    result->next = NULL;
+    
+    node *i = x->next;
+    node *j = y->next;
+    node* k = result;
+    
+    while(i != NULL && j != NULL){
+        if(i->exp > j->exp){
+            k = appendTerm(k, i->coef, i->exp);
+            i = i->next;
+        }else if(i->exp < j->exp){
+            k = appendTerm(k, j->coef, j->exp);
+            j = j->next;
+        }else{
+            int sum = i->coef + j->coef;
+            if(sum != 0)
+                k = appendTerm(k, sum, i->exp);
+            i = i->next;
+            j = j->next;
+        }
+            
+    }
+    while(i != NULL){
+        k = appendTerm(k, i->coef, i->exp);
+        i = i->next;
+    }
+    while(j != NULL){
+        k = appendTerm(k, j->coef, j->exp);
+        j = j->next;
+    }
+    return result;
+}

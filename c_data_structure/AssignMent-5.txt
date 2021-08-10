@@ -1,0 +1,218 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+#include <Windows.h>
+
+typedef struct _cQueue{
+    int front;
+    int rear;
+    int *queArr;
+    int len;
+}Queue;
+
+void QueueInit(Queue *pq, int length);
+int IsEmpty(Queue *pq);
+int Top(Queue *pq);
+
+void Push(Queue *pq, int data);
+void PushMillion(Queue *pq);
+int Pop(Queue *mainQ, Queue *subQ);
+void Delete(Queue *pq);
+int NextPosIdx(int pos, int len);
+
+int main(void){
+    
+    Queue mainQueue;
+    Queue subQueue;
+    
+    char cmd[10] = {'\0'};
+    int data = 0;
+    int arr_len = 1000000;
+    int res = 0;
+    
+    LARGE_INTEGER ticksPerSec;
+    LARGE_INTEGER start, end, diff;
+    
+    mainQueue.queArr = (int *)malloc(sizeof(int) * arr_len);
+    subQueue.queArr = (int *)malloc(sizeof(int) * arr_len);
+    
+    QueueInit(&mainQueue, arr_len); // init mainQueue
+    QueueInit(&subQueue, arr_len); // init subQueue
+    
+    while(1){
+        gets(cmd);
+        //exit program
+        if(cmd[0] == 'q')
+            break;
+        //call isEmpty()
+        else if(cmd[0] == 'S'){
+            QueryPerformanceFrequency(&ticksPerSec);
+            QueryPerformanceCounter(&start);
+            res = IsEmpty(&mainQueue);
+            QueryPerformanceCounter(&end);
+            if(res == 1)
+                printf("Empty");
+            else
+                printf("Noempty");
+            
+            diff.QuadPart = end.QuadPart - start.QuadPart;
+            printf(" (%d),", mainQueue.len);
+            printf(" cputime = %.10f  \n", ((double)diff.QuadPart / (double)ticksPerSec.QuadPart));
+        }
+        
+        //call top()
+        else if(cmd[0] == 't'){
+            QueryPerformanceFrequency(&ticksPerSec);
+            QueryPerformanceCounter(&start);
+            printf("%d\n", Top(&mainQueue));
+            QueryPerformanceCounter(&end);
+            
+            diff.QuadPart = end.QuadPart - start.QuadPart;
+            printf(" (%d),", mainQueue.len);
+            printf(" cputime = %.10f  \n", ((double)diff.QuadPart / (double)ticksPerSec.QuadPart));
+        }
+        
+        //call push()
+        else if(cmd[0] == 'p'){
+            int idx = 1;
+            int cnt = 0;
+            while(cmd[idx] != '\0'){
+                if(cmd[idx] == ' '){
+                    cnt++;
+                    cmd[idx++] = '\0';
+                }
+                idx++;
+            }
+            idx = 1;
+            QueryPerformanceFrequency(&ticksPerSec);
+            QueryPerformanceCounter(&start);
+            while(cnt > 0){
+                
+                if(cmd[idx] == '\0' && cmd[idx + 1] != '\0'){
+                    data = atoi(&cmd[++idx]);
+                    Push(&mainQueue, data);
+                    cnt--;
+                }
+                idx++;
+            }
+            QueryPerformanceCounter(&end);
+            printf("OK");
+            diff.QuadPart = end.QuadPart - start.QuadPart;
+            printf(" (%d),", mainQueue.len);
+            printf(" cputime = %.10f  \n", ((double)diff.QuadPart / (double)ticksPerSec.QuadPart));
+            
+        }
+        //call pushMillion()
+        else if(cmd[0] == 'P'){
+            QueryPerformanceFrequency(&ticksPerSec);
+            QueryPerformanceCounter(&start);
+            PushMillion(&mainQueue);
+            QueryPerformanceCounter(&end);
+            
+            diff.QuadPart = end.QuadPart - start.QuadPart;
+            printf(" (%d),", mainQueue.len);
+            printf(" cputime = %.10f  \n", ((double)diff.QuadPart / (double)ticksPerSec.QuadPart));
+            
+        }
+        //call pop()
+        else if(cmd[0] ==  'o'){
+            QueryPerformanceFrequency(&ticksPerSec);
+            QueryPerformanceCounter(&start);
+            res = Pop(&mainQueue, &subQueue);
+            QueryPerformanceCounter(&end);
+            if(res != -1)
+                printf("%d\n", res);
+            diff.QuadPart = end.QuadPart - start.QuadPart;
+            printf(" (%d),", mainQueue.len);
+            printf(" cputime = %.10f  \n", ((double)diff.QuadPart / (double)ticksPerSec.QuadPart));
+        }
+    }
+    
+    free(mainQueue.queArr);
+    free(subQueue.queArr);
+    
+    return 0;
+}
+
+//push Data
+void Push(Queue *pq, int data){
+    //move next Index
+    pq->rear = NextPosIdx(pq->rear, pq->len);
+    //insert data
+    pq->queArr[pq->rear] = data;
+}
+
+//push Million Data
+void PushMillion(Queue *pq){
+    int data = 0;
+    srand(time(NULL));
+    
+    for(int i = 0; i < 1000000; i++){
+        data = (rand() % 99 + 10);
+        Push(pq, data);
+    }
+    printf("OK");
+}
+
+//top
+int Top(Queue *pq){
+    return pq->queArr[pq->rear];
+}
+
+//initialize
+void QueueInit(Queue *pq, int length){
+    pq->len = length;
+    pq->front = 0;
+    for(int i = 0; i < pq->len; i++)
+        pq->queArr[i] = 0;
+    pq->rear = 0;
+}
+
+//Empty is TRUE, else FALSE
+int IsEmpty(Queue *pq){
+    if(pq->rear == 0)
+        return 1;
+    else
+        return 0;
+}
+
+//get next Index
+int NextPosIdx(int pos, int len){
+    //if data is full, index -> 0
+    if(pos == len -1)
+        return 0;
+    //else, next Index
+    else
+        return pos + 1;
+}
+
+//Delete Data
+int Pop(Queue *mainQ, Queue *subQ){
+    //mainQueue IsEmpty
+    int data = mainQ->queArr[mainQ->rear];
+    if(IsEmpty(mainQ)){
+        printf("Empty Stack Exception!!");
+        return -1;
+    }else{
+        for(int i = 0; i < (mainQ->rear); i++){
+            Push(subQ, mainQ->queArr[i]);
+            Delete(mainQ);
+        }
+        Delete(mainQ);
+        
+        for(int i = 0; i <= subQ->rear; i++){
+            Push(mainQ, subQ->queArr[i]);
+            Delete(subQ);
+        }
+    }
+    return data;
+}
+
+//Delete Data
+void Delete(Queue *pq){
+    
+    pq->front = NextPosIdx(pq->front, pq->len);
+    pq->queArr[pq->front] = 0;
+}
+

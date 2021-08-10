@@ -1,0 +1,184 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define TRUE 1
+#define FALSE 0
+
+typedef struct _arrayStack{
+    char *stackArr;
+    int topIndex;
+}Stack;
+
+void StackInit(Stack * pstack, int size);
+int IsEmpty(Stack * pstack);
+void Push(Stack * pstack, char data, int N);
+char Pop(Stack * pstack);
+void Peek(Stack * pstack);
+void Duplicate(Stack *pstack, int size);
+void upRotate(Stack *pstack, int size);
+void downRotate(Stack *pstack, int size);
+void Print(Stack *pstack);
+
+int main(){
+    Stack stackStruct;
+    int N;  //stack N의 크기
+    int count;// 연산의 개수
+    
+    char tmp[10], *str = NULL;
+    int str_len = 0;
+    char tmp_char = '\0', res = '\0';
+    
+    scanf("%d", &N);
+    scanf("%d", &count);
+    getchar();
+    
+    // stack 초기화
+    StackInit(&stackStruct, N);
+    
+    //count 만큼 반복 실행
+    for(int index = 0; index < count; index++){
+        gets(tmp); //문자열 입력
+        str_len = (int)strlen(tmp);
+        str = (char *)malloc(sizeof(char) * (str_len + 1));
+        strcpy(str, tmp);
+        
+        for(int k = 0; k < (int)strlen(str); k++){
+            if(str[k] == ' '){
+                tmp_char = str[k + 1];
+                str[k] = '\0';
+                break;
+            }
+        }
+        if(strcmp(str, "PUSH") == 0)
+            Push(&stackStruct, tmp_char, N);
+        else if(strcmp(str, "POP") == 0){
+            res = Pop(&stackStruct);
+            if(res == '\0')
+                printf("Stack Empty\n");
+        }
+        else if(strcmp(str, "PEEK") == 0)
+            Peek(&stackStruct);
+        else if(strcmp(str, "DUP")== 0)
+            Duplicate(&stackStruct, N);
+        
+        else if(strcmp(str, "UpR") == 0)
+            upRotate(&stackStruct, (tmp_char - '0'));
+            
+        else if(strcmp(str, "DownR") == 0)
+            downRotate(&stackStruct, (tmp_char - '0'));
+        
+        else if(strcmp(str, "PRINT") == 0)
+            Print(&stackStruct);
+        
+        free(str);
+    }
+    
+    free(stackStruct.stackArr);
+    
+    return 0;
+}
+
+//인덱스 값을 -1 로 초기화
+void StackInit(Stack * pstack, int size){
+    pstack->topIndex = -1;
+    pstack->stackArr = (char *)malloc(sizeof(char) * size);
+}
+
+//stack에 아무 값이 없으면 1, 있으면 0
+int IsEmpty(Stack * pstack){
+    if(pstack->topIndex == -1)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+void Push(Stack * pstack, char data, int N){
+    if(pstack->topIndex >= N - 1)
+        printf("Stack FULL\n");
+    else{
+        pstack->topIndex += 1;
+        pstack->stackArr[pstack->topIndex] = data;
+    }
+}
+
+char Pop(Stack * pstack){
+    int rIdx;
+    if(IsEmpty(pstack))
+        return '\0';
+    
+    rIdx = pstack->topIndex -= 1;
+    return pstack->stackArr[rIdx + 1];
+}
+/*
+ stack의 top에 있는 원소를 화면에 출력한다. stack은 변화하지 않는다. stack이 비어 있으면 “Stack Empty”를 출력한다.
+ */
+void Peek(Stack * pstack){
+    if(IsEmpty(pstack))
+        printf("Stack Empty\n");
+    else
+        printf("%c\n", pstack->stackArr[pstack->topIndex]);
+}
+//stack의 top에 있는 원소를 pop해서 두 번 push한다. stack이 이미 꽉 차 있으면 “Stack FULL”을 출력한다.
+void Duplicate(Stack *pstack, int size){
+    //stack이 꽉 찬 경우
+    if(pstack->topIndex >= size - 1){
+        printf("Stack FULL\n");
+    }else{
+        char s = Pop(pstack);
+        Push(pstack, s, size);
+        Push(pstack, s, size);
+    }
+}
+
+/*
+ stack의 맨 위 n개의 원소를 회전시킨다. 예를 들어 n이 3이고 stack의 top에서부터elem1, elem2, elem3,....이저장되어 있으면 원소를 하나씩 위쪽으로 이동시킨다. 맨 위쪽(top)의 std1은 n-1번 아래쪽으로 이동해서 스택의 내용은 elem2, elem3, elem1, ... 이 된다.
+ */
+void upRotate(Stack *pstack, int size){
+    char tmp = pstack->stackArr[pstack->topIndex];
+    int cnt = pstack->topIndex;
+    if (size > (pstack->topIndex + 1))
+         return;
+
+    for(int i = 1; i < size; i++){
+        pstack->stackArr[cnt] = pstack->stackArr[cnt-1];
+        cnt--;
+    }
+    pstack->stackArr[cnt] = tmp;
+}
+/*
+ stack의 맨 위 n개의 원소를 회전시킨다. 예를 들어 n이 3이고 stack의 top에서부터 elem1, elem2, elem3, .... 이 저장되어 있으면 원소를 하나씩 d 아래쪽으로 이동시킨다. top에서부터 n번째의 원소를 top으로 이동해서 스택의 내용은  elem3, elem1, elem2, ... 이 된다.
+ */
+void downRotate(Stack *pstack, int size){
+    char tmp = pstack->stackArr[pstack->topIndex - size + 1];
+    int cnt = pstack->topIndex - size + 1;
+    
+    if (size > (pstack->topIndex + 1))
+        return;
+    for(int i = 1; i < size; i++){
+        pstack->stackArr[cnt] = pstack->stackArr[cnt + 1];
+        cnt++;
+    }
+    pstack->stackArr[cnt] = tmp;
+};
+void Print(Stack *pstack){
+    for(int j = pstack->topIndex; j >= 0; j--)
+        printf("%c", pstack->stackArr[j]);
+    printf("\n");
+};
+
+
+/*
+ 4
+ 10
+ POP
+ PUSH s
+ PUSH t
+ PUSH a
+ PUSH r
+ PRINT
+ UpR 3
+ PRINT
+ PUSH s
+ PEEK
+ */

@@ -1,0 +1,151 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int count_max = 0;//외부 노드 최대 32개의 제한을 두기 위한 전역 변수 count_max
+int count_min = 0;//외부 노드 최소 8개 이상을 만들게 하기 위한 count_min
+
+//이진 트리 구조체 선언
+typedef struct DivisionTree{
+    struct DivisionTree *left;
+    char *elem;
+    struct DivisionTree *right;
+}dTree;
+
+dTree * buildDecisionTree(void);
+dTree * makeInternalNode(void);
+dTree * makeExternalNode(void);
+
+void runDecisionTree(dTree *v);
+int isInternal(dTree *v);
+void processNode(dTree *v);
+
+
+//Main function
+int main(void){
+    dTree *v = buildDecisionTree();
+    
+    
+    //사용자 3번 이용 가능
+    for(int i = 0; i < 3; i++){
+        runDecisionTree(v);
+        printf("\n");
+    }
+        
+    return 0;
+}
+
+
+//처음 시작을 위한 함수
+dTree * buildDecisionTree(void){
+    printf("***Let's build a dichotomous QA system\n");
+    return makeInternalNode();
+}
+
+//내부 노드 만드는 함수
+dTree* makeInternalNode(void){
+    //최소한 제한을 세기 위한 변수
+    ++count_min;
+    
+    dTree *v = (dTree *)malloc(sizeof(dTree));
+    char tmp[1000];
+    char *temp = NULL;
+    char ans[4];
+    
+    printf("Enter question: ");
+    
+    gets(tmp); // 질문 입력
+    
+    temp = (char *)malloc(sizeof(char) * ((int)strlen(tmp) + 1));
+    strcpy(temp, tmp);
+    
+    v->elem = temp; //elem 이 질문을 가르킴
+    
+    printf("Question if yes to %s?", v->elem);
+    
+    scanf("%s", ans); // answer 받음
+    getchar();
+    
+    
+    //만약에 질문이 3개 미만이면 더 질문을 입력하게끔 함.
+    if(count_min < 3 && strcmp(ans, "no") == 0){
+        printf("please input more question!!\n");
+        strcpy(ans, "yes");
+    }
+        
+    
+    if(strcmp(ans, "yes") == 0)
+        v->left = makeInternalNode();
+    else
+        v->left = makeExternalNode();
+    
+    
+    printf("Question if no to %s?", v->elem);
+    
+    scanf("%s", ans);
+    getchar();
+    
+    if(strcmp(ans, "yes") == 0)
+        v->right = makeInternalNode();
+        
+    else
+        v->right = makeExternalNode();
+    
+    return v;
+}
+
+
+//마지막 노드 구현
+dTree* makeExternalNode(void){
+    
+    //외부 노드가 33개 이상 만들어지면 종료
+    if(++count_max == 33)
+        exit(-1);
+    
+    dTree *v = (dTree *)malloc(sizeof(dTree));
+    char tmp[1000];
+    char *temp = NULL;
+    
+    printf("Enter decision:");
+    gets(tmp);
+    
+    temp = malloc(sizeof(char) * ((int)strlen(tmp) + 1) );
+    strcpy(temp, tmp);
+    
+    v->elem = temp;
+    v->left = NULL;
+    v->right = NULL;
+    
+    return v;
+}
+
+//실행 노드 3번 호출
+void runDecisionTree(dTree *v){
+    printf("***Please answer questions\n");
+    processNode(v);
+}
+
+//처리 노드
+void processNode(dTree *v){
+    char ans[4];
+    printf("'%s'", v->elem);
+    
+    //왼쪽 오른쪽 자식이 존재한다면,
+    if(isInternal(v)){
+        scanf("%s", ans);
+        getchar();
+        if(strcmp(ans, "yes") == 0){
+            processNode(v->left);
+        }
+        else
+            processNode(v->right);
+    }
+}
+
+//왼쪽, 오른쪽 자식이 존재 하면 1, 그렇지 않으면 0 반환
+int isInternal(dTree *v){
+    if(v->left != NULL && v->right != NULL)
+        return 1;
+    else
+        return 0;
+}

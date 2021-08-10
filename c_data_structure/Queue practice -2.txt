@@ -1,0 +1,165 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define TRUE 0
+#define FALSE 0
+
+typedef struct _Node{
+    struct _Node *prev;
+    int data;
+    struct _Node *next;
+    
+}Node;
+
+typedef struct _Deque{
+    Node *front;
+    Node *rear;
+}deque;
+
+void QueueInit(deque *pq);
+int QIsEmpty(deque *pq);
+
+void add_front(deque *pq, int X);
+void add_rear(deque  *pq, int X);
+void delete_front(deque  *pq);
+void delete_rear(deque  *pq);
+void print(deque  *pq);
+
+int main(void){
+    int n; //Commend Num
+    int num = 0;
+    char tmp[10];
+    char cmd[3];
+    
+    scanf("%d", &n);
+    getchar();
+    deque deq;
+    QueueInit(&deq);
+    
+    for(int i = 0; i < n; i++){
+        gets(tmp);
+        if(tmp[0] == 'P'){
+            print(&deq);
+        }else if(tmp[0] == 'D'){
+            if(tmp[1] == 'F'){
+                delete_front(&deq);
+            }else if(tmp[1] == 'R'){
+                delete_rear(&deq);
+            }
+        }else if(tmp[0] == 'A'){
+            if(tmp[1] == 'F'){
+                strcpy(cmd, &tmp[3]);
+                num = atoi(cmd);
+                add_front(&deq, num);
+            }else if(tmp[1] == 'R'){
+                strcpy(cmd, &tmp[3]);
+                num = atoi(cmd);
+                add_rear(&deq, num);
+            }
+        }
+    }
+    
+    return 0;
+}
+
+//initiallize
+void QueueInit(deque *pq){
+    pq->front = NULL;
+    pq->rear = NULL;
+}
+
+//Empty -> TRUE, not Empty -> FALSE
+int QIsEmpty(deque *pq){
+    if(pq->front == NULL)
+        return 1;
+    else
+        return 0;
+}
+
+
+void add_front(deque *pq, int X){
+    
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->next = NULL;
+    newNode->data = X;
+    newNode->prev = NULL;
+    
+    //if add First Node
+    if(QIsEmpty(pq)){
+        pq->front = newNode;
+        pq->rear = newNode;
+        
+    }else{
+        newNode->next = pq->front;
+        pq->front->prev = newNode;
+        pq->front = newNode;
+    }
+    
+    //print(pq);
+    
+}
+void add_rear(deque *pq, int X){
+    
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->next = NULL;
+    newNode->data = X;
+    newNode->prev = NULL;
+    
+    
+    //if add First Node
+    if(QIsEmpty(pq)){
+        pq->front = newNode;
+        pq->rear = newNode;
+    }else{
+        pq->rear->next = newNode;
+        newNode->prev = pq->rear;
+        pq->rear = newNode;
+    }
+}
+
+
+//delete front element
+void delete_front(deque *pq){
+    
+    Node *cur = pq->front;
+    
+    //Empty
+    if(pq->front == pq->rear){
+        printf("underflow\n");
+        exit(-1);
+    }else{
+        cur->next->prev = NULL;
+        pq->front = cur->next;
+        free(cur);
+    }
+}
+
+//delete rear element
+void delete_rear(deque  *pq){
+    Node *cur = pq->rear;
+    
+    //Empty
+    if(pq->rear == pq->front){
+        printf("underflow\n");
+        exit(-1);
+    }else{
+        cur->prev->next = NULL;
+        pq->rear = cur->prev;
+        free(cur);
+    }
+    
+}
+void print(deque *pq){
+    Node *cur = NULL;
+    cur = pq->front;
+    
+    while(cur->next != NULL){
+        printf(" %d", cur->data);
+        cur = cur->next;
+    }
+    printf(" %d", cur->data);
+    printf("\n");
+    
+}
+

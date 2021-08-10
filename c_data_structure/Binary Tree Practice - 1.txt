@@ -1,0 +1,142 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+//이진 트리를 표현한 구조체
+typedef struct bTreeNode{
+    struct bTreeNode *left;
+    int data;
+    struct bTreeNode *right;
+    
+}BTreeNode;
+
+BTreeNode * MakeBTreeNode(void);
+void SetData(BTreeNode * bt, int data);
+
+void MakeLeftSubTree(BTreeNode * main, BTreeNode * sub );
+void MakeRightSubTree(BTreeNode * main, BTreeNode * sub );
+void Print(BTreeNode * bt);
+
+
+//main function
+int main(void){
+    int n = 0;
+    BTreeNode * f1 = MakeBTreeNode(); // Create Node f1
+    BTreeNode * f2= MakeBTreeNode(); // Create Node f2
+    BTreeNode * f3 = MakeBTreeNode(); // Create Node f3
+    BTreeNode * f4 = MakeBTreeNode(); // Create Node f4
+    BTreeNode * f5 = MakeBTreeNode(); // Create Node f5
+    BTreeNode * f6 = MakeBTreeNode(); // Create Node f6
+    BTreeNode * f7 = MakeBTreeNode(); // Create Node f7
+    BTreeNode * f8 = MakeBTreeNode(); // Create Node f8
+    
+    //각 노드에 데이터 저장
+    SetData(f1, 20);
+    SetData(f2, 30);
+    SetData(f3, 50);
+    SetData(f4, 70);
+    SetData(f5, 90);
+    SetData(f6, 120);
+    SetData(f7, 130);
+    SetData(f8, 80);
+    
+    //f1 node 왼쪽에 f2, 오른쪽에  f3 연결
+    MakeLeftSubTree(f1, f2);
+    MakeRightSubTree(f1, f3);
+    
+    //f2 node 왼쪽에 f4, 오른쪽에  f5 연결
+    MakeLeftSubTree(f2, f4);
+    MakeRightSubTree(f2, f5);
+    
+    //f3 node 오른쪽에 f6 연결
+    MakeRightSubTree(f3, f6);
+    
+    //f6 node 왼쪽에 f7, 오른쪽에  f8 연결
+    MakeLeftSubTree(f6, f7);
+    MakeRightSubTree(f6, f8);
+    
+    scanf("%d", &n);
+    switch (n) {
+        case 1:
+            Print(f1);
+            break;
+        case 2:
+            Print(f2);
+            break;
+        case 3:
+            Print(f3);
+            break;
+        case 4:
+            Print(f4);
+            break;
+        case 5:
+            Print(f5);
+            break;
+        case 6:
+            Print(f6);
+            break;
+        case 7:
+            Print(f7);
+            break;
+        case 8:
+            Print(f8);
+            break;
+        default:
+            n = -1;
+            printf("%d\n", n);
+            break;
+    }
+    
+    
+    return 0;
+}
+
+//노드 생성 함수
+BTreeNode * MakeBTreeNode(void){
+    BTreeNode * nd = (BTreeNode *)malloc(sizeof(BTreeNode));
+    nd->left = NULL;
+    nd->right = NULL;
+    return nd;
+}
+
+
+//Data 대입 함수
+void SetData(BTreeNode * bt, int data){
+    bt->data = data;
+}
+
+//왼쪽 자식으로 연결시키는 함수
+void MakeLeftSubTree(BTreeNode * main, BTreeNode * sub ){
+    if(main ->left != NULL)
+        free(main->left);
+    
+    main->left = sub;
+}
+
+
+//오른쪽 자식으로 연결시키는 함수
+void MakeRightSubTree(BTreeNode * main, BTreeNode * sub ){
+    if(main ->right != NULL)
+        free(main->right);
+    
+    main->right = sub;
+}
+
+//조건에 맞게 출력
+void Print(BTreeNode * bt){
+    
+    //자식 노드 둘다 존재하는 경우,
+    if(bt->left != NULL && bt->right != NULL)
+        printf("%d %d %d\n", bt->data, bt->left->data, bt->right->data);
+    //오른쪽 자식만 존재하는 경우,
+    else if(bt->left == NULL && bt->right != NULL)
+        printf("%d %d\n", bt->data, bt->right->data);
+    //왼쪽 자식만 존재하는 경우,
+    else if(bt->left != NULL && bt->right == NULL)
+        printf("%d %d\n", bt->data, bt->left->data);
+    //둘다 존재하지 않는 경우,
+    else{
+        printf("%d\n", bt->data);
+    }
+}

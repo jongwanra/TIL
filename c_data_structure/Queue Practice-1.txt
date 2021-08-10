@@ -1,0 +1,122 @@
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define TRUE 1
+#define FALSE 0
+
+typedef struct _cQueue{
+    int front;
+    int rear;
+    int *queArr;
+    int len;
+}Queue;
+
+void QueueInit(Queue *pq, int q);
+int QIsEmpty(Queue *pq);
+int NextPosIdx(int pos, int len);
+
+void Insert(Queue *pq, int data);
+void Delete(Queue *pq);
+void Print(Queue *pq);
+
+int main(void){
+    Queue queue;
+    int q = 0; //Array Size
+    int n = 0; //Cmd Num
+    char cmd = '\0';
+    int data = 0;
+    
+    scanf("%d", &q);
+    scanf("%d", &n);
+    getchar();
+    queue.queArr = (int *)malloc(sizeof(int) * q);
+    QueueInit(&queue, q); // initialize
+    
+    for(int i = 0; i < n; i++){
+        scanf("%c", &cmd);
+        getchar();
+        
+        switch (cmd) {
+            //insert
+            case 'I':
+                scanf("%d", &data);
+                getchar();
+                Insert(&queue, data);
+                break;
+            //delete
+            case 'D':
+                Delete(&queue);
+                break;
+            //print
+            case 'P':
+                Print(&queue);
+                break;
+        }
+    }
+    
+    free(queue.queArr);
+    
+    return 0;
+}
+
+//initialize
+void QueueInit(Queue *pq, int q){
+    pq->len = q;
+    pq->front = 0;
+    for(int i = 0; i < pq->len; i++)
+        pq->queArr[i] = 0;
+    pq->rear = 0;
+}
+
+//Empty is TRUE, else FALSE
+int QIsEmpty(Queue *pq){
+    if(pq->front == pq->rear)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+int NextPosIdx(int pos, int len){
+    //if data is full, index -> 0
+    if(pos == len -1)
+        return 0;
+    //else, next Index
+    else
+        return pos + 1;
+}
+
+
+//Insert Data
+void Insert(Queue *pq, int data){
+    //Error Statement
+    if(NextPosIdx(pq->rear, pq->len) == pq->front){
+        printf("overflow");
+        Print(pq);
+        exit(-1);
+    }
+    
+    //move next Index
+    pq->rear = NextPosIdx(pq->rear, pq->len);
+    //insert data
+    pq->queArr[pq->rear] = data;
+}
+//Delete Data
+void Delete(Queue *pq){
+    if(QIsEmpty(pq)){
+        printf("underflow");
+        exit(-1);
+    }
+    pq->front = NextPosIdx(pq->front, pq->len);
+    pq->queArr[pq->front] = 0;
+}
+
+//Print Array
+void Print(Queue *pq){
+    for(int i = 0; i< pq->len; i++)
+        printf(" %d", pq->queArr[i]);
+    printf("\n");
+}
+

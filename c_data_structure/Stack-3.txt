@@ -1,0 +1,111 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+#define TRUE 1
+#define FALSE 0
+
+typedef struct ArrayStack{
+    char *stack;
+    int indexTop;
+}Stack;
+
+int isEmpty(Stack *pstack);
+char pop(Stack *pstack);
+int isBalanced(Stack *pstack, char* sentence);
+void push(Stack *pstack, char value);
+
+
+int main() {
+    Stack arr;
+    int count = 0;
+    char* sentence = (char*)malloc(sizeof(char) * 1000);
+    arr.stack = (char*)malloc(sizeof(char) * 1000);
+    arr.indexTop = -1;
+    
+    //String Input
+    gets(sentence);
+    
+    
+    //괄호 의 갯수 세기
+    for (int i = 0; i < (int)strlen(sentence); i++) {
+        if ((sentence[i] == '(') || (sentence[i] == '{') || (sentence[i] == '[') || (sentence[i] == ')') || (sentence[i] == '}') || (sentence[i] == ']'))
+            count++;
+    }
+    
+    //대칭이 맞으면 true 아니면 false
+    if (isBalanced(&arr, sentence) == TRUE)
+        printf("OK_%d\n", count);
+    else
+        printf("Wrong_%d\n", count);
+
+    
+    //동적할당 해제
+    free(sentence);
+    free(arr.stack);
+}
+
+//제거 함수
+char pop(Stack *pstack) {
+    
+    //데이터가 없으면, 널 반환
+    if (pstack->indexTop < 0) {
+        printf("Stack Empty\n");
+        return '\0';
+    }
+    return pstack->stack[(pstack->indexTop)--];
+}
+
+//입력 함수
+void push(Stack *pstack, char value) {
+    //데이터 제한 초과시
+    if (pstack->indexTop >= 1000 - 1) {
+        printf("Stack FULL\n");
+        return;
+    }
+    //데이터 넣기
+    pstack->stack[++(pstack->indexTop)] = value;
+}
+
+
+//데이터가 비어있으면 true, 존재하면 false
+int isEmpty(Stack *pstack) {
+    if ((pstack->indexTop) == -1)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+
+ int isBalanced(Stack *pstack, char* sentence){
+    char popItem;
+     
+     //문자 갯수만큼 반복
+    for (int i = 0; i < (int)strlen(sentence); i++) {
+        
+        if ((sentence[i] == '(') || (sentence[i] == '{') || (sentence[i] == '['))
+            push(pstack, sentence[i]);
+        
+        else if ((sentence[i] == ')') || (sentence[i] == '}') || (sentence[i] == ']')) {
+            if (isEmpty(pstack))
+                return FALSE;
+            
+            popItem = pop(pstack);
+            
+            if (sentence[i] == ')') {
+                if (popItem != '(')
+                    return FALSE;
+            }
+            else if (sentence[i] == '{') {
+                if (popItem != '}')
+                    return FALSE;
+            }
+            else if (sentence[i] == '[') {
+                if (popItem != ']')
+                    return FALSE;
+            }
+        }
+    }
+    return isEmpty(pstack);
+}

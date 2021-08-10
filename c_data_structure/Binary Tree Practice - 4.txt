@@ -1,0 +1,172 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+typedef struct bTreeNode{
+    struct bTreeNode *left;
+    int data;
+    struct bTreeNode *right;
+}BTreeNode;
+
+
+void SetData(BTreeNode * bt, int data);
+void MakeLeftSubTree(BTreeNode * main, BTreeNode * sub );
+void MakeRightSubTree(BTreeNode * main, BTreeNode * sub );
+void Search_data(BTreeNode* bt, int data);
+BTreeNode * MakeBTreeNode(void);
+BTreeNode* Print(BTreeNode * bt, char direction);
+
+//해당 주소값을 가져오기 위한 전역 변수
+BTreeNode *root = NULL;
+
+int main(void){
+    int n = 0; //노드 개수
+    int f_n = 0; //찾는 횟수
+    int root_data = 0, left_data = 0, right_data = 0;
+    char *f_arr = NULL, tmp[100];
+    
+    scanf("%d", &n);
+    getchar();
+    BTreeNode *root_head = NULL;
+    BTreeNode *left = NULL;
+    BTreeNode *right = NULL;
+    
+    //노드 개수 만큼 반복
+    for(int i = 0; i < n; i++){
+        scanf("%d %d %d", &root_data, &left_data, &right_data);
+        getchar();
+        
+        //처음 만들 경우
+        if( i == 0){
+            //노드 만들기
+            root_head = MakeBTreeNode();
+            left = MakeBTreeNode();
+            right = MakeBTreeNode();
+            
+            //데이터 저장
+            SetData(root_head, root_data);
+            SetData(left, left_data);
+            SetData(right, right_data);
+            
+            MakeLeftSubTree(root_head, left);
+            MakeRightSubTree(root_head, right);
+            
+        }
+        //나머지 경우
+        else{
+            //해당 root_data 값과 맞는 노드 찾는 함수
+            Search_data(root_head, root_data);
+            left = MakeBTreeNode();
+            right = MakeBTreeNode();
+            
+            
+            //데이터 저장
+            SetData(left, left_data);
+            SetData(right, right_data);
+            
+            
+            //자식 노드 부모 노드에 연결
+            MakeLeftSubTree(root, left);
+            MakeRightSubTree(root, right);
+            
+        }
+        
+    }
+    //몇번 반복할지 입력
+    scanf("%d", &f_n);
+    getchar();
+
+    
+    
+    //찾는 횟수 만큼 반복
+    for(int i = 0 ; i < f_n; i++){
+        gets(tmp);
+        f_arr = (char *)malloc(sizeof(char) * ((int)strlen(tmp)+ 1));
+        strcpy(f_arr, tmp);
+        
+        int k = 0;
+        root = root_head; //root 노드 찾기
+        printf(" %d", root->data);
+        
+        
+        //NULL이 나올때까지 반복 해서 실행
+        while(f_arr[k] != '\0'){
+            root = Print(root, f_arr[k]);
+            k++;
+        }
+        printf("\n");
+        
+        
+    }
+    return 0;
+}
+
+//조건에 맞게 출력
+BTreeNode* Print(BTreeNode * bt, char direction){
+    
+    if(direction == 'L'){
+        if( bt->left->data == 0 || bt->left == NULL)
+            return NULL;
+        else{
+            printf(" %d", bt->left->data);
+            return bt->left;
+        }
+            
+    }
+    else if(direction == 'R'){
+        if(bt->right->data == 0 || bt->right == NULL)
+            return NULL;
+        else{
+            printf(" %d", bt->right->data);
+            return bt->right;
+        }
+            
+    }
+    
+    return NULL;
+}
+
+
+
+//노드 생성 함수
+BTreeNode * MakeBTreeNode(void){
+    BTreeNode * nd = (BTreeNode *)malloc(sizeof(BTreeNode));
+    nd->left = NULL;
+    nd->right = NULL;
+    return nd;
+}
+
+
+//Data 대입 함수
+void SetData(BTreeNode * bt, int data){
+    bt->data = data;
+}
+
+//왼쪽 자식으로 연결시키는 함수
+void MakeLeftSubTree(BTreeNode * main, BTreeNode * sub ){
+    if(main ->left != NULL)
+        free(main->left);
+    
+    main->left = sub;
+}
+
+
+//오른쪽 자식으로 연결시키는 함수
+void MakeRightSubTree(BTreeNode * main, BTreeNode * sub ){
+    if(main ->right != NULL)
+        free(main->right);
+    
+    main->right = sub;
+}
+
+//해당 데이터 주소 값 가져오기
+void Search_data(BTreeNode* bt, int data){
+    if(bt == NULL)
+        return;
+    
+    Search_data(bt->left, data);
+    
+    if(data == bt->data)
+        root = bt;
+    
+    Search_data(bt->right, data);
+}

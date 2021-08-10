@@ -1,0 +1,228 @@
+//Coumon
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct Group{
+    char data;
+    struct Header *header;
+}Groups;
+
+typedef struct element{
+    char data;
+    struct Header *header;
+}Elements;
+
+typedef struct Header{
+    struct Header* nextelement;
+    char e_data; //element 데이터 저장을 위함
+    char g_data; //group 데이터 저장을 위함
+    struct Header* nextgroup;
+}Header;
+
+
+void initShare(Groups* g_arr, Elements* e_arr, int NE, int NG);
+void addShare(Groups* g_arr, Elements* e_arr, char e, char g);
+void traverseShareElements(Groups* g_arr, char g);
+void traverseShareGroups(Elements* e_arr, char e);
+void removeShare(Groups* g_arr, Elements* e_arr, char e, char g);
+void visit(Header * p, int flag);
+
+int main(){
+    //구조체 배열 선언 및 초기화
+    Groups g_arr[5] = {{'A', NULL}, {'B', NULL}, {'C', NULL}, {'D', NULL}};
+    Elements e_arr[4] = {{1, NULL}, {2, NULL}, {3, NULL}, {4, NULL}};
+    
+    
+    //header 동적 할당 및 연결(초기화)
+    initShare(g_arr, e_arr, 4, 5);
+    
+    while(1){
+        char cmd,e,g;
+        scanf("%c", &cmd);
+        getchar();
+        
+        switch(cmd){
+                //노드 추가
+            case 'a':
+                scanf("%c %c", &e, &g);
+                getchar();
+                addShare(g_arr,e_arr, e, g);
+                break;
+                
+                //노드 제거
+            case 'r':
+                scanf("%c %c", &e, &g);
+                getchar();
+                removeShare(g_arr,e_arr, e, g);
+                break;
+                
+                //해당 그룹 라인 출력
+            case 'e':
+                scanf("%c", &g);
+                getchar();
+                traverseShareElements(g_arr, g);
+                break;
+                //해당 요소 라인 출력
+            case 'g':
+                scanf("%c", &e);
+                getchar();
+                traverseShareGroups(e_arr, e);
+                break;
+                //프로그램 종료
+            case 'q':
+                return -1;
+        }
+    }
+    return 0;
+}
+
+
+//header 동적 할당 및 연결(초기화)
+void initShare(Groups* g_arr, Elements* e_arr, int NE, int NG){
+    Header* H = NULL;
+    
+    for(int i = 0; i < NE; i++){
+        H = (Header *)malloc(sizeof(Header));
+        H->nextelement = H;
+        e_arr[i].header = H;
+    }
+    
+    for(int i = 0; i < NG; i++){
+        H = (Header *)malloc(sizeof(Header));
+        H->nextgroup = H;
+        g_arr[i].header = H;
+    }
+    
+}
+
+//노드 생성 메쏘드
+void addShare(Groups* g_arr, Elements* e_arr, char e, char g){
+    Header* p = NULL;
+    Header* g_cur = NULL;
+    Header* e_cur = NULL;
+    Header* HG = NULL;
+    Header* HE = NULL;
+    
+    p =(Header *) malloc(sizeof(Header));
+    //header 위치 기억시키기 위함
+    HG = g_arr[g-'A'].header;
+    HE = e_arr[e-'1'].header;
+    
+    g_cur = HG;
+    e_cur = HE;
+    
+    //노드 생성할 위치를 찾아감.
+    while(g_cur->nextgroup != HG)
+        g_cur = g_cur->nextgroup;
+    while(e_cur->nextelement != HE)
+        e_cur = e_cur->nextelement;
+    
+    //노드 생성
+    g_cur->nextgroup = p;
+    e_cur->nextelement = p;
+    
+    p->nextelement = HE;
+    p->nextgroup = HG;
+    
+    p->e_data = e;
+    p->g_data = g;
+    
+    printf("OK\n");
+}
+
+
+//해당 그룹 라인 출력
+void traverseShareElements(Groups* g_arr, char g){
+    Header* H = NULL;
+    Header* p = NULL;
+    
+    H = g_arr[g-'A'].header;
+    p = H->nextgroup;
+    if(p == H)
+        printf("0");
+    while(p != H){
+        visit(p , 1);
+        p = p->nextgroup;
+    }
+    printf("\n");
+}
+
+//해당 요소 라인 출력
+void traverseShareGroups(Elements* e_arr, char e){
+    Header* H = NULL;
+    Header* p = NULL;
+    
+    H = e_arr[e-'1'].header;
+    p = H->nextelement;
+    
+    if(p == H)
+        printf("0");
+    while(p != H){
+        visit(p, 0);
+        p = p->nextelement;
+    }
+    printf("\n");
+}
+
+//존재 하는 요소들 출력시키는 함수
+void visit(Header *p, int flag){
+    //element
+    if(flag == 1)
+        printf("%c ", p->e_data);
+    //group
+    else
+        printf("%c ", p->g_data);
+}
+
+//노드 제거 함수
+void removeShare(Groups* g_arr, Elements* e_arr, char e, char g){
+    //가로, 세로로 각각 현재를 가르키는 cur과 그 전을 가르키는 b_cur 선언 및 초기화
+    Header* g_cur = NULL;
+    Header* e_cur = NULL;
+    Header* bg_cur = NULL;
+    Header* be_cur = NULL;
+    
+    
+    g_cur = g_arr[g-'A'].header;
+    e_cur = e_arr[e-'1'].header;
+    
+    //group라인을 통해서 해당 위치 파악
+    while(g_cur->e_data != e){
+        bg_cur = g_cur;
+        g_cur = g_cur->nextgroup;
+    }
+    
+    //element라인을 통한 해당 위차 파악
+    while(e_cur->g_data != g){
+        be_cur = e_cur;
+        e_cur = e_cur->nextelement;
+    }
+    
+    
+    if(g_cur->nextgroup == g_arr[g-'A'].header
+       && e_cur->nextelement->nextelement == e_arr[e-'1'].header){
+        //group , element 라인 둘 다 맨 마지막에 위치 할 때
+        bg_cur->nextgroup = g_arr[g-'A'].header;
+        be_cur->nextgroup = e_arr[e-'1'].header;
+        free(g_cur);
+    }else if(g_cur->nextgroup == g_arr[g-'A'].header){
+        //group 라인만 맨 마지막에 위치 할 때
+        bg_cur->nextgroup = g_arr[g-'A'].header;
+        be_cur->nextelement = e_cur->nextelement;
+        free(e_cur);
+    }else if(e_cur->nextelement->nextelement == e_arr[e-'1'].header){
+        //element 라인만 맨 마지막에 위치 할 때
+        be_cur->nextelement = e_arr[e-'1'].header;
+        bg_cur->nextgroup = g_cur->nextgroup;
+        free(g_cur);
+    }else{
+        //나머지
+        be_cur->nextelement = e_cur->nextelement;
+        bg_cur->nextgroup = g_cur->nextgroup;
+        free(g_cur);
+    }
+    printf("OK\n");
+}
+
