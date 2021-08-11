@@ -1,5 +1,7 @@
 # [OS]Lecture 3. Process Management(1)
 
+[[OS] Lecture 3. Process Management (1/2) / 운영체제 강의](https://www.youtube.com/watch?v=jZuTw2tRT7w&list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN&index=5)
+
 ## Job vs Process
 
 - **작업(Job) / 프로그램(Program)**
