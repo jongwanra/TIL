@@ -1,5 +1,7 @@
 # [OS]Lecture 5. Process Scheduling(1)
 
+[[OS] Lecture 5. Process Scheduling (1/4) / 운영체제 강의](https://www.youtube.com/watch?v=_gNeoGQx-Tc&list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN&index=8)
+
 ## 다중프로그래밍(Multi-programming)
 
 - **여러개의 프로세스가 시스템 내 존재**
