@@ -1,5 +1,7 @@
 # [OS]Lecture 5. Process Scheduling(2)
 
+https://www.youtube.com/watch?v=r1JVA7yOPAM&list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN&index=9
+
 ## Basic Scheduling algorithms
 
 1. **FCFS(First-Come-First-Service)**
