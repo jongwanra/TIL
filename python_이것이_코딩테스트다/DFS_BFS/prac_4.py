@@ -39,7 +39,6 @@ for _ in range(row):
 bfs(arr, 0, 0)
 print(arr[row-1][col-1])
 
-
 '''
 5 6
 101010
