@@ -1,6 +1,6 @@
 # [OS]Lecture 5. Process Scheduling(3)
 
-[https://www.youtube.com/watch?v=keY9Wi7scEs&list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN&index=10](https://www.youtube.com/watch?v=keY9Wi7scEs&list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN&index=10)
+[[OS] Lecture 5. Process Scheduling (3/4) - SPN, SRTN, HRRN ](https://www.youtube.com/watch?v=keY9Wi7scEs&list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN&index=10)
 
 ## SPN(Shortest-Process-Next)
 
