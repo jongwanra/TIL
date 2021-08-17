@@ -3,7 +3,7 @@
 
 n = int(input())
 
-for _ in range(5):
+for _ in range(n):
     s = input()
     cnt = 0
     res = 0

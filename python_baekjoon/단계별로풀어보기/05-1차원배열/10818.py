@@ -4,5 +4,5 @@
 n = int(input())
 lst = list(map(int, input().split()))
 
-print(f"{max(lst)} {min(lst)}")
+print(f"{min(lst)} {max(lst)}")
 
