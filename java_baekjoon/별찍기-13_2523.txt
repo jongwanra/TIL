@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int n = scan.nextInt();
+		int j = 0 , k = 0;
+		scan.close();
+		
+		for(int i = 1; i <= 2*n - 1; i++) {
+			if(i <= n) {
+				for(j = 0; j < i; j++)
+					System.out.printf("*");
+			}
+			else {
+				for(k = 1; k < j; k++)
+					System.out.printf("*");
+				j--;
+			}
+			
+			System.out.printf("\n");
+		}
+
+		
+	}
+
+}

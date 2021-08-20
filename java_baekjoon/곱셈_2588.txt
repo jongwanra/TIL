@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int a = scan.nextInt();
+		int b = scan.nextInt();
+		
+		scan.close();
+		
+		int first_res = mul(a, b % 10);
+		int second_res = mul(a, b / 10 % 10);
+		int third_res = mul(a, b / 100);
+		
+		System.out.printf("%d\n%d\n%d\n%d\n",first_res,second_res,third_res, first_res + (second_res * 10) + (third_res * 100));
+	}
+	
+	private static int mul(int a, int b) {
+		return a * b;
+	}
+
+}

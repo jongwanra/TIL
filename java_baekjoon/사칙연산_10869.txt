@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int a = scan.nextInt();
+		int b = scan.nextInt();
+		
+		System.out.println(sum(a, b));
+		System.out.println(min(a, b));
+		System.out.println(mul(a, b));
+		System.out.println(div(a, b));
+		System.out.println(res(a, b));
+		scan.close();
+		
+	}
+	
+	private static int res(int a, int b) {
+		return a % b;
+	}
+
+	private static int div(int a, int b) {
+		return a / b;
+	}
+
+	private static int mul(int a, int b) {
+		return a * b;
+	}
+
+	private static int min(int a, int b) {
+		return a - b;
+	}
+
+	private static int sum(int a, int b) {
+		return a + b;
+	}
+
+}
