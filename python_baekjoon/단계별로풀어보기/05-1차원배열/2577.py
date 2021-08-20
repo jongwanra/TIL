@@ -7,8 +7,10 @@ for _ in range(3):
     num *= int(input())
 
 num = str(num)
+
 for n in num:
     res[int(n)] += 1
 
 for r in res:
     print(r)
+    
