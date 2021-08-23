@@ -1,7 +1,8 @@
 # 숫자의 개수(2577)
 # https://www.acmicpc.net/problem/2577
 
-res = [0] * 10
+res =  [0] * 10
+
 num = 1
 for _ in range(3):
     num *= int(input())
@@ -13,4 +14,3 @@ for n in num:
 
 for r in res:
     print(r)
-    
