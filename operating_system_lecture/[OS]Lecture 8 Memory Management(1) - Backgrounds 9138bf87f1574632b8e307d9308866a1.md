@@ -19,7 +19,7 @@
 
     → 내 컴퓨터 혹은 CPU는 32bit, 64bit라고 불리는 기준 : Word 단위
 
-         레지스터 하나의 크기가 64bit 이고, 메모리에서 데이터를 읽을 때 64bit씩 읽    는다고 이해하면 됨.
+         레지스터 하나의 크기가 64bit 이고, 메모리에서 데이터를 읽을 때 64bit씩 읽는다고 이해하면 됨.
 
 ## Address Binding
 
@@ -36,7 +36,7 @@
 
 → Compile 한다 : Source code를 Object module로 변환한다.
 
-→ Linker : Object module을 (라이브러리를 사용했을 때) Other object module과묶어서 실행 가능한 형태의 Load module(.exe 실행파일)로 만드는 작업.
+→ Linker : Object module을 (라이브러리를 사용했을 때) Other object module과 묶어서 실행 가능한 형태의 Load module(.exe 실행파일)로 만드는 작업.
 
 → Loader : Load module을 클릭하여 메모리에 올리는 작업.
 
