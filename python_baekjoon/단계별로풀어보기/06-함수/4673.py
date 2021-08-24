@@ -8,6 +8,7 @@ def d_func(n):
         n = n // 10 
     return res
 
+
 res = [0] * 10001
 
 for i in range(1, 10001):

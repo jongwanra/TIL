@@ -8,18 +8,19 @@ def func(num):
     return 0
         
 n = int(input())
+
 # 1 ~ 99
 if n < 100:
     print(n)
-else:
-    # 1000
-    if n == 1000:
-        print(144)
-    # 100 ~ 999
-    else:
-        res = 99
-        for i in range(100, n + 1):
-            res += func(i)
-        print(res)
+    exit()
 
-    
+# 1000
+if n == 1000:
+    print(144)
+    exit()
+
+# 100 ~ 999    
+res = 99
+for i in range(100, n + 1):
+    res += func(i)
+print(res)
