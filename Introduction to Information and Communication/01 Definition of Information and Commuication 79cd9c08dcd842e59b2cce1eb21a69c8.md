@@ -1,8 +1,8 @@
-# 01. 정보 통신의 정의
+# 01. Definition of Information and Commuication
 
 ## **정보 통신의 정의**
 
-![Untitled](01%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9%20%E1%84%90%E1%85%A9%E1%86%BC%E1%84%89%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%B4%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4%2079cd9c08dcd842e59b2cce1eb21a69c8/Untitled.png)
+![Untitled](01%20Definition%20of%20Information%20and%20Commuication%2079cd9c08dcd842e59b2cce1eb21a69c8/Untitled.png)
 
 - 정보 통신 = 전기 통신(전화기) + 컴퓨터(정보처리) 통신(=데이터 통신)
 
