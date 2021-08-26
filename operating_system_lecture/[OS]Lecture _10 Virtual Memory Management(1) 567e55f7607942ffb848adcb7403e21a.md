@@ -1,4 +1,4 @@
-# [OS]Lecture 10. Virtual Memory Management(1)
+# [OS]Lecture _10. Virtual Memory Management(1)
 
 [[OS] Lec 10. Virtual Memory Management (1/6) - Cost model, HW components / 운영체제 강의](https://www.youtube.com/watch?v=W8q3TKB9Lbo&list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN&index=32)
 
@@ -56,7 +56,7 @@
 
 ## Bit Vector
 
-![Untitled](%5BOS%5DLecture%2010%20Virtual%20Memory%20Management(1)%20567e55f7607942ffb848adcb7403e21a/Untitled.png)
+![Untitled](%5BOS%5DLecture%20_10%20Virtual%20Memory%20Management(1)%20567e55f7607942ffb848adcb7403e21a/Untitled.png)
 
 - **Reference bit vector**
     - 메모리에 적재된 각각의 page가 최근에 참조 되었는지를 표시
@@ -66,7 +66,7 @@
 
     - Reference bit를 확인함으로서 최근에 참조된 page들을 확인 가능
 
-    ![Untitled](%5BOS%5DLecture%2010%20Virtual%20Memory%20Management(1)%20567e55f7607942ffb848adcb7403e21a/Untitled%201.png)
+    ![Untitled](%5BOS%5DLecture%20_10%20Virtual%20Memory%20Management(1)%20567e55f7607942ffb848adcb7403e21a/Untitled%201.png)
 
 - **Update bit vector**
     - Page가 메모리에 적재된 후, 프로세스에 의해 수정 되었는지를 표시
