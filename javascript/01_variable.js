@@ -5,7 +5,7 @@
 // use this for Vanila Javascript.
 'use strict';
 
-// 2. Variable 
+// 2. Variable, rw(read/write)
 // let (added in ES6)
 // block scope vs global scope
 let globalName = 'global name';
@@ -34,7 +34,7 @@ var age;
 // name = 4;
 // let name;
 
-// 3. constants
+// 3. constants r(read only)
 // favor immutable data type always for a few reasons:
 //  - security
 //  - thread safety -> 동시에 값을 변경한다는 것은 위험하다.
@@ -43,10 +43,13 @@ var age;
 const daysInWeek = 7;
 const maxNumber = 5;
 
+// Note!
+// Immutable data types: primitive types, frozen objects(i.e. object.freeze())
+// Mutable data types: all objects by default are mutable in JS
 
 // 4. Variale types
-// primitive, single item: number, string, boolean, null, undefined, symbol
-// object, box container
+// primitive, single item: number, string, boolean, null, undefined, symbol -> 값 자체가 메모리에 저장!!
+// object, box container -> 객체가 가리키는 곳에는 주소가 담겨져 있고 그 주소가 가리키는 곳에서 변경 가능!!
 // function, first-class function -> function도 다른 데이터 타입처럼 변수에 할당이 가능, 함수의 인자로도 전달 가능, 반환도 가능
 
 const count = 17; // integer
