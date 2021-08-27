@@ -4,6 +4,6 @@
 import math
 r = int(input())
 # 유클리드 기하학(r^2 * 원주율)
-print("{:.6f}".format(r** 2 * math.pi))
+print("{:.6f}".format(r ** 2 * math.pi))
 # 택시 기하학(r^2 * 2)
 print("{:.6f}".format(r**2 * 2))

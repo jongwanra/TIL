@@ -52,7 +52,7 @@ for _ in range(n):
     hana = 1
 
     while dis < distance:
-        # 2번 반복해줌 
+        # 2번 반복해줌
         for _ in range(2):
             before_dis = dis
             count += 1

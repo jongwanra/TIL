@@ -5,7 +5,7 @@
 fixed, changed, notebook = list(map(int, input().split()))
 
 try:
-    point = fixed //(notebook - changed)
+    point = fixed // (notebook - changed)
     if point < 0:
         print(-1)
     else:

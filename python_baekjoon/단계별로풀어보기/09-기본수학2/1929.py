@@ -4,6 +4,8 @@
 # 방법 1
 
 import math
+
+
 def check_prime_num(num):
     '''
     소수 판별 함수.
@@ -19,6 +21,7 @@ def check_prime_num(num):
             return 0
     return 1
 
+
 m, n = map(int, input().split())
 
 for num in range(m, n+1):
@@ -26,14 +29,13 @@ for num in range(m, n+1):
         print(num)
 
 
-
 # 방법 2(에라토스테네스의 체)
 
-import math
+
 def eratosthenes(num):
     lst = [True] * (num+1)
-    lst[1] = False 
-    
+    lst[1] = False
+
     for i in range(2, int(math.sqrt(num)) + 1):
         if lst[i]:
             j = 2
@@ -41,6 +43,7 @@ def eratosthenes(num):
                 lst[i * j] = False
                 j += 1
     return lst
+
 
 m, n = map(int, input().split())
 res = eratosthenes(n)
