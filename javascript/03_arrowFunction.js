@@ -153,22 +153,18 @@ const cal = function (cmd, a, b) {
     let res = 0;
     switch (cmd) {
         case "add":
-            res = a + b;
-            break;
+            return a + b;
         case "substract":
-            res = a - b;
-            break;
+            return  a - b;
         case "divide":
-            res = a / b;
-            break;
+            return a / b;
         case "multiply":
-            res = a * b;
-            break;
+            return a * b;
+        case "remainder":
+            return a % b;
         default:
-            res = a % b;
-            break;
+            throw Error("unknown command");
     }
-    return res;
 }
 
 console.log(cal("add", 3, 10));
