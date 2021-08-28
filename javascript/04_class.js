@@ -36,6 +36,7 @@ class User{
 
     // getter(값을 가져올 때 getter를 바로 호출, 메모리 읽어오기 전)
     get age(){
+        console.log(`called get age method!!`);
         return this._age;
     }
 
@@ -49,6 +50,9 @@ class User{
 }
 
 const user1 = new User('Steve', 'job', -1);
+console.log(user1.age); 
+console.log(user1.age); 
+console.log(user1.age); 
 console.log(user1.age); 
 
 // 3. Fields (public, private)
@@ -124,8 +128,8 @@ triangle.draw();
 
 // 6. Class checking: instanceOf
 // 왼쪽에 있는 객체가 오른쪽에 있는 클래스의 인스턴스 인지 아닌지 여부 
-console.log(rectangle instanceof Rectangle);
-console.log(triangle instanceof Rectangle);
-console.log(triangle instanceof Triangle);
-console.log(triangle instanceof Shape);
-console.log(triangle instanceof Object);
+console.log(rectangle instanceof Rectangle); // true
+console.log(triangle instanceof Rectangle); // false
+console.log(triangle instanceof Triangle); // true
+console.log(triangle instanceof Shape); // true
+console.log(triangle instanceof Object); // true
