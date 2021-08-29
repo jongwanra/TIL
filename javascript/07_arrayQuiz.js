@@ -159,4 +159,3 @@ const students = [
     console.log(result);
     
 }
-
