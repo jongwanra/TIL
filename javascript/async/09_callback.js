@@ -1,5 +1,11 @@
 'use strict';
 
+// Callback 함수란 도대체 무엇인가?
+// A callback function is a function which is:
+// - passed as an argument to another function, and, (다른 함수의 인자로서 이용되는 함수)
+// - is invoked after some kind of event (어떤 이벤트에 의해 호출되어지는 함수)
+
+
 // JavaScript is synchronous. 
 // Execute the code block in order after hoisting.
 // hoisting: var, function declaration 자동적으로 선언들이 제일 위로 올라가는 것
