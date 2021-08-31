@@ -26,7 +26,7 @@ for _ in range(n):
     tmp = int(input())
 
     t_lst = []
-    for i in range(tmp):
+    for i in range(tmp): # 0 ~ 7
         # 해당 i가 소수이면서, tmp-i가 소수인 경우, t_lst 추가
         if lst[i] is True and lst[tmp-i] is True:
             t_lst.append((i, tmp-i))

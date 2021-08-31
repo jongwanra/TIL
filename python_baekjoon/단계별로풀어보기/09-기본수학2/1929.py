@@ -3,7 +3,7 @@
 
 # 방법 1
 
-import math
+from math import sqrt
 
 
 def check_prime_num(num):
@@ -16,7 +16,7 @@ def check_prime_num(num):
     if num == 2:
         return 1
 
-    for i in range(2, int(math.sqrt(num)) + 1):
+    for i in range(2, int(sqrt(num)) + 1):
         if num % i == 0:
             return 0
     return 1
@@ -33,10 +33,10 @@ for num in range(m, n+1):
 
 
 def eratosthenes(num):
-    lst = [True] * (num+1)
+    lst = [True] * (num+1)  # 0 ~ 17
     lst[1] = False
 
-    for i in range(2, int(math.sqrt(num)) + 1):
+    for i in range(2, int(sqrt(num)) + 1):
         if lst[i]:
             j = 2
             while i * j <= num:
