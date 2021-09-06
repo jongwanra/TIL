@@ -1,4 +1,4 @@
-INF = int(1e9) 
+INF = int(1e9)
 
 n = int(input())
 m = int(input())
