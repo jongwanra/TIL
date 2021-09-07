@@ -9,7 +9,7 @@ def hanoi(n, start, to, via, ans):
     if n == 1:
         ans.append([start, to])
         return
-    # n - 1개의 원반을 보조기둥으로 옮긴다.
+    # 1.  n - 1개의 원반을 보조기둥으로 옮긴다.
     hanoi(n-1, start, via, to, ans)
 
     # 제일 큰 원반을 목표 기둥에 옮긴다.

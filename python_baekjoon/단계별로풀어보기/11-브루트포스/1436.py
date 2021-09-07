@@ -6,7 +6,7 @@ n = int(input())
 res = []
 count = 0
 data = 1
-while count < n:   
+while count < n:
     if str(data).count('666') >= 1:
         res.append(data)
         count += 1

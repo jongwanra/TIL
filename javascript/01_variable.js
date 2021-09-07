@@ -1,5 +1,3 @@
-// https://www.youtube.com/watch?v=OCCpGh4ujb8&list=PLv2d7VI9OotTVOL4QmPfvJWPJvkmv6h-2&index=3
-
 // 1. Use strict
 // added in ES5
 // use this for Vanila Javascript.
@@ -9,6 +7,7 @@
 // let (added in ES6)
 // block scope vs global scope
 let globalName = 'global name';
+
 {
     let name = 'ellie';
     console.log(name);
