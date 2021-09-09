@@ -1,5 +1,6 @@
 # 특정 거리의 도시 찾기(18352)
 # https://www.acmicpc.net/problem/18352
+
 from sys import stdin
 from heapq import heappush, heappop
 
