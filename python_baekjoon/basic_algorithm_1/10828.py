@@ -1,5 +1,6 @@
 # 스택(10828)
 # https://www.acmicpc.net/problem/10828
+# 품(21.09.10) / 5분 이내
 from sys import stdin
 
 if __name__ == "__main__":
