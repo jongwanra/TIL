@@ -1,8 +1,12 @@
-# sys.stidin.readline().rstrip()
+# (solved)sys.stidin.readline().rstrip()
+
+## Occured Error
 
 알고리즘 문제를 풀면서 수많은 입력을 처리해야 하는 경우, 
 
 input()을 이용한다면, 시간초과가 난다.
+
+## Solution
 
 그 대신에 sys.stdin.readline()을 사용해주면 좋다.
 
