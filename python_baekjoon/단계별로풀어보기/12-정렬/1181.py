@@ -4,6 +4,7 @@
 
 # 방법 1
 '''
+
 from sys import stdin
 
 datas = [[] for _ in range(51)]
@@ -42,9 +43,11 @@ for _ in range(num):
     arr.append(stdin.readline().rstrip())
 
 arr = list(set(arr)) # set을 이용해서 중복 제거
+
 arr.sort() # 사전 순 정렬
 arr.sort(key=len) # 길이 순 정렬
 
 for word in arr:
     print(word)
+
 '''

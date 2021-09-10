@@ -5,9 +5,8 @@ from sys import stdin
 
 # 최빈값 반환(가장 많이 나타나는 값이 중복일 경우, 두 번째로 작은 값 출력)
 def min_func(dic):
-    sorted_dic = sorted(dic.items(), key= lambda x: x[0])
-    sorted_dic = sorted(sorted_dic, key=lambda x:x[1], reverse=True)
-
+    sorted_dic = sorted(dic.items(), key= lambda x: x[0]) # key값 기준으로 오름차순
+    sorted_dic = sorted(sorted_dic, key=lambda x:x[1], reverse=True) # 중복값 기준으로 내림차순
     if sorted_dic[0][1] != sorted_dic[1][1]:
         return sorted_dic[0][0]
     return sorted_dic[1][0]
