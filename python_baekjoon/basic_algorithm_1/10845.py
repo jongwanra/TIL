@@ -1,6 +1,7 @@
 # 큐(10845)
 # https://www.acmicpc.net/problem/10845
 # Solved(21.09.12) / 08:40
+
 from collections import deque
 from sys import stdin
 if __name__ == "__main__":
