@@ -25,3 +25,41 @@
     						//.
             })
     ```
+
+1. server side receive code
+
+    ```python
+    file = request.files["file_give"]
+
+    save_to = 'static/mypicture.jpg'
+    file.save(save_to)
+    ```
+
+1. client side send code
+
+    ```jsx
+    function posting() {
+        let title = $('#title').val()
+        let content = $("#content").val()
+
+        let file = $('#file')[0].files[0]
+        let form_data = new FormData()
+
+        form_data.append("file_give", file)
+        form_data.append("title_give", title)
+        form_data.append("content_give", content)
+
+        $.ajax({
+            type: "POST",
+            url: "/diary",
+            data: form_data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response["msg"])
+                window.location.reload()
+            }
+        });
+    }
+    ```
