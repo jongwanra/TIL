@@ -9,6 +9,7 @@ if __name__ == "__main__":
     stack = []
     for _ in range(n):
         datas = input().split()
+        print(f"datas: {datas}")
         if datas[0] == "push":
             stack.append(datas[1])
         elif datas[0] == "top":
