@@ -1,4 +1,4 @@
-# How to use Selenum
+# How to use Selenium
 
 ### 셀레니움 설치
 
