@@ -29,3 +29,6 @@ app.use(express.json()); 이게 먼저 선언 되어야 하고, 그 이후에
 const goodsRouter = require('./routers/goods');
 app.use('/api', [goodsRouter]);
 해당 부분을 처리해야 에러없이 Post 메소드를 처리할 수 있다.
+
+## Reference
+https://stackoverflow.com/questions/62455716/typeerror-cannot-destructure-property-userid-of-req-body-as-it-is-undefined
