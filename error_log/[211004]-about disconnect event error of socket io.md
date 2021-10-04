@@ -376,4 +376,11 @@ app.use(express.static('assets'));
 module.exports = http;
 ```
 
+## 멘토님께 받은 조언 이후,
+
+1. app.js 파일 내부에서 goodsId값을 Number()화 시켜주지 않았다.
+2. 분리를 안했을 때, 정상적으로 동작하던 기능이 파일들로 따로 나누면서 같은 문제가 생겼다.(server.js 로 따로 분리하면서 바로 발생) 
+
+일단, 다른 과제 진행 이후 이 문제에 대해서 다시 한번 파일들을 기능별로 모듈화를 진행해봐야겠다.
+
 ## Solution
