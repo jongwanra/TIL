@@ -51,6 +51,4 @@
 
 ## Reference
 
-- 
-
-[package.json 파일 이란 무엇이며 어떤 역할을 할까요?](https://oneroomtable.tistory.com/entry/packagejson-%ED%8C%8C%EC%9D%BC%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B4%EB%A9%B0-%EC%96%B4%EB%96%A4-%EC%97%AD%ED%95%A0%EC%9D%84-%ED%95%A0%EA%B9%8C%EC%9A%94)
+- [package.json 파일 이란 무엇이며 어떤 역할을 할까요?](https://oneroomtable.tistory.com/entry/packagejson-%ED%8C%8C%EC%9D%BC%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B4%EB%A9%B0-%EC%96%B4%EB%96%A4-%EC%97%AD%ED%95%A0%EC%9D%84-%ED%95%A0%EA%B9%8C%EC%9A%94)
