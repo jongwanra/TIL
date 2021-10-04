@@ -21,7 +21,7 @@
 
 1. 리소스에 대한 행위(verb)는 HTTP 요청 메소드로 표현한다.
 
-![Untitled](%5B210927%5D%20REST%20API%2095535427f317406599bcbb48b275ca0f/Untitled.png)
+![Untitled](./%5B210927%5D-REST%20API/Untitled.png)
 
 ## Reference
 
