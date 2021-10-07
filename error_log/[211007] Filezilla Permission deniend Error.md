@@ -2,7 +2,7 @@
 
 ## Occured Error
 
-![error.png](%5B211007%5D%20Filezilla%20Permission%20deniend%20Error%20cc04a7daf15441eea3fef51a98cf29bc/error.png)
+![error.png](./%5B211007%5D%20Filezilla%20Permission%20deniend%20Error/error.png)
 
 파일질라로 파일들을 업로드할 때 에러 발생.
 
