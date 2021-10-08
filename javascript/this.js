@@ -11,7 +11,6 @@ console.log(this === exports); // true
 
 // node환경에서 실행했을 때, this의 값은 module 객체 안에 exports로 확인이 된다.
 
-console.log('---------------------------------');
 
 // 그렇다면, 함수 안에서는 어떻까?
 function checkThisInFunc() {
