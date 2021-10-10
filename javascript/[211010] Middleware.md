@@ -1,6 +1,6 @@
 # [211010] Middleware
 
-![Untitled](%5B211010%5D%20Middleware%203154b82b97774ce09af41f8be47fd92f/Untitled.png)
+![Untitled](./%5B211010%5D%20Middleware%20/Untitled.png)
 
 request-response cycle
 
