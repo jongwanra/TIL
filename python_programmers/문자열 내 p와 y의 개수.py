@@ -2,7 +2,6 @@
 # 4분 소요
 
 def solution(s):
-    answer = True
     p_cnt, y_cnt = 0, 0
     
     for i in s:
