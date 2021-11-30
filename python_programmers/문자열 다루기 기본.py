@@ -9,3 +9,4 @@ def solution(s):
         else:
             return False
     return True
+
