@@ -1,5 +1,27 @@
 # 더하기 사이클(1110)
 # https://www.acmicpc.net/problem/1110
+# 해결 / 18분 소요 / 21.12.06
+    
+
+num = int(input())
+cnt = 0
+origin = num
+while True:
+    cnt += 1
+    # 각 자릿수 구하기
+    front = num // 10
+    back = num % 10
+    num = (back * 10) + ((front+back) % 10)
+    
+    # 같은 숫자가 되었을 경우, break
+    if num == origin:
+        break
+print(cnt)
+
+
+
+# 더하기 사이클(1110)
+# https://www.acmicpc.net/problem/1110
 
 '''
 26 
