@@ -2,7 +2,7 @@
 # https://www.acmicpc.net/problem/2839
 
 n = int(input())
-dp = [-1] * 5001
+dp = [-1] * (n+3)
 
 # 초기화
 dp[3] = 1
@@ -26,41 +26,29 @@ for i in range(6, n + 1):
 
 print(dp[n])
 
-# 다른 사람 1
-'''
+# 설탕 배달(2839)
+# https://www.acmicpc.net/problem/2839
+# 못품 (21.12.06) 50분 소요
+
+def recursive(cnt, origin, n):
+    if origin > n:
+        return
+    dp[origin + 3] = cnt
+    dp[origin + 5] = cnt
+    
+    recursive(cnt+1, origin + 3, n)     
+    recursive(cnt+1, origin + 5, n)
+    
+# 설탕 kg입력
 n = int(input())
+dp = [0] * (n + 9)
 
-m = n % 5
+cnt = 1
+origin = 0
+recursive(cnt, origin, n)
 
-if n == 4 or n == 7:
+if dp[n] == 0:
     print(-1)
-    quit()
+else:
+    print(dp[n])    
 
-elif m == 0:
-    print(n//5)
-
-elif m == 3 or m == 1:
-    print(n//5 + 1)
-
-elif m == 4 or m == 2:
-    print(n//5 + 2)
-'''
-
-
-# 다른 사람 2
-'''
-n = int(input())
-result = 0
-while True:
-    if n % 5 == 0:
-        result += n // 5
-        break
-    n -= 3
-    result += 1
-
-    if n < 0:
-        result = -1
-        break
-print(result)
-
-'''
