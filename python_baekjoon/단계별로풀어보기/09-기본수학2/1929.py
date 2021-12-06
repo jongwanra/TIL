@@ -1,5 +1,28 @@
 # 소수 구하기(1929)
 # https://www.acmicpc.net/problem/1929
+# 해결 / 17분 소요 / 21.12.06
+
+m, n = map(int, input().split())
+datas = [True] * (n + 1)
+
+datas[0] = False
+datas[1] = False
+
+for i in range(2,n+1):
+    if datas[i]:
+        for j in range(i+i, n+1, i):
+            datas[j] = False
+            
+for i in range(m, n+1):
+    if datas[i]:
+        print(i)
+
+
+
+
+
+# 소수 구하기(1929)
+# https://www.acmicpc.net/problem/1929
 
 # 방법 1
 
