@@ -1,5 +1,41 @@
 # Fly me to the Alpha Centauri(1011)
 # https://www.acmicpc.net/problem/1011
+# 미해결 / 30분 초과..
+'''
+1, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6,6,7,7,7,7,8,8,8,8 ... 
+
+최소횟수 * 
+1 * 1 
+2 * 1 
+3 * 2 
+4 * 2 
+5 * 3 
+6 * 3 
+7 * 4 
+8 * 4 
+9 * 5
+10 * 5
+11 * 6
+12 * 6
+
+.
+.
+.
+n * (1/2)n
+'''
+
+def calculate(distance):
+    pass
+num = int(input())
+
+for _ in range(num):
+    x, y = map(int, input().split())
+    distance = y - x
+    print(calculate(distance))
+
+
+# Fly me to the Alpha Centauri(1011)
+# https://www.acmicpc.net/problem/1011
 
 # 못품(21.08.23)
 # 1 시간 넘게 걸림(21.08.25)
