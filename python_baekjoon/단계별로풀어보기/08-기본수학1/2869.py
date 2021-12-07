@@ -1,5 +1,18 @@
 # 달팽이는 올라가고 싶다(2869)
 # https://www.acmicpc.net/problem/2869
+# 해결 / 26분 소요 / 21.12.07
+a, b, v = map(int, input().split())
+
+day = a - b
+value =  v- a
+if value % day == 0:
+    print(value // day  + 1)    
+else:
+    print(value // day  + 2)
+
+
+# 달팽이는 올라가고 싶다(2869)
+# https://www.acmicpc.net/problem/2869
 
 up, down, target = list(map(int, input().split()))
 
