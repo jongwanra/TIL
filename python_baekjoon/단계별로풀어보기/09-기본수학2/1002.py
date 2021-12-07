@@ -1,6 +1,6 @@
 # 터렛(1002)
 # https://www.acmicpc.net/problem/1002
-
+# 해결 / 30분 소요 / 21.12.07
 from math import sqrt
 # x1, y1, r1, x2, y2, r2
 n = int(input())
