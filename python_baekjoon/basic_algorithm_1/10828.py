@@ -1,12 +1,13 @@
 # 스택(10828)
 # https://www.acmicpc.net/problem/10828
 # 해결 / 13분 소요 / 21.12.08
+
 from sys import stdin
 stack = []
 n = int(input())
 
 for _ in range(n):
-    cmd = stdin.readline().rstrip().split()
+    cmd = stdin.readline.rstrip().split()
     if cmd[0] == 'push':
         stack.append(cmd[1])
     elif cmd[0] == 'pop':
@@ -17,17 +18,6 @@ for _ in range(n):
         print(1) if len(stack) == 0 else print(0)
     elif cmd[0] == 'top':
         print(-1) if len(stack) == 0 else print(stack[len(stack) - 1])
-
-
-
-
-
-
-
-
-
-
-
 
 
 
