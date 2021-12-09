@@ -1,6 +1,7 @@
 # 균형잡힌 세상(4949)
 # https://www.acmicpc.net/problem/4949
 # 미해결 / 30분 초과 / 21.12.09
+# 해결 / 10분 / 21.12.09
 from sys import stdin
 
 while True:

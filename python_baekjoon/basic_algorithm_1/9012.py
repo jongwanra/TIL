@@ -1,6 +1,7 @@
 # 괄호(9012)
 # https://www.acmicpc.net/problem/9012
 # 해결 / 10분 소요 / 21.12.08
+
 n = int(input())
 for _ in range(n):
     problem = input()
