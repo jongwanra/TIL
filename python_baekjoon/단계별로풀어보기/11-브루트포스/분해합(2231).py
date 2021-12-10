@@ -23,11 +23,9 @@ n = int(input())
 # 리스트 안에 생성자들을 다 넣어줌
 for c in range(1, 1000001):
     dp[createConstructor(c)].append(c)
-print(dp)
 # 생성자가 없을 경우 0 출력,
 # 있을 경우 최솟값 출력
 print(0) if dp[n] == [] else print(min(dp[n]))
-
 
 
 # 분해합(2231)
