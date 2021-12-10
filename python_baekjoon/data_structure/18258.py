@@ -1,5 +1,51 @@
 # 큐 2(18258)
 # https://www.acmicpc.net/problem/18258
+# 해결 / 9분 30초 소요 / 21.12.09
+
+from sys import stdin
+from collections import deque
+n = int(stdin.readline().rstrip())
+queue = deque()
+size = 0
+for _ in range(n):
+    cmd = stdin.readline().rstrip().split()
+    if cmd[0] == 'push':
+        queue.append(cmd[1])
+        size += 1
+    elif cmd[0] == 'pop':
+        if size == 0:
+            print(-1)
+        else:
+            print(queue.popleft())
+            size -= 1
+    elif cmd[0] == 'size':
+        print(size)
+    elif cmd[0] == 'empty':
+        print(1) if size == 0 else print(0) 
+    elif cmd[0] == 'front':
+        print(-1) if size == 0 else print(queue[0])
+    elif cmd[0] == 'back':
+        print(-1) if size == 0 else print(queue[-1])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 큐 2(18258)
+# https://www.acmicpc.net/problem/18258
 
 from sys import stdin
 from collections import deque

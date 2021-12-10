@@ -1,5 +1,22 @@
 # 최소 힙(1927)
 # https://www.acmicpc.net/problem/1927
+# 해결 / 7분 소요 / 21.12.09
+from heapq import heappush, heappop
+from sys import stdin
+
+n = int(stdin.readline().rstrip())
+
+heap = []
+for _ in range(n):
+    x = int(stdin.readline().rstrip())
+    if x == 0:
+        print(0) if heap == [] else print(heappop(heap))
+    else:
+        heappush(heap, x)
+
+
+# 최소 힙(1927)
+# https://www.acmicpc.net/problem/1927
 
 from sys import stdin
 
