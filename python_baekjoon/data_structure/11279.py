@@ -1,7 +1,29 @@
 # 최대 힙(11279)
 # https://www.acmicpc.net/problem/11279
+# 해결 / 10분 소요 / 21.12.10
 
+from heapq import heappush, heappop
 from sys import stdin
+
+n = int(stdin.readline())
+
+heap = []
+for _ in range(n):
+    tmp = int(stdin.readline())
+    if tmp == 0:
+        print(0) if heap == [] else print(-heappop(heap))
+    else:
+        heappush(heap, -tmp)
+
+exit()        
+        
+
+
+
+# 최대 힙(11279)
+# https://www.acmicpc.net/problem/11279
+
+# from sys import stdin
 def upheap(heap, loc):
     size = len(heap) - 1
     

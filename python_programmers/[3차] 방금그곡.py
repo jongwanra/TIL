@@ -6,7 +6,7 @@ def getTime(start_time, end_time):
     start_total_m = (start_h) * 60 + start_m
     end_total_m = (end_h) * 60 + end_m
     return end_total_m - start_total_m
-    
+     
 # C# -> c, D# -> d, F# -> f, G# -> g,  A# -> a
 # #이 붙은 음들은 소문자로 변경 후 변환
 def convertString(s):
