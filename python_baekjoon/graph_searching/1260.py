@@ -27,8 +27,6 @@ visited = [False] * (vertex + 1)
 dfs(graph, visited, start)
 
 
-
-
 # DFS와 BFS(1260)
 # https://www.acmicpc.net/problem/1260 
 
