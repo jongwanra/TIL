@@ -9,9 +9,9 @@
 - [알고리즘 정리](https://github.com/jongwanra/TIL/tree/main/python_algorithm)
 - [백준 문제 풀기](https://github.com/jongwanra/TIL/tree/main/python_baekjoon)
 - [프로그래머스 문제 풀기](https://github.com/jongwanra/TIL/tree/main/python_programmers)
-  - [level1]()
-  - [level2]()
-  - [level3]()
+  - [level1](https://github.com/jongwanra/TIL/tree/main/python_programmers/level1)
+  - [level2](https://github.com/jongwanra/TIL/tree/main/python_programmers/level2)
+  - [level3](https://github.com/jongwanra/TIL/tree/main/python_programmers/level3)
 - [코드업 문제 풀기](https://github.com/jongwanra/TIL/tree/main/python_codeup)
 
 ### 2. 운영체제
