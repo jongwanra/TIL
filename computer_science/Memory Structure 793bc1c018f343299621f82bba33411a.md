@@ -1,10 +1,10 @@
-# Memory Structure
+# Process Structure
 
-## 메모리는 어떤 구조를 가지고 있을까?
+## 프로세스는 어떤 구조를 가지고 있을까?
 
-![Memory%20Structure%20793bc1c018f343299621f82bba33411a/Untitled.png](Memory%20Structure%20793bc1c018f343299621f82bba33411a/Untitled.png)
+![Memory%20Structure%20793bc1c018f343299621f82bba33411a/Untitled.png](./images/process_structure.png)
 
-메모리는 크게 4개의 영역으로 나뉜다.
+Process는 크게 4개의 영역으로 나뉜다.
 
 1. Stack영역
 2. Heap영역
@@ -17,7 +17,7 @@
 - 함수가 종료되면 해제 됨.
 - **컴파일 시에 크기가 결정됨.**
 
-    → 일반적으로 컴파일러 기본 설정은 **1MB**로 제한되어 있다. 즉, 우리가 작성한 코드가 스택 영역을 1MB 이상 할당하려고 하면 "Stack Overflow" 에러를 발생시킨다.
+  → 일반적으로 컴파일러 기본 설정은 **1MB**로 제한되어 있다. 즉, 우리가 작성한 코드가 스택 영역을 1MB 이상 할당하려고 하면 "Stack Overflow" 에러를 발생시킨다.
 
 - Stack 영역의 크기는 컴파일러 환경 설정에서 변경이 가능하지만, 변경하지 않는 것을 추천한다. 덩치가 큰 메모리는 Heap 영역에 할당해서 사용하면 되기 때문.
 
@@ -39,4 +39,4 @@
 - 코드영역에는 실제 프로그램 동작을 수행하는 명령어(Instruction)와 전역 상수가 저장된다.
 - 명령어는 CPU에서 순차적으로 실행되는 함수와 연산 구문 등이 해당되고, 전역 상수는 " "로 선언된 문자열 상수나 const 접두어가 붙은 변수 등이 해당 된다.
 
-*참고: [https://gracefulprograming.tistory.com/22](https://gracefulprograming.tistory.com/22)*
+_참고: [https://gracefulprograming.tistory.com/22](https://gracefulprograming.tistory.com/22)_
