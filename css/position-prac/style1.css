@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  background-color: #e5e5e5;
+}
+
+.name-card {
+  background-color: white;
+  position: fixed;
+  left: 200px;
+  top: 100px;
+  width: 240px;
+  height: 56px;
+  border-radius: 2px;
+  border: 1px solid white;
+}
+
+.card-name {
+  position: relative;
+  bottom: 20px;
+  color: #e5eaef;
+  font-size: 5px;
+}
+.img-box {
+  background-color: white;
+  position: absolute;
+  /* background-color: red; */
+  top: 8px;
+  left: 12px;
+}
+.img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.name {
+  position: relative;
+  bottom: 10px;
+  font-size: 16px;
+  background-color: white;
+}

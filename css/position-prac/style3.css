@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: 'Nunito Sans', sans-serif;
+  color: #273444;
+  background-color: #000;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+  box-shadow: none;
+  outline: none;
+}
+
+.modal {
+  position: relative;
+  background-color: #fff;
+  width: 671px;
+  height: 216px;
+  /* 가운데 정렬 */
+  text-align: center;
+  padding: 32px 40px;
+  border-radius: 4px;
+}
+
+.modal-title {
+  display: block;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.6666666667;
+  margin-bottom: 4px;
+}
+
+.modal-desc {
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 24px;
+}
+
+.input-group input,
+.input-group button {
+  display: inline-block;
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  line-height: 1.4285714286;
+  border-radius: 4px;
+  border: 1px solid white;
+  font-weight: normal;
+}
+.input-group input {
+  width: 200px;
+  height: 36px;
+  background-color: #f6f8fa;
+  padding-left: 16px;
+}
+.input-group button {
+  width: 90px;
+  height: 36px;
+  background-color: #2860e1;
+
+  color: white;
+}
+.close-button {
+  position: absolute;
+  top: 12.17px;
+  right: 12.17px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  background-image: url(./assets/icon-close.svg);
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* �� WHERE YOUR CODE BEGINS */
