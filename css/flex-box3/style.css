@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: 'Muli', sans-serif;
+  color: #273444;
+  background-color: #e5e5e5;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3333333333;
+}
+
+.profile-location {
+  font-size: 14px;
+  line-height: 1.4285714286;
+  color: #8492a6;
+}
+
+.profile-detail {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.profile-detail dt {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6666666667;
+  color: #8492a6;
+}
+
+.profile-detail dd {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.25;
+  color: #0066ff;
+}
+
+/* ▼ WHERE YOUR CODE BEGINS */
+
+.profile {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 386px;
+  height: 304px;
+  background-color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 32px 40px;
+}
+.profile-box {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.profile-image {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+.profile-detail-item {
+}
