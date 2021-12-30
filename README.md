@@ -21,3 +21,7 @@
 ### 3. 자바스크립트
 
 - [자바스크립트 관련 정리](https://github.com/jongwanra/TIL/tree/main/javascript)
+
+### 4. 에러 로그
+
+- [발생했던 에러 기록](https://github.com/jongwanra/TIL/tree/main/error_log)
