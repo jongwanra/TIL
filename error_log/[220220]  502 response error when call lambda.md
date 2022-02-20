@@ -26,6 +26,6 @@ sendSqsMessage
       callback(null, {
         statusCode: err.statusCode || 500,
         body: JSON.stringify(err.message),
-      };);
+      });
     });
 ```
