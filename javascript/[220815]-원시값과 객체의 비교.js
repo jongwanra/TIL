@@ -17,10 +17,10 @@ Deep Dive 11장
   - 자바 스크립트의 문자열은 원시 타입이며, 변경 불가능하다. 
  */
 
-  let score = 80;
-  let copy = score;
 
-  score = 100;
+function add (x, y) {
+  console.log(arguments);
+  return x + y;
+}
 
-  console.log(score);
-  console.log(copy);
+console.log(add(3));
