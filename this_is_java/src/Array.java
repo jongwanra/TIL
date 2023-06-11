@@ -10,7 +10,8 @@ public class Array {
          * 특징
          * 1. 배열은 전부 같은 타입이다.
          * 2. 한 번 생성된 배열의 크기(길이)는 변경이 불가능하다.
-         * */
+         *
+         */
 
 
 
@@ -52,7 +53,6 @@ public class Array {
         printArrays(booleanArray);
 
     }
-
 
     private static void printArrays(Object[] objects) {
         for (Object object : objects) {
