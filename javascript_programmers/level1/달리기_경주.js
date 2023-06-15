@@ -30,9 +30,7 @@ function solution(players, callings) {
     callings.forEach((calling) => {
         swapPlayer(playerToRankingMap, players, calling);
     });
-    
 
-    
     return players;
 }
 
