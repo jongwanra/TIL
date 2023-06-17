@@ -13,3 +13,31 @@ const solution = (n) => {
     // console.log(":: memory::", memory);
     return memory[n];
 }
+
+
+
+// solution Top - Bottom
+
+let memory = [];
+const topBottomCase = (x) => {
+    if(x === 1){
+        return 1;
+    }
+    if(x === 2) {
+        return 2;
+    }
+
+    const x1 = memory?.[x - 1] || topBottomCase(x - 1);
+    const x2 = memory?.[x - 2] || topBottomCase(x - 2);
+    const result = (x1 +  x2) % 1234567;
+    if(!memory[x]){
+        memory[x] = result;
+    }
+    return result;
+}
+
+
+const solution = (n) => {
+    memory = Array(n).fill(null);
+    return topBottomCase(n);
+}
