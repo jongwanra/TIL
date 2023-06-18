@@ -24,6 +24,7 @@ const solution = (tickets) => {
     const visitedMap = new Map();
     const graphMap = new Map();
 
+    // 중간에 완주를 하려다가 실패하는 케이스가 존재한다..
     // 방문 맵, Graph 맵 셋팅
     tickets.forEach((ticket) => {
         const [departure, arrival] = ticket;
@@ -36,3 +37,9 @@ const solution = (tickets) => {
 
     return answers;
 }
+
+// [["ICN", "BOO"], ["ICN", "COO"], ["COO", "DOO"], ["DOO", "COO"], ["BOO", "DOO"], ["DOO", "BOO"], ["BOO", "ICN"], ["COO", "BOO"]]
+// ["ICN", "BOO", "DOO", "BOO", "ICN", "COO", "DOO", "COO", "BOO"]
+
+
+// test 1 commit 추가
