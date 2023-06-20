@@ -34,5 +34,5 @@ const solution = (tickets) => {
     const departments = graphMap.get('ICN');
     dfs(graphMap, visitedMap, 'ICN', departments[0], answers);
 
-    return answers; ///
+    return answers;
 }
