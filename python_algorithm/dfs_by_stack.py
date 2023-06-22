@@ -1,32 +1,38 @@
 
-def dfs(graph, v, visited):
+def dfs(graph, v):
+    path = []
     stack = []
     stack.append(v)
 
-    print(stack)
     while len(stack):
-        popped = stack.pop()
-        if visited[popped]:
-            continue
-        print("pop:", popped)
-        visited[popped] = True
-        for node in sorted(graph[popped], reverse=True):
-            if not visited[node]:
-                stack.append(node)
+        top = stack[-1]
 
+        if len(graph[top]) == 0 :
+            path.append(stack.pop())
+        else:
+            target = graph[top][-1]
+            stack.append(target)
+            graph[top] = graph[top][:-1]
+            graph[target].remove(top)
+
+        print("stack:", stack)
+        print("graph:", graph)
+        print("-------")
+    return path
 
 graph = [
     [],
-    [2, 3, 8],
+    [2, 3],
     [1, 7],
-    [1, 4, 5],
+    [1, 4],
     [3, 5],
-    [3, 4],
+    [4],
     [7],
     [2, 6, 8],
-    [1, 7]
+    [7]
 ]
 
-visited = [False] * 9
+# visited = [False] * 9
 
-dfs(graph, 1, visited)
+path = dfs(graph, 1)
+print(path[::-1])
