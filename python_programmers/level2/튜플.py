@@ -12,6 +12,7 @@ def solution(s):
             counter[s[numStartIdx:i]] += 1
             numStartIdx = -1
 
+    print("what:", sorted(counter.items(), key=lambda x:x[1], reverse=True))
     for key in dict(sorted(counter.items(), key=lambda x:x[1], reverse=True)):
         answer.append(int(key))
     return answer
