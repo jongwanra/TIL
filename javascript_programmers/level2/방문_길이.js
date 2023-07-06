@@ -40,10 +40,7 @@ const solution = (dirs) => {
         }
         // 이미 존재한 경로
         currentLocation = [...nextLocation];
-
-
     }
-
 
     return answer;
 }
