@@ -1,13 +1,17 @@
 package chapter22;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ListSample {
     public static void main(String[] args) {
         ListSample sample = new ListSample();
 //        sample.checkArrayList1();
-        sample.checkArrayList3();
+//        sample.checkArrayList3();
+//        sample.checkArrayList6();
+        sample.checkArrayList8();
     }
+
 
     private void checkArrayList1() {
         ArrayList<String> list1 = new ArrayList<>();
@@ -34,5 +38,61 @@ public class ListSample {
         list2.addAll(list);
 
         System.out.println("list2 = " + list2);
+    }
+
+    private void checkArrayList6() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.add("A");
+        list.add("A");
+
+        String[] array = list.toArray(new String[0]);
+
+        for(String e: array){
+            System.out.println(e + " ");
+        }
+    }
+
+    private void checkArrayList7() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+
+        String[] tempArray = new String[0];
+        String[] strList = list.toArray(tempArray);
+        printArray(strList);
+
+
+    }
+
+    private void checkArrayList8() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("A");
+
+        System.out.println("list:" + list);
+
+        ArrayList<String> temp = new ArrayList<>(List.of("A"));
+
+        list.removeAll(temp);
+        System.out.println("list:" + list);
+    }
+
+
+    private void printArray(Object[] array) {
+        for(Object e: array){
+            System.out.println(e + " ");
+        }
+        System.out.println();
+    }
+    private <E> void printList(ArrayList<E> list) {
+        for(E e: list){
+            System.out.println(e + " ");
+        }
+        System.out.println();
     }
 }
