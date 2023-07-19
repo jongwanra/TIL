@@ -39,6 +39,6 @@ public class Solution {
     public static void main(String[] args) {
         Solution solution = new Solution();
         solution.solution(new int[]{4, 1, 2, 1}, 4);
-
     }
 }
+
