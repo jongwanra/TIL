@@ -1,4 +1,5 @@
 package chapter22;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,12 +10,19 @@ public class ListSample {
 //        sample.checkArrayList1();
 //        sample.checkArrayList3();
 //        sample.checkArrayList6();
-        sample.checkArrayList8();
+//        sample.checkArrayList8();
+          sample.checkArrayListContainMethod();
+    }
+
+    private void checkArrayListContainMethod() {
+        ArrayList<String> fruits = new ArrayList<>(Arrays.asList("apple", "banana", "melon", "grape", "tomato"));
+        boolean isContained = fruits.contains("grape");
+        System.out.println("isContained = " + isContained);
     }
 
 
     private void checkArrayList1() {
-        ArrayList<String> list1 = new ArrayList<>();
+        ArrayList<String> list1 = new ArrayList<>(10);
         list1.add("sample");
         list1.add("sample2");
         list1.add("sample3");
