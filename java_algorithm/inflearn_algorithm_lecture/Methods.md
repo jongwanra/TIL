@@ -6,7 +6,6 @@
 * static char toLowerCase(char ch)
 * static boolean isLowerCase(char ch)
 * static boolean isUpperCase(char ch)
-* 
 
 ## String
 
@@ -18,3 +17,5 @@
   * 문자열 중 parameter의 문자열의 index를 반환, 없을 경우 -1
 * String int lastIndexOf(String str)
   * 문자열 중 parameter의 문자열를 뒤에서 부터 순회해서 index를 반환, 없을 경우 -1
+* static String valueOf(char[] x)
+  * char[]를 String객체로 변환
