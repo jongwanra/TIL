@@ -6,6 +6,7 @@
 * static char toLowerCase(char ch)
 * static boolean isLowerCase(char ch)
 * static boolean isUpperCase(char ch)
+* static boolean isAlphabetic(char ch)
 
 ## String
 
