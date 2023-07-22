@@ -20,3 +20,7 @@
   * 문자열 중 parameter의 문자열를 뒤에서 부터 순회해서 index를 반환, 없을 경우 -1
 * static String valueOf(char[] x)
   * char[]를 String객체로 변환
+* boolean String equals(String targetStr)
+  * 대, 소문자 구분 하며 비교
+* boolean String equalsIgnoreCase(String targetStr)
+  * 대, 소문자 구분 없이 비교
