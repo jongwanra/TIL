@@ -7,6 +7,8 @@
 * static boolean isLowerCase(char ch)
 * static boolean isUpperCase(char ch)
 * static boolean isAlphabetic(char ch)
+* static boolean isDigit(char ch)
+  * 0-9 숫자인지 여부
 
 ## String
 
@@ -26,3 +28,7 @@
   * 대, 소문자 구분 없이 비교
 * String replaceAll("[^A-Z]", "");
   * 알파벳 대문자가 아닌 경우 전부 제거
+
+## Integer
+
+* static int parseInt(String str)
