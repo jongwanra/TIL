@@ -30,5 +30,14 @@
   * 알파벳 대문자가 아닌 경우 전부 제거
 
 ## Integer
-
 * static int parseInt(String str)
+
+
+## Arrays
+* static void fill(Object[] objs, int val );
+  * 일괄 같은 값으로 초기화
+
+## Math
+* static int min(int num1, int num2);
+* static int max(int num1, int num2);
+* static int abs(int num);
