@@ -38,6 +38,8 @@
   * 일괄 같은 값으로 초기화
 
 ## Math
+
 * static int min(int num1, int num2);
 * static int max(int num1, int num2);
 * static int abs(int num);
+* static double sqrt(double num);

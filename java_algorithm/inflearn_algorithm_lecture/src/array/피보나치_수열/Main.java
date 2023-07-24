@@ -19,7 +19,7 @@ public class Main {
         }
     }
 
-    private void lectureSolution(int n ) {
+    private void lectureSolution(int n) {
         int a = 1, b= 1, c;
 
         System.out.print(a+ " " + b +  " ");
