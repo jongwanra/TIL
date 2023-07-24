@@ -1,4 +1,4 @@
-package chapter8;
+package chapter08;
 
 public class ReferencePass {
     public static void main(String[] args) {

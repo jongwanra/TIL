@@ -1,6 +1,6 @@
-package chapter9;
+package chapter09;
 
-import chapter9.sub.ProtectedAccessModifier;
+import chapter09.sub.ProtectedAccessModifier;
 
 public class AccessCall {
     public static void main(String[] args) {
