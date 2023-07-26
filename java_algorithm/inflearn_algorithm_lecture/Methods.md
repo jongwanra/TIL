@@ -32,10 +32,14 @@
 ## Integer
 * static int parseInt(String str)
 
-
 ## Arrays
 * static void fill(Object[] objs, int val );
-  * 일괄 같은 값으로 초기화
+  * 일괄 같은 값으로(원본 보장 X)
+* static void sort(int[] arr)
+  * 오름차순 정렬(원본 보장 X)
+* static void sort(int[] arr, Collections.reverseOrder());
+  * 내림차순 정렬(원본 보장 X)
+
 
 ## Math
 
@@ -43,3 +47,8 @@
 * static int max(int num1, int num2);
 * static int abs(int num);
 * static double sqrt(double num);
+
+## HashSet
+
+* boolean retainAll(HashSet<?> target)
+  * 교집합(원본 보장X)
