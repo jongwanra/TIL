@@ -12,6 +12,22 @@ public class ListSample {
 //        sample.checkArrayList6();
 //        sample.checkArrayList8();
           sample.checkArrayListContainMethod();
+          sample.checkCapacityNoUsed();
+    }
+
+
+    private void checkCapacityNoUsed() {
+        int a = 10;
+        System.out.println("a = " + a);
+        System.out.println("a >> 1 = " + (a >> 1));
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i = 1; i <= 10; i++) {
+            list.add(i);
+        }
+
+        list.add(11);
+        System.out.println("list = " + list);
+        
     }
 
     private void checkArrayListContainMethod() {
