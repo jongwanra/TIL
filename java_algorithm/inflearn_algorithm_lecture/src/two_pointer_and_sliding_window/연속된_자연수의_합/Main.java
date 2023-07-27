@@ -11,6 +11,19 @@ public class Main {
 
     }
 
+    private int lectureSolutionByMath(int n) {
+        int answer = 0, cnt = 1;
+        n--;
+        while (n > 0) {
+            cnt++;
+            n = n - cnt;
+            if( n % cnt == 0) {
+                answer++;
+            }
+        }
+
+        return answer;
+    }
     private int lectureSolution(int n) {
         int answer = 0, sum = 0, lt = 0;
         int m = n/ 2 + 1;
