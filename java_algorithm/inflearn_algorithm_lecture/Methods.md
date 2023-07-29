@@ -49,6 +49,13 @@
 * static double sqrt(double num);
 
 ## HashSet
-
 * boolean retainAll(HashSet<?> target)
   * 교집합(원본 보장X)
+
+## HashMap
+* V getOrDefault(Object key, V defaultValue)
+  * 존재하면 해당 value를 가져오고, 존재하지 않을 때, defaultValue를 가져온다
+* V remove(Object key) 
+  * 해당 key-value를 삭제하고 value값을 반환한다. 없을 시, null 반환
+* boolean containsKey(Object key)
+  * key가 존재하는지 유무 반환
