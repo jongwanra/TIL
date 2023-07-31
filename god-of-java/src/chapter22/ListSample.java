@@ -1,5 +1,4 @@
 package chapter22;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,8 +10,8 @@ public class ListSample {
 //        sample.checkArrayList3();
 //        sample.checkArrayList6();
 //        sample.checkArrayList8();
-          sample.checkArrayListContainMethod();
-          sample.checkCapacityNoUsed();
+          sample.checkGrowSize();
+//          sample.checkCapacityNoUsed();
     }
 
 
@@ -46,10 +45,25 @@ public class ListSample {
     }
 
     private void checkArrayList2() {
-        ArrayList<String> list = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E"));
+        ArrayList<Integer> list = new ArrayList<>(5);
+        for(int i = 1; i <= 5; i++) {
+            list.add(i);
+        }
 
-        list.add(1, "A1");
+        list.add(6);
         System.out.println("list = " + list);
+    }
+
+    private int newCapacity(int oldCapacity) {
+        int newCapacity = oldCapacity + (oldCapacity >> 1);
+        System.out.println("oldCapacity=" + oldCapacity + "-> newCapacity=" + newCapacity);
+        return newCapacity;
+    }
+    private  void checkGrowSize() {
+        int oldCapacity = 5;
+        for(int i = 1; i <= 10; i++) {
+            oldCapacity = this.newCapacity(oldCapacity);
+        }
     }
 
     private void checkArrayList3() {

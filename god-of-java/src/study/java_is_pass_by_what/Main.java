@@ -1,39 +1,32 @@
 package study.java_is_pass_by_what;
 
-class Dog {
-    private String name;
+class Person {
+    private int age;
 
-    public String getName() {
-        return this.name;
+    public int getAge() {
+        return age;
     }
 
-    public Dog(String name) {
-        this.name = name;
+    public Person(int age) {
+        this.age = age;
     }
 }
-
 public class Main {
-    public static void main( String[] args ){
-        int a = 10;
-        int b = 20;
-        int c = a + b;
-        System.out.println("c = " + c);
-//        Dog aDog = new Dog("Max");
-//        foo(aDog);
-//
-//        if (aDog.getName().equals("Max")) { //true
-//            System.out.println( "Java passes by value." );
-//
-//        } else if (aDog.getName().equals("Fifi")) {
-//            System.out.println( "Java passes by reference." );
-//        }
+    private static void updateReferenceType(Person person) {
+        person = new Person(20);
     }
+    public static void main(String[] args) {
 
-    public static void foo(Dog d) {
-        d.getName().equals("Max"); // true
+        Person referenceTypePerson = new Person(29);
+        // output: before update reference type: 29
+        System.out.println("before update reference type: " + referenceTypePerson.getAge());
 
-        d = new Dog("Fifi");
-        d.getName().equals("Fifi"); // true
+        updateReferenceType(referenceTypePerson);
+        // output: after update reference type: 29
+        System.out.println("after update reference type: " + referenceTypePerson.getAge());
     }
-
 }
+
+
+
+
