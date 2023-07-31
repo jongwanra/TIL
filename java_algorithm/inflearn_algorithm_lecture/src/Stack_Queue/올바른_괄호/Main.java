@@ -31,16 +31,18 @@ public class Main {
 
         for(char x: s.toCharArray()) {
             if(x == '(') {
-                stack.add('(');
+                stack.push('(');
                 continue;
             }
             // ')'인 경우
             if(stack.size() == 0) {
                 return answer;
             }
-            stack.removeLast();
+            stack.pop();
         }
 
         return stack.size() > 0 ? "NO" : "YES";
     }
+
+
 }
