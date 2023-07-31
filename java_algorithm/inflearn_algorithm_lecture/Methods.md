@@ -59,3 +59,8 @@
   * 해당 key-value를 삭제하고 value값을 반환한다. 없을 시, null 반환
 * boolean containsKey(Object key)
   * key가 존재하는지 유무 반환
+* 생성자에 Collections.reverseOrder() 입력시 내림차순 정렬
+
+
+## HashSet
+* 생성자에 Collections.reverseOrder() 입력시 내림차순 정렬
