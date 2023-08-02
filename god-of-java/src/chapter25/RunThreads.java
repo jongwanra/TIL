@@ -9,6 +9,9 @@ public class RunThreads {
     private void runBasic() {
         RunnableSample runnable = new RunnableSample();
         new Thread(runnable).start();
+        new Thread(runnable).start();
+        new Thread(runnable).start();
+        new Thread(runnable).start();
 
         ThreadSample thread = new ThreadSample();
         thread.start();

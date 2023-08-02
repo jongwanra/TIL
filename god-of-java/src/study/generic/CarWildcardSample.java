@@ -18,6 +18,6 @@ public class CarWildcardSample {
 
     private void boundedWildcardMethod(WildCardGeneric<? super Bus> c) {
         Object wildCard = c.getWildCard();
-        System.out.println("value = " + value);
+        System.out.println("value = " + wildCard);
     }
 }
