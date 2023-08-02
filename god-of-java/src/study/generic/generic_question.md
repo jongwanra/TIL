@@ -14,5 +14,3 @@
 
 ## Generic에 ? 의 의미가 무엇인가?
 
-## wildcard type은 왜 method에서 parameter로 전달하는 경우에만 사용하는게 좋을까?
-

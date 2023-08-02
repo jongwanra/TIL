@@ -72,7 +72,7 @@ public class Main {
 이렇게 계속 형변환을 해주면 되지 않을까 생각할 수 있다.
 형변환을 시도하게 되면 3개 정도의 데이터는 문제가 없겠지만, 데이터가 10만개 이상으로 갈 경우에는, 적지 않은 비용이 소모가 될 것이다.
 뿐만 아니라, 형변환을 하게 된 데이터는 안정성을 보장할 수가 없다.
-나의 실수로 인해서 String으로 형변환이 필요했던 객체를 StringBuilder로 적용했을 때, Compile이후, RunTime 시, 해당 에러를 마주하게 될 것이다.
+나의 실수로 인해서 String으로 형변환이 필요했던 객체를 StringBuilder로 적용했을 때, Compile이후, RunTime 시, 에러를 마주하게 될 것이다.
 
 위의 형변환의 문제점을 사전에 없애기 위해서 Generic이 생기게 되었다.
 
@@ -116,8 +116,38 @@ public class Main {
 
 이렇게 형변환을 하지 않아도 data를 가져올 때, 기존에 생성되었던 타입으로 가져와 진다.
 
-## 제네릭 선언시 wildcard라는 것을 선언했을 때 어떤 제약 사항이 있을까?
-..?
+## 제네릭 선언시 wildcard로 선언했을 때 어떤 제약 사항이 있을까?
+wildcard로 선언 했을 경우, 객체의 상태를 변경하는 행위에 제약이 발생한다.
+
+```java
+class Wildcard<T> {
+    private T data;
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // 선언 시에, wildcard type 지정
+        // 선언 시에는 문제가 없다.
+        Wildcard<?> wildcard = new Wildcard<String>();
+
+        // 조회시에도 문제가 없다.
+        System.out.println("getData: " + wildcard.getData());
+        
+        // 여기서 error 발생 (incompatible types) 
+        wildcard.setData("A");
+    }
+}
+```
+
+위의 코드와 같이 선언, 조회에서는 제약 사항이 생기지 않지만, 상태값을 변경하려고 했을 때, incompativle types 관련 error가 발생한다.
 
 ## 메소드를 제네릭하게 선언하려면 리턴 타입 앞에 어떤 것을 추가해 주면 될까?
 return type앞에 <T> 와 같이 작성해 주면 된다.
@@ -132,11 +162,12 @@ N: Number의 약자
 S, U, V: 각각 두번째, 세번째, 네번째 타입의 약자
 
 ## Generic에 ? 의 의미가 무엇인가?
-* 알 수 없는 타입이라는 의미로, wildcard type으로 불린다. 
+* 알 수 없는 타입이라는 의미로, wildcard type으로 불린다.
 
-## wildcard type은 왜 method에서 parameter로 전달하는 경우에만 사용하는게 좋을까?
-선언 시에 wildcard type에 <?>를 사용하면 해당 type에 대해서 알 수 없기 때문에, 상태값을 변경하는 것이 불가능하다. 
-따라서 선언 시에 사용하는 것이 아닌 parameter로 전달하는 경우에만 사용하는 것이 좋다.
+## upper/lower bounded wildcard type
+bounded wildcard type 에 속해 있다. 
+upper bounded wildcard type은 `ResponseData<? extends Number>`와 같이 사용한다. 여기서의 의미는 Number 클래스를 포함한 하위 클래스에서 접근 가능하다는 의미이다.(Number, Long, Integer, Short, Byte, Character...)
+lower bounded wildcard type은 `ResponseData<? super Number` 와 같이 사용한다. 여기서의 의미는 Number 클래스를 포함한 상위 클래스에서 접근 가능하다는 의미이다.(Number, Object class)
 
 ## Reference
 
