@@ -1,4 +1,4 @@
-package 교육과정_설계;
+package stack_and_queue.교육과정_설계;
 import java.util.*;
 public class Main {
     public static void main(String[] args){

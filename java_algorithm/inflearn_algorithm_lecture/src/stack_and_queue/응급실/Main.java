@@ -1,4 +1,4 @@
-package Stack_Queue.응급실;
+package stack_and_queue.응급실;
 
 import java.util.*;
 

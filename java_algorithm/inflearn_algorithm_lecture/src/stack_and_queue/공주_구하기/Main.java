@@ -1,4 +1,4 @@
-package Stack_Queue.공주_구하기;
+package stack_and_queue.공주_구하기;
 import java.util.*;
 public class Main {
     public static void main(String[] args) {

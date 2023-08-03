@@ -1,4 +1,4 @@
-package Stack_Queue.괄호문자제거;
+package stack_and_queue.괄호문자제거;
 
 import java.util.*;
 

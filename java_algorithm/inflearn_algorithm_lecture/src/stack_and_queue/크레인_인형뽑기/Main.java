@@ -1,4 +1,4 @@
-package Stack_Queue.크레인_인형뽑기;
+package stack_and_queue.크레인_인형뽑기;
 import java.util.*;
 public class Main {
     public static void main(String[] args) {

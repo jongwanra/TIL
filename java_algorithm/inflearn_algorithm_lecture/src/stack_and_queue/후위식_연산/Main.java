@@ -1,4 +1,4 @@
-package Stack_Queue.후위식_연산;
+package stack_and_queue.후위식_연산;
 
 import java.util.*;
 

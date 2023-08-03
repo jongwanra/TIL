@@ -1,4 +1,4 @@
-package Stack_Queue.쇠막대기;
+package stack_and_queue.쇠막대기;
 import java.util.*;
 public class Main {
 

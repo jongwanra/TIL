@@ -1,4 +1,4 @@
-package Stack_Queue.올바른_괄호;
+package stack_and_queue.올바른_괄호;
 import java.util.*;
 public class Main {
     public static void main(String[] args) {
