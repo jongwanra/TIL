@@ -6,7 +6,6 @@ import java.util.Hashtable;
 
 public class Main {
 
-    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
 
         Hashtable<Object, Object> map = new Hashtable<>();
