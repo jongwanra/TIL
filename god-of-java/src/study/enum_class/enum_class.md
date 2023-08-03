@@ -1,30 +1,86 @@
-# Enum In Java
+# Enum
 
-## 자바의 Enum이란?
-* 상수들의 집합으로 구성된 Class
-* 열거 타입 자체는 Class 이며, 상수 하나당 자신의 인스턴스를 하나씩 만들어 public static final 필드로 공개한다.
-* 열거 타입은 밖에서 접근할 수 있는 생성자를 제공하지 않으므로 사실상 final이다.
-* 열거 타입은 인스턴스가 통제된다.
-* 열거 타입은 싱글턴을 일반화한 형태라고 볼 수 있다.
+* Enum에 대해서 들어가면 들어갈 수록, 깊은 내용이구나 하는 생각이 절로 든다.
+* Enum을 이해하려면 class, static, singleton, 등 다양한 부분에 대해서 익히고 있어야 한다는 생각이 많이 들었다.
 
-## Enum에서 값을 지정하거나 타입을 지정하는 방법
-enum에서 값을 지정하는 방법에는 
-첫번째로, 문자열을 열거하는 방법이 있다. 
-두번째로, 접근 제어자를 package-private 혹은 private한 생성자로 값을 지정해주는 방법이 존재한다.
-
-## Enum을 사용했을 떄의 장점
-* 문자열과 비교해, IDE의 적극적인 지원을 받을 수 있다.
-* 허용 가능한 값들을 제한할 수 있다.
-* 리팩토링 시 변경 범위가 최소화 된다.
-  * 내용의 추가가 필요하더라도, Enum 코드외에 수정할 필요가 없다.
-
-
-## 용어 정리
+## Enum이란?
+* Enum은 클래스의 일종으로, 상수의 집합이다.
 
 ```java
-public enum Day {  // Day => 클래스 이름
-    MONDAY,  // 상수 이름
-    THUESDAY,
+public enum FRUIT {
+    APPLE,
+    ORANGE,
+    BANANA
 }
 ```
-## Reference
+
+## Enum을 사용하는 이유
+
+> 타입에 안전하다.
+* enum type을 parameter로 받는 method에 다른 타입 혹은 enum type에 존재하지 않는 값을 넣을 경우 compile 시에 잡을 수 있다.
+
+> Enum은 클래스이기 때문에 Constructor, Method, Interface, Field등 추가가 가능하다.
+
+> Enum은 각자의 이름 공간이 있기 때문에 상수값이 동일해도 공존할 수 있다.
+
+
+```java
+
+public enum FRUIT {
+    // 각자의 이름 공간이 있기 때문에 상수 값이 동일해도 문제가 없다.
+    APPLE(2000),
+    BANANA(2000),
+    ORANGE(3000);
+    
+    
+    private final int price;
+    FRUIT(int price) {
+        this.price = price;
+    }
+}
+```
+
+> toString Method를 Override하는 것이 가능하다.
+> Enum Class는 values() method를 사용하여 전체 타입에 대한 정보를 배열로 가져올 수 있다.
+> Enum은 완전한 싱글톤이기 때문에 안정성이 보장된다.
+
+```java
+enum Fruit {
+  ORANGE, APPLE, BANANA
+}
+
+public class Main {
+  public static void main(String[] args) {
+      System.out.println(Fruit.APPLE == Fruit.APPLE);
+  }
+}
+
+```
+위의 enum class는 아래와 유사한 형태를 가지고 있는 싱글톤이다.
+
+```java
+class Fruit {
+  public static final String ORANGE = "ORANGE";
+  public static final String APPLE = "APPLE";
+  public static final String BANANA = "BANANA";
+}
+
+public class Main {
+  public static void main(String[] args) {
+    System.out.println(Fruit.APPLE == Fruit.APPLE);
+    
+  }
+}
+
+
+```
+
+* 하지만, 생성자를 클래스 내부가 아닌 외부에서 호출은 불가능하다.
+* 즉, enum Class는 생성자에 한해서 private, package-private Access Modifier를 사용해야 한다.
+* 그리고, 동적 할당이 불가능하다. 
+* enum class에서는 해당 클래스의 상수들을 array순서대로 반환해주는 values() Method가 존재한다.
+
+
+## Reference 
+* 자바의 신(이상민 저)
+* Effective Java 
