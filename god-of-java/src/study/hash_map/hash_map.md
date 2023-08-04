@@ -17,8 +17,9 @@
 * Bucket은 연관 배열 요소 각각을 의미한다.
 
 ## Load Facter
-Load Facter는 현재 Capacity 어느 정도 key-value 쌍의 갯수가 들어와야 Capacity를 확장 시킬 지에 대해서 0f ~ 1f 사이로 나타내는 것을 의미한다.
-기본 값은 0.75이다. 즉 현재 Capacity가 32개라고 했을 때, 3/4 24개를 초과하면 Capacity를 확장한다는 의미이다
+* Load Facter는 어느 정도의 key-value 쌍의 갯수가 들어와야 Capacity를 확장 시킬 지에 대해서 0.0f ~ 1.0f 사이로 나타내는 것을 의미한다.
+* 기본 값은 0.75f이다. 
+* 현재 Capacity가 32개라고 했을 때, 75%인 24개를 초과하면 Capacity를 확장한다는 의미이다
 
 ## Threshold(임계치)
 * The threshold of a HashMap is approximately the product of current capacity and load factor.
