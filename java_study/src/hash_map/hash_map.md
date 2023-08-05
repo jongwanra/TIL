@@ -203,6 +203,134 @@ public class HashMap {
 
 ```
 
+## HashMap vs HashTable vs ConcurrentHashMap
+이 세 가지의 차이점은 크게 두 종류로 구성 되어 있다. 
+1. Thread-Safe 여부
+2. key or value null 허용 여부
+---
+* `HashMap`은 Thread-Safe 하지 않다. 그리고 key-value에 null값이 허용된다.
+* `HashTable`은 Thread-Safe 하다. 그리고 null값을 허용하지 않는다.
+
+```java
+public class HashTable {
+    
+    // HashTable은 method 자체에 synchronized가 걸려 있다.
+    public synchronized V put(K key, V value) {
+        // 여기서 value값이 null 일경우 NullPointerException이 발생
+        if (value == null) {
+            throw new NullPointerException();
+        }
+        
+        Entry<?,?> tab[] = table;
+        // 이 부분에서 key가 null일 경우 Exception 발생
+        int hash = key.hashCode();
+        int index = (hash & 0x7FFFFFFF) % tab.length;
+        @SuppressWarnings("unchecked")
+        Entry<K,V> entry = (Entry<K,V>)tab[index];
+        for(; entry != null ; entry = entry.next) {
+            if ((entry.hash == hash) && entry.key.equals(key)) {
+                V old = entry.value;
+                entry.value = value;
+                return old;
+            }
+        }
+
+        addEntry(hash, key, value, index);
+        return null;
+    }
+}
+
+```
+* `ConcurrentHashMap`은 Thread-Safe 하다. 그리고 null값을 허용 하지 않는다.
+아래는 ConcurrentHashMap 내부에  put method에 관한 내용이다.
+```java
+
+public class ConcurrentHashMap {
+    final V putVal(K key, V value, boolean onlyIfAbsent) {
+        
+        // 해당 부분을 통해서 null값이 허용되지 않음을 알 수있다. (key, value)
+        if (key == null || value == null) throw new NullPointerException();
+        int hash = spread(key.hashCode());
+        int binCount = 0;
+        for (Node<K,V>[] tab = table;;) {
+            Node<K,V> f; int n, i, fh; K fk; V fv;
+            if (tab == null || (n = tab.length) == 0)
+                tab = initTable();
+            else if ((f = tabAt(tab, i = (n - 1) & hash)) == null) {
+                if (casTabAt(tab, i, null, new Node<K,V>(hash, key, value)))
+                    break;                
+            }
+            else if ((fh = f.hash) == MOVED)
+                tab = helpTransfer(tab, f);
+            else if (onlyIfAbsent // check first node without acquiring lock
+                    && fh == hash
+                    && ((fk = f.key) == key || (fk != null && key.equals(fk)))
+                    && (fv = f.val) != null)
+                return fv;
+            else {
+                V oldVal = null;
+                // 이 부분을 통해서 Thread-Safe 한 것을 알 수 있다.
+                synchronized (f) {
+                    if (tabAt(tab, i) == f) {
+                        if (fh >= 0) {
+                            binCount = 1;
+                            for (Node<K,V> e = f;; ++binCount) {
+                                K ek;
+                                if (e.hash == hash &&
+                                        ((ek = e.key) == key ||
+                                                (ek != null && key.equals(ek)))) {
+                                    oldVal = e.val;
+                                    if (!onlyIfAbsent)
+                                        e.val = value;
+                                    break;
+                                }
+                                Node<K,V> pred = e;
+                                if ((e = e.next) == null) {
+                                    pred.next = new Node<K,V>(hash, key, value);
+                                    break;
+                                }
+                            }
+                        }
+                        else if (f instanceof TreeBin) {
+                            Node<K,V> p;
+                            binCount = 2;
+                            if ((p = ((TreeBin<K,V>)f).putTreeVal(hash, key,
+                                    value)) != null) {
+                                oldVal = p.val;
+                                if (!onlyIfAbsent)
+                                    p.val = value;
+                            }
+                        }
+                        else if (f instanceof ReservationNode)
+                            throw new IllegalStateException("Recursive update");
+                    }
+                }
+                if (binCount != 0) {
+                    if (binCount >= TREEIFY_THRESHOLD)
+                        treeifyBin(tab, i);
+                    if (oldVal != null)
+                        return oldVal;
+                    break;
+                }
+            }
+        }
+        addCount(1L, binCount);
+        return null;
+    }
+
+}
+
+```
+
+## HashTable vs ConcurrentHashMap 
+
+* 위에 HashTable 과 ConcurrentHashMap의 put method를 보면
+* 두 개의 class 모두 Thread-Safe 하게 구현이 되어 있지만 차이점은 HashTable은 Method 자체에 동기화 락이 걸려있다.
+* ConcurrentHashMap은 Method가 아닌 Bucket 내부 데이터를 조작하는 시점에 동기화 락이 걸려있다!.
+
+
+
 ## Reference
 * https://d2.naver.com/helloworld/831311
 * https://www.baeldung.com/java-hashmap-load-factor
+* 자바의 신(이상민 저)
