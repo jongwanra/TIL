@@ -1,13 +1,14 @@
 package linked_list_vs_array_list;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
         Main m = new Main();
-//        m.checkAddMethodOfArrayList(10_000_000);
-        m.checkAddMethodOfLinkedList(10_000_000);
+//        m.checkAddLast();
     }
 
     private void checkAddMethodOfLinkedList(int testSize) {
@@ -58,4 +59,5 @@ public class Main {
         System.out.println("total => " + (afterTotalTime - beforeTotalTime));
         System.out.println("totalCount => " + count);
     }
+
 }
