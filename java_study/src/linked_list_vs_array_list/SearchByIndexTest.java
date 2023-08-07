@@ -2,13 +2,13 @@ package linked_list_vs_array_list;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class SearchByValue {
+public class SearchByIndexTest {
     public static void main(String[] args) {
-        SearchByValue test = new SearchByValue();
-        test.checkSearchByValue();
+        SearchByIndexTest test = new SearchByIndexTest();
+        test.checkSearchByIndex();
     }
 
-    private void checkSearchByValue() {
+    private void checkSearchByIndex() {
         System.out.println("100만인 경우");
         compareSearchByValue(1_000_000);
         System.out.println("-------");
@@ -23,8 +23,8 @@ public class SearchByValue {
     }
 
     private void compareSearchByValue(int size) {
-        long arrayListTime = searchByValueByArrayList(size, size -1);
-        long linkedListTime = searchByValueByLinkedList(size, size -1);
+        long arrayListTime = searchByIndexByArrayList(size, size -1);
+        long linkedListTime = searchByIndexByLinkedList(size, size -1);
 
         System.out.println("ArrayList: " + arrayListTime + "ns");
         System.out.println("LinkedList: " + linkedListTime + "ns");
@@ -38,7 +38,7 @@ public class SearchByValue {
         }
     }
 
-    private long searchByValueByArrayList(int size, int value) {
+    private long searchByIndexByArrayList(int size, int index) {
         ArrayList<Integer> arrayList = new ArrayList<>(size);
 
         for (int i = 1; i <= size; i++) {
@@ -46,12 +46,12 @@ public class SearchByValue {
         }
 
         long beforeTotalTime = System.nanoTime();
-        arrayList.contains(value);
+        arrayList.get(index);
         long afterTotalTime = System.nanoTime();
         return afterTotalTime - beforeTotalTime;
     }
 
-    private long searchByValueByLinkedList(int size, int value) {
+    private long searchByIndexByLinkedList(int size, int index) {
         LinkedList<Integer> linkedList = new LinkedList<>();
 
         for (int i = 1; i <= size; i++) {
@@ -60,7 +60,7 @@ public class SearchByValue {
 
         long beforeTotalTime = System.nanoTime();
 
-        linkedList.contains(value);
+        linkedList.get(index);
 
         long afterTotalTime = System.nanoTime();
         return afterTotalTime - beforeTotalTime;

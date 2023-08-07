@@ -2,9 +2,9 @@ package linked_list_vs_array_list;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class AddMiddle {
+public class AddMiddleTest {
     public static void main(String[] args) {
-        AddMiddle test = new AddMiddle();
+        AddMiddleTest test = new AddMiddleTest();
         test.checkAddMiddle();
     }
 
@@ -29,6 +29,38 @@ public class AddMiddle {
         System.out.println("10만인 경우");
         compareAddMiddle(100_000);
         System.out.println("-------");
+
+        System.out.println("100만인 경우");
+        compareAddMiddle(1_000_000);
+        System.out.println("-------");
+
+        System.out.println("500만인 경우");
+        compareAddMiddle(5_000_000);
+        System.out.println("-------");
+
+        System.out.println("1000만인 경우");
+        compareAddMiddle(10_000_000);
+        System.out.println("-------");
+
+        System.out.println("1500만인 경우");
+        compareAddMiddle(15_000_000);
+        System.out.println("-------");
+
+        System.out.println("2000만인 경우");
+        compareAddMiddle(20_000_000);
+        System.out.println("-------");
+
+        System.out.println("3000만인 경우");
+        compareAddMiddle(30_000_000);
+        System.out.println("-------");
+
+        System.out.println("4000만인 경우");
+        compareAddMiddle(40_000_000);
+        System.out.println("-------");
+
+        System.out.println("5000만인 경우");
+        compareAddMiddle(50_000_000);
+        System.out.println("-------");
     }
 
     private void compareAddMiddle(int size) {
@@ -50,11 +82,12 @@ public class AddMiddle {
     private long addMiddleByArrayList(int size) {
         ArrayList<Integer> arrayList = new ArrayList<>(size);
 
-        long beforeTotalTime = System.nanoTime();
         for (int i = 1; i <= size; i++) {
-            arrayList.add(arrayList.size() / 2, i);
+            arrayList.add(i);
         }
 
+        long beforeTotalTime = System.nanoTime();
+        arrayList.add(arrayList.size() / 4, 1);
         long afterTotalTime = System.nanoTime();
         return afterTotalTime - beforeTotalTime;
     }
@@ -62,11 +95,13 @@ public class AddMiddle {
     private long addMiddleByLinkedList(int size) {
         LinkedList<Integer> linkedList = new LinkedList<>();
 
-        long beforeTotalTime = System.nanoTime();
+
         for (int i = 1; i <= size; i++) {
-            linkedList.add(linkedList.size() / 2, i);
+            linkedList.add(i);
         }
 
+        long beforeTotalTime = System.nanoTime();
+        linkedList.add(linkedList.size() / 4, 1);
         long afterTotalTime = System.nanoTime();
         return afterTotalTime - beforeTotalTime;
     }
