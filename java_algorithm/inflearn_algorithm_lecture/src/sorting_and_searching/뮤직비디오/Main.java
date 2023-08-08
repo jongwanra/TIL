@@ -24,8 +24,56 @@ public class Main {
         for(int i = 0; i< n; i++) arr[i] = sc.nextInt();
 
 //        System.out.println(main.lectureSolution(n, m, arr));
-        System.out.println(main.mySolutionAfterLecture(n, m, arr));
+//        System.out.println(main.mySolutionAfterLecture(n, m, arr));
+
+        System.out.println(main.retry230808(n, m, arr));
     }
+
+
+    // 다시 시도: 23.08.08
+    // 문제 접근
+    // DVD의 용량은 최소값을 유지해야한다.
+    // DVD 용량에 따른 최솟값과 최댓값을 구하자(lt: 9, rt: 토탈)
+    // m개를 사용해서 제일 최소의 용량을 구해야하기 때문에
+    // m개 >= count rt = mt - 1;
+    // m개 < count lt = mt + 1
+
+    private int getCount(final int capacity, final int[] arr) {
+        int count = 1;
+        int tmp = 0;
+        for(int x: arr) {
+            tmp += x;
+            if(capacity < tmp) {
+                count++;
+                tmp = x;
+            }
+        }
+        return count;
+    }
+    private int retry230808(final int n, final int m, final int[] arr) {
+        int lt = Arrays.stream(arr).max().getAsInt();
+        int rt = Arrays.stream(arr).sum();
+        int answer = 0;
+
+        while(lt <= rt) {
+            int mt = (lt + rt) / 2;
+            int count = getCount(mt, arr);
+
+//            System.out.println("lt: " + lt + " rt: " + rt + " mt: " + mt + " count : " + count);
+            if(m >= count) {
+                answer = mt;
+                rt = mt - 1;
+            }else {
+                lt = mt + 1;
+            }
+        }
+
+
+        return answer;
+
+    }
+
+
 
     public int count(int[] arr, int capacity) {
         int cnt = 1, sum = 0;
@@ -89,4 +137,8 @@ public class Main {
         }
         return answer;
     }
+
+
+
+
 }
