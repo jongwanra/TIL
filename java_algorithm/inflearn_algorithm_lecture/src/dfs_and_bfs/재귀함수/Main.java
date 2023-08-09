@@ -1,7 +1,6 @@
 package dfs_and_bfs.재귀함수;
 
 public class Main {
-
     public void dfs(int n) {
         if(n == 0) {
             return;
