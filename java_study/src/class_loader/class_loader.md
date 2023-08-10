@@ -35,8 +35,77 @@
 
 
 
+## 내부 loadClass Method 살펴보기
+
+```java
+public class ClassLoader {
+	
+  // ...
+  protected Class<?> loadClass(String name, boolean resolve)
+          throws ClassNotFoundException // Class를 찾지 못할 경우 ClassNotFoundException발생 시킴
+  {
+    synchronized (getClassLoadingLock(name)) {
+      // First, check if the class has already been loaded
+      Class<?> c = findLoadedClass(name); // 기존 method area에 로드되었던 class였는지를 체크
+      
+      // 로드되어 있지 않은 경우
+      // 로드가 되어 있는 경우의 클래스라면  resolve 체크 후, return c
+      if (c == null) {
+        long t0 = System.nanoTime();
+        try {
+          if (parent != null) {
+            //  재귀적으로 상단의 loadClass 호출(?!)
+            // System Class Loader -> Extension Class Loader 재귀적으로 호출 시 최상단에 null인 경우 아래 findBootstrapClassOrNull Method 호출
+            c = parent.loadClass(name, false);
+          } else {
+            // Bootstrap Class Loader
+            c = findBootstrapClassOrNull(name);
+          }
+        } catch (ClassNotFoundException e) {
+        }
+
+        if (c == null) {
+          long t1 = System.nanoTime();
+					
+          // 최상단 까지 체크했음에도 없는 경우 ClassNotFoundException 발생
+          c = findClass(name);
+
+          // this is the defining class loader; record the stats
+          PerfCounter.getParentDelegationTime().addTime(t1 - t0);
+          PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
+          PerfCounter.getFindClasses().increment();
+        }
+      }
+      // linking 과정 중 마지막 단계인 resolve 실행 여부
+      if (resolve) {
+        resolveClass(c);
+      }
+      return c;
+    }
+  }
+	
+}
+```
+
+## Custom Class Loader를 사용했을 때 장점
+* 클래스 파일을 수정했을 경우 즉시 리로딩할 수 있게끔 설정할 수 있다.(클래스 리로딩)
+* 클래스 간 격리할 수 있다.
+* default class path가 아닌 다른 path에서 Class File을 로드할 수 있다.
+* 클래스 파일에 대한 Filtering 역할을 할 수 있다.
+* 클래스 로딩 시에 클래스의 바이트코드를 변형해서 다양한 목적으로 사용할 수 있다.
+  * 클래스 바이트 코드에 로깅 코드를 삽입하여 디버깅 이나 모니터링으로도 활용할 수 있다.
+  * 보안 및 감사 기능을 적용할 수 있다.
+
+## Custom Class Loader의 실제 사용 사례
+* Hot Relaoding: 개발 중 코드 변경 사항을 감지하고, 변경된 코드를 리로딩해서 애플리케이션을 끄지 않고도 변경된 사항을 적용하는 기능을 제공
+* AOP 구현
+* 클래스 파일 보안 및 변조 방지: Spring은 클래스 파일의 변조를 막기 위해 클래스 파일의 해시 값 등을 사용하여 검증하는 기능을 제공한다.
+* 자체 클래스 로딩 관리: Spring은 ApplicationContext를 통해 클래스 로딩을 관리하며, 이를 커스터 마이징 할 수 있다.
 
 
 ## Reference
 * https://velog.io/@jifrozen/JVM-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C-1-%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%A1%9C%EB%8D%94
+* https://www.baeldung.com/java-classloaders
+* https://blog.naver.com/bumsukoh/110127431857
+  * 어우.. 대박 상세하다..
 
