@@ -1,34 +1,28 @@
 package inheritance;
 
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Set;
 
-public class InstrumentedHashSet<E> extends HashSet<E> {
-    private int addCount = 0;
-
-    public InstrumentedHashSet() {
-
-    }
-
-//    @Override
-//    public boolean add(E e) {
-//        System.out.println("add method: " + addCount);
-//        addCount++;
-//        return super.add(e);
-//    }
-
-    @Override
-    public boolean addAll(Collection<? extends E> c) {
-        System.out.println("addAll");
-        System.out.println(addCount);
-        addCount += c.size();
-        System.out.println(addCount);
-        boolean b = super.addAll(c);
-        System.out.println(addCount);
-        return b;
-    }
-
-    public int getAddCount() {
-        return addCount;
-    }
+public class InstrumentedHashSet<E> extends ForwardingHashSet<E> {
+	private int addCount = 0;
+	
+	public InstrumentedHashSet(Set<E> s) {
+		super(s);
+	}
+	
+	@Override
+	public boolean add(E e) {
+		addCount++;
+		return super.add(e);
+	}
+	
+	@Override
+	public boolean addAll(Collection<? extends E> c) {
+		addCount += c.size();
+		return super.addAll(c);
+	}
+	
+	public int getAddCount() {
+		return addCount;
+	}
 }

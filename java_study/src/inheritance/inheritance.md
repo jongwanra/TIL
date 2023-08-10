@@ -1,5 +1,7 @@
 # Inheritance
 
+Inheritance should only be used when subclass ‘is a’ superclass. Don’t use inheritance to get code reuse. If there is no ‘is a’ relationship, then use composition for code reuse.
+
 ## Purpose of Inheritance
 
 * 상속의 주된 목적은 `코드의 재사용성`이다.
@@ -10,6 +12,7 @@
 * 여기서 말하는 기존에 존재하는 클래스를 SuperClass라고 하고, 위임 받은 Class를 Sub Class라고 한다.
 * 자바에서는 단일 상속만 지원하며 SubClass에서 extends keyword를 사용하여 상속을 받을 수 있다.
 * 상속은 `is-a 관계`에 사용하는 것이 적절하다.
+  * Employee is a Person
 
 
 ## 상속 예시
@@ -77,7 +80,7 @@ public class Person extends Animal {
 
 ## 상속의 단점?!
 * 상속은 결합성이 매우 높기 때문에 유연성과 유지 보수성이 떨어진다. 
-* 상속은 캡슐화가 깨질 위험이 다분하다.
+* 상속은 캡슐화가 깨질 위험이 다분하다.(갑작스럽게 Super-Class의 method가 변경이 될 경우)
 * 상속은 단일 상속만 가능하다.
 * 자식 클래스에 불필요한 field 혹은 method까지 가질 수 있기 때문에 복잡하다.
 
@@ -92,6 +95,11 @@ public class Person extends Animal {
 
 ## Composition의 장점
 * 조합은 다중 상속이 가능하다.
-* 조합은 상속과 달리 결합도, 의존도가 약하다.
+* 조합은 상속과 달기 굉장히 유연하다(Flexibility).
 * 코드의 재사용성 역시 장점으로 가져갈 수 있다.
 * 캡슐화의 문제점도 사라진다.
+
+
+
+## Reference 
+* https://www.geeksforgeeks.org/favoring-composition-over-inheritance-in-java-with-examples/
