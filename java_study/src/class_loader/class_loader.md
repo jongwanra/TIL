@@ -4,8 +4,7 @@
 
 ## Class Loader란?
 * Class loaders are responsible for loading Java classes dynamically to the JVM (Java Virtual Machine) during runtime.
-  * 클래스 로더는 런타임 동안에 JVM에 Java Class를 load하는 역할을 한다.
-
+  * 클래스 로더는 런타임 동안에 JVM에 Java Class를 load하는 역할을 한다(역할을 하는 모듈이다).
 
 ## Class Loader의 종류
 * Bootstrap ClassLoader
@@ -27,18 +26,13 @@
 ### Linking
 * Linking은 3가지 단계로 동작한다.
 * Verification(검증): 클레스 파일인지 유효한지 검증하는 단계이다.
-* Preparation(준비): static variable들을 위한 메모리 공간을 할당하고 초기 값으로 채우는 단계이다.
-* Resolving(해결): Symbolic Reference들을 실제 메모리 상의 참조로 연결하는 작업을 수행한다.
+* Preparation(준비): static field들을 위한 메모리 공간을 할당하고 초기 값으로 채우는 단계이다.(초기 값은 기본 값을 말한다.)
+* Resolving(해결): class file을 요청한 class에서의 symbolic reference값을 실제 메모리 주소 값으로 변경하는 단계이다.
 
 
+### Initialization
+* static field들을 초기화 하고, static initialization block을 실행하는 단계 
 
-* 준비 단계는 내일 다시 한 번 봐보자. 
-  * loading단계에서 정말 method area에 로드가 되는 걸까?
-  * 아니면, Preparation 단계에서 method area에 로드 되는 걸까?
-
-### Initializing
-
-## 클래스 로더의 3가지 원칙이란?
 
 
 
