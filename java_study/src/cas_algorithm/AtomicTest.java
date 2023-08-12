@@ -9,9 +9,25 @@ public class AtomicTest {
 	
 	public static void main(String[] args) throws InterruptedException {
 		AtomicTest test = new AtomicTest();
-		test.checkAtomicIntegerMethod(100);
-		test.checkAtomicBooleanMethod(100);
+		test.checkAtomicIntegerMethod(3);
+		// test.checkAtomicBooleanMethod(100);
+		// test.checkJustVisibility(10);
 		
+	}
+	
+	private void checkJustVisibility(final int size) throws InterruptedException {
+		AtomicInteger atomicCount = new AtomicInteger(0);
+		
+		for (int loop = 0; loop < size; loop++) {
+			new Thread(() -> {
+				for (int i = 0; i < 1000; i++) {
+					atomicCount.set(atomicCount.get() + 1);
+				}
+			}).start();
+		}
+		
+		Thread.sleep(5000);
+		System.out.println("atomic 결과 : " + atomicCount.get());
 	}
 	
 	private void checkAtomicBooleanMethod(int size) {
@@ -24,8 +40,7 @@ public class AtomicTest {
 		
 		for (int loop = 0; loop < size; loop++) {
 			new Thread(() -> {
-				for (int i = 0; i < 100000; i++) {
-					count++;
+				for (int i = 0; i < 5; i++) {
 					atomicCount.incrementAndGet();
 				}
 			}).start();
@@ -33,6 +48,5 @@ public class AtomicTest {
 		
 		Thread.sleep(5000);
 		System.out.println("atomic 결과 : " + atomicCount.get());
-		System.out.println("int 결과 : " + count);
 	}
 }
