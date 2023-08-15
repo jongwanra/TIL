@@ -256,6 +256,7 @@ public class ConcurrentHashMap {
             Node<K,V> f; int n, i, fh; K fk; V fv;
             if (tab == null || (n = tab.length) == 0)
                 tab = initTable();
+            // Bucket이 비워져 있는 경우에는 CAS(Compare And Swap) Algorithm을 이용해서 동시성을 제어한다.
             else if ((f = tabAt(tab, i = (n - 1) & hash)) == null) {
                 if (casTabAt(tab, i, null, new Node<K,V>(hash, key, value)))
                     break;                
@@ -269,7 +270,7 @@ public class ConcurrentHashMap {
                 return fv;
             else {
                 V oldVal = null;
-                // 이 부분을 통해서 Thread-Safe 한 것을 알 수 있다.
+                // Bucket이 비워져 있지 않을 경우(Node가 1개 이상일 경우) 해당 Bucket에 동기화 락을 걸어서 동시성을 제어한다.
                 synchronized (f) {
                     if (tabAt(tab, i) == f) {
                         if (fh >= 0) {
@@ -324,13 +325,19 @@ public class ConcurrentHashMap {
 
 ## HashTable vs ConcurrentHashMap 
 
-* 위에 HashTable 과 ConcurrentHashMap의 put method를 보면
+* 위에 HashTable 과 ConcurrentHashMap의 put() method를 보면
 * 두 개의 class 모두 Thread-Safe 하게 구현이 되어 있지만 차이점은 HashTable은 Method 자체에 동기화 락이 걸려있다.
-* ConcurrentHashMap은 Method가 아닌 Bucket 내부 데이터를 조작하는 시점에 동기화 락이 걸려있다!.
+* ~~ConcurrentHashMap은 Method가 아닌 Bucket 내부 데이터를 조작하는 시점에 동기화 락이 걸려있다!.~~
+* ConcurrentHashMap의 put() method를 보면
+  * `key값에 대한 bucket이 비어 있을 경우에는` volatile keyword와 Compare And Swap Algorithm을 사용해서 원자성을 보장한다.
+  * `key값에 대한 bucket이 비어 있지 않은 경우에는` 특정 Bucket에만 동기화 락을 걸어서 원자성을 보장한다.
+
+
 
 
 
 ## Reference
 * https://d2.naver.com/helloworld/831311
 * https://www.baeldung.com/java-hashmap-load-factor
+* [ConcurrentHashMap 개념과 동기화 동작 원리(Thread-safe)](https://wildeveloperetrain.tistory.com/271)
 * 자바의 신(이상민 저)
