@@ -79,13 +79,15 @@ public class Person extends Animal {
 ```
 
 ## 상속의 단점?!
-* 상속은 결합성이 매우 높기 때문에 유연성과 유지 보수성이 떨어진다. 
-* 상속은 캡슐화가 깨질 위험이 다분하다.(갑작스럽게 Super-Class의 method가 변경이 될 경우)
+* 상속은 결합도가 매우 높다.. 
+* 상속은 캡슐화가 깨질 위험이 다분하다.
+  * overriding 역시 캡슐화를 깨는 행위이기 때문이다.(외부(sub-class) 에서 내부(super-class)의 동작에 대해서 접근하므로)
+  * 자식 클래스가 부모 클래스의 field에 직접 접근하는 경우
 * 상속은 단일 상속만 가능하다.
-* 자식 클래스에 불필요한 field 혹은 method까지 가질 수 있기 때문에 복잡하다.
+* 부모 클래스에 불필요한 field 혹은 method까지 가질 수 있기 때문에 복잡하다.
 
 ## Encapsulation(캡슐화)
-* 외부로 부터 내부 상태와 동작에 대해서 숨기고 접근을 제어하며, 외부와는 인터페이스를 통해 상호 작용하는 메커니즘을 말한다.  
+* 객체 내부의 상태,행위를 외부에서 직접 접근할 수 없게 하는 것  
 
 ## Composition(조합)
 * 조합은 `has-a 관계`를 가질 때 적합하다.
@@ -99,7 +101,12 @@ public class Person extends Animal {
 * 코드의 재사용성 역시 장점으로 가져갈 수 있다.
 * 캡슐화의 문제점도 사라진다.
 
+## 그렇다면 Composition의 단점도 있을까?
+* 객체 내부의 연관관계가 많아질수록 복잡도가 증가하게 된다. 
 
+## 상속은 언제 사용하면 좋을까?
+* is-a, is a kind of 관계일 때 사용하면 좋다. 즉, 부모클래스에서의 행위를 자식클래스에서 전부 보장할 수 있을 때 사용하면 적격이다.(리스코프 치환 원칙)
 
 ## Reference 
 * https://www.geeksforgeeks.org/favoring-composition-over-inheritance-in-java-with-examples/
+* [[Java] 상속은 캡슐화를 깨뜨린다?](https://livenow14.tistory.com/33)
