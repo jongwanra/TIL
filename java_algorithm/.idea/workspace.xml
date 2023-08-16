@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc8dcb02-bb15-48e4-a822-e84de33ed97f" name="Changes" comment="" />
+    <list default="true" id="dc8dcb02-bb15-48e4-a822-e84de33ed97f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../java_study/src/cas_algorithm/ImmutableObjectTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java_study/src/immutable_object/ThreadSafeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record/230813.md" beforeDir="false" afterPath="$PROJECT_DIR$/../record/230813.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +31,10 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -42,6 +54,8 @@
       <workItem from="1690761307163" duration="3000" />
       <workItem from="1690850848927" duration="2000" />
       <workItem from="1691216838416" duration="107000" />
+      <workItem from="1691906259683" duration="505000" />
+      <workItem from="1691975863648" duration="21000" />
     </task>
     <servers />
   </component>
