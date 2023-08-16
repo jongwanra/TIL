@@ -86,7 +86,9 @@
 * G1 GC이전의 GC는 Heap영역을 물리적으로 고정된 Young / Old 영역으로 나누어 사용하였지만, G1 GC는 `Region` 개념을 새로 도입하여 사용.
 * 전체 Heap 영역을 체스 같이 분할하여 상황에 따라 Eden, Survivor, Old, Humongous등 구역의 역할을 동적으로 부여했다.
 * 메모리가 많이 차 있는 구역을 우선으로 GC를 하기 때문에 Garbage First라는 이름이 붙었다.
-* CMS Collector에서의 문제였던 메모리 단편화 문제 해결
+* CMS Collector에서의 문제였던 메모리 단편화 문제 최소화
+* Full GC의 빈도수를 감소
+* 예측 가능한 GC 중단 시간을 제공한다(default: 200ms)
 
 ## Survivor 영역이 2개인 이유?
 * 메모리 단편화 문제를 최대한 빠르게 해결하기 위해서 나누게 되었다.
