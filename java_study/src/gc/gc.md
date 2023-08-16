@@ -1,7 +1,7 @@
 # Garbage Collection
 
 ## GC란?
-* Garbage Collection이란 사용되지 않는 객체들을 식별하고 메모리를 해제하는 프로세스를 말한다.
+* Garbage Collection이란 사용되지 않는 객체들을 식별하고 해제하는 프로세스를 말한다.
 * Garbage Collector란, 실제로 Garbage Collection을 수행하는 주체를 말한다.
 
 ## Young Generation이란?
@@ -43,7 +43,7 @@
 * 객체의 크기: Survivor 영역 이 이상의 크기의 데이터인 경우 Old Generation 으로 Promotion한다.
 * 객체의 나이: Survivor 영역을 옮겨가며 살아남은 객체의 경우 age를 한개씩 추가하게 되는데, 이떄 age가 임계치를 넘게 되면 old Generation영역으로 Promotion한다.
 
-## SWT란?
+## STW란?
 * Stop-the-world의 약자이다.
 * GC가 수행되는 동안 Application에서 실행 중인 Thread들이 멈추는 현상을 말한다.
 
@@ -65,36 +65,34 @@
 * GC 스레드는 기본적으로 CPU 개수만큼 할당된다.
 
 ### Parallel Old Collector(Parallel Compacting Collector)
-* Parallel Collector와 다른 점은 Old Generation에서 Full GC가 `병렬적으로` 수행된다.
+* Parallel Collector와 다른 점은 Old Generation Full GC가 `병렬적으로` 수행된다.
 * Old Generation에서 Mark Summary Compact Algorithm을 사용한다.
 * Full GC 수행 시, Summary단계에서 여러 스레드가 Old Generation을 분리해서 훑는다.
 
 ### CMS Collector(Concurrent Mark Sweep Collector, Low Latency Collector)
+* STW 시간을 최소화 하기 위해 고안됨.
 * Heap 메모리 영역이 클 때 적합하다.
 * Young Generation의 Minor GC는 Parallel Collector와 동일하다.
 * Old Generation의 Full GC는 아래의 단계를 거친다. 
   * Init Mark -> Concurrent Mark -> Remark -> Concurrent Sweep
-  * 여러 단계로 Full GC가 수행되는 만큼 다른 GC 대비 CPU 사용량이 높다.
-* Compact 단계를 거치지 않는다. -> 그렇기 때문에 메모리 파편화 문제가 있다.
-* Java9 부터 Deprecaated 되었고, Java 14에서는 사용이 중지되었다.
+  * 여러 단계로 Full GC가 수행되고 만큼 Application Thread와 동시에 실행되기 때문에 다른 GC 대비 CPU 사용량이 높다.
+* Compact 단계를 거치지 않는다. -> 그렇기 때문에 메모리 단편화 문제가 있다.
 
 
 ### G1 Collector
 * CMS GC를 대체하기 위해서 나왔다.
 * Java9 버전 부터 Default GC로 지정되었다.
-* 4GB 이상의 힙 메모리, STW 시간이 0.5초 정도 필요한 상황에 사용(Heap영역이 작을 경우 미사용 권장)
+* 4GB 이상의 힙 메모리 를 가질 경우 권장(Heap영역이 작을 경우 미사용 권장)
 * G1 GC이전의 GC는 Heap영역을 물리적으로 고정된 Young / Old 영역으로 나누어 사용하였지만, G1 GC는 `Region` 개념을 새로 도입하여 사용.
 * 전체 Heap 영역을 체스 같이 분할하여 상황에 따라 Eden, Survivor, Old, Humongous등 구역의 역할을 동적으로 부여했다.
 * 메모리가 많이 차 있는 구역을 우선으로 GC를 하기 때문에 Garbage First라는 이름이 붙었다.
+* CMS Collector에서의 문제였던 메모리 단편화 문제 해결
 
 ## Survivor 영역이 2개인 이유?
-* 메모리 파편화를 방지하기 위함.
-  * Survivor영역이 1개일 경우, 메모리 할당이 해제된 공간들이 파편처럼 나눠질 것이다.
-  * 결국 새로운 객체가 Survivor영역으로 들어올 때, 적절한 크기의 공간을 찾기가 어려워 질 것이며, Minor GC의 수행 빈도수도 더 빈번해질 것이다.
-* 그렇다면, Mark-Sweep-Compact 알고리즘을 써서 Minor GC도 수행하면 되지 않을까? 왜 따로 Survivor 영역을 2개로 나누면서 까지 ?
-  * 결국 GC의 성능을 결정하는 것은 Stop-the-world를 얼마나 최소화를 시키는 지에 대한 부분이다.
-  * Minor GC는 Full GC보다 빈번하게 수행되기 때문에 Stop-the-world의 발생을 더욱 최소화 시켜야 한다. 
-  * 그렇기 때문에 young generation에서의 메모리 영역중 survivor 영역을 2개로 나누어서 compact 과정을 새로운 공간으로 이동 시키는 작업으로 효율을 극대화 시켰다.
+* 메모리 단편화 문제를 최대한 빠르게 해결하기 위해서 나누게 되었다.
+  * Young Generation은 Minor GC가 굉장히 빈번하게 수행된다.
+  * STW 시간을 최소한으로 가져 가야한다.
+  * 여기서 메모리 공간을 추가해서 성능을 더욱 늘리는 방법을 선택했다.
 
 
 ## Reference
