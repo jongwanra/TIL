@@ -11,7 +11,7 @@ public class Main {
 		int n = sc.nextInt();
 		int r = sc.nextInt();
 		dp = new int[n + 1][n + 1];
-		System.out.println(main.lectureDfs(n, r));
+		System.out.println(main.myDfs(n, r));
 	}
 	
 	private int lectureDfs(int n, int r) {
