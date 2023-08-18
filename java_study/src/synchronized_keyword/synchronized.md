@@ -19,11 +19,98 @@
 * thread가 synchronized method를 호출할 때, `thread`는 자동적으로 메서드의 공유 자원에 대한 intrinsic lock 을 획득한다!
 * 즉, 내용을 정리 해보면 synchronized method/block을 진입하려는 thread가 객체(공유 자원)에 대한 lock을 획득한다고 이해함.
 
+## Context Switching이란?
+* 멀티 스레딩 환경에서, 하나의 CPU를 여러 스레드에서 공유하고 있을 때 발생한다.
+* 이 때 실행 중이던 스레드의 상태를 저장하고 다음 실행할 스레드의 상태를 복원하는 작업을 의미한다.
+* Context Swithing은 Overhead가 발생하는 작업이다.
+
 ## synchronized와 CAS 속도 차이가 나는 이유
 * Compare and Swap Algorithm을 적용할 때 하드웨어 적인 도움을 받을 수 있기 때문이다.
   * CPU Atomic Operation(하드웨어의 특정 명령어나 기능을 통해 원자적 연산을 수행한다)
   * 그렇기 때문에 `synchronized` 보다 더 낮은 오버헤드가 발생한다.
 * synchronized를 사용할 경우 한 스레드에서 lock을 해제하고 다른 스레드에서 lock을 취득하는 과정에서 `context switching`이 발생하며, 이로 인해 오버헤드가 발생한다.
+
+
+## synchronized vs CAS 성능테스트
+* thread 개수에 따른 테스트(고정값: 100만번 증가 연산)
+
+| Thread  | synchronized(s) |  CAS(s)  | Faster |
+|:-------:|:---------------:|:--------:|:------:|
+|    2    |     0.128s      |  0.059s  |  CAS   |
+|    4    |     0.666s      |  0.147s  |  CAS   |
+|   10    |     1.790s      |  0.533s  |  CAS   |
+|   50    |     7.935s      |  2.524s  |  CAS   |
+
+```java
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class SynchronizedVsCASPerformance {
+	
+	private static final int NUM_THREADS = 4;
+	private static final int NUM_ITERATIONS = 1_000_000;
+	
+	private static int synchronizedCounter = 0;
+	private static AtomicInteger casCounter = new AtomicInteger(0);
+	
+	public static void main(String[] args) throws InterruptedException {
+		Thread[] synchronizedThreads = new Thread[NUM_THREADS];
+		Thread[] casThreads = new Thread[NUM_THREADS];
+		
+		// Synchronized Test
+		long beforeTestWithSynchronized = System.nanoTime();
+		for (int i = 0; i < NUM_THREADS; i++) {
+			synchronizedThreads[i] = new Thread(() -> {
+				for (int j = 0; j < NUM_ITERATIONS; j++) {
+					synchronized (SynchronizedVsCASPerformance.class) {
+						synchronizedCounter++;
+					}
+				}
+			});
+			synchronizedThreads[i].start();
+		}
+		
+		for (Thread thread : synchronizedThreads) {
+			thread.join();
+		}
+		
+		// System.out.println("Synchronized Counter: " + synchronizedCounter);
+		long afterTestWithSynchronized = System.nanoTime();
+		long performanceTimeWithSynchronized = afterTestWithSynchronized - beforeTestWithSynchronized;
+		
+		// CAS Test
+		
+		long beforeTestWithCAS = System.nanoTime();
+		for (int i = 0; i < NUM_THREADS; i++) {
+			casThreads[i] = new Thread(() -> {
+				for (int j = 0; j < NUM_ITERATIONS; j++) {
+					casCounter.getAndIncrement();
+				}
+			});
+			casThreads[i].start();
+		}
+		
+		for (Thread thread : casThreads) {
+			thread.join();
+		}
+		
+		// System.out.println("CAS Counter: " + casCounter.get());
+		long afterTestWithCAS = System.nanoTime();
+		long performanceTimeWithCAS = afterTestWithCAS - beforeTestWithCAS;
+		
+		System.out.println("synchronized performance : " + performanceTimeWithSynchronized);
+		System.out.println("CAS performance : " + performanceTimeWithCAS);
+		System.out.print("Who is Faster : ");
+		if (performanceTimeWithCAS < performanceTimeWithSynchronized) {
+			System.out.println("CAS");
+		} else if (performanceTimeWithCAS > performanceTimeWithSynchronized) {
+			System.out.println("synchronized");
+		} else {
+			System.out.println("Same");
+		}
+	}
+}
+
+```
 
 
 ## Synchronization 3가지 전략
@@ -34,12 +121,6 @@
 ## Spin lock
 * 락을 가질 수 있을 때까지 반복해서 시도하는 방식
 * 락을 기다리는 동안 CPU를 낭비한다는 단점이 존재한다.
-
-
-## Context Switching이란?
-* 멀티 스레딩 환경에서, 하나의 CPU를 여러 스레드에서 공유하고 있을 때 발생한다.
-* 이 때 실행 중이던 스레드의 상태를 저장하고 다음 실행할 스레드의 상태를 복원하는 작업을 의미한다.
-* Context Swithing은 Overhead가 발생하는 작업이다.
 
 
 ## Critical Section(임계 영역)
