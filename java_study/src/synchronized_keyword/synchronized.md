@@ -14,12 +14,26 @@
 * static synchronized 경우에, 클래스에 해당하는 락이기 때문에 동시에 하나의 스레드로만 실행이 가능하다.
 
 ## synchronized keyword를 봤을 때 Instrinic lock 혹은 monitor lock을 획득한다고 하는데 누가 획득한다는 걸 의미하는 걸까?
+[자바 객체의 해더 정보](https://hg.openjdk.org/jdk8/jdk8/hotspot/file/87ee5ee27509/src/share/vm/oops/oop.hpp)
 > When a thread invokes a synchronized method, it automatically acquires the intrinsic lock for that method's object and releases it when the method returns. The lock release occurs even if the return was caused by an uncaught exception. [Locks In Synchronized Methods](https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html)
-* thread가 synchronized method를 호출할 때, `thread`는 자동적으로 메서드의 공유 자원에 대한 intrinsic lock 을 획득한다! 
+* thread가 synchronized method를 호출할 때, `thread`는 자동적으로 메서드의 공유 자원에 대한 intrinsic lock 을 획득한다!
+* 즉, 내용을 정리 해보면 synchronized method/block을 진입하려는 thread가 객체(공유 자원)에 대한 lock을 획득한다고 이해함.
 
 ## synchronized와 CAS 속도 차이가 나는 이유
-* 하드웨어 지원?
-* lock속도?
+* Compare and Swap Algorithm을 적용할 때 하드웨어 적인 도움을 받을 수 있기 때문이다.
+  * CPU Atomic Operation(하드웨어의 특정 명령어나 기능을 통해 원자적 연산을 수행한다)
+  * 그렇기 때문에 `synchronized` 보다 더 낮은 오버헤드가 발생한다.
+* synchronized를 사용할 경우 한 스레드에서 lock을 해제하고 다른 스레드에서 lock을 취득하는 과정에서 `context switching`이 발생하며, 이로 인해 오버헤드가 발생한다.
+
+
+## Synchronization 3가지 전략
+* Spin lock
+* Mutex
+* Semaphore
+
+## Spin lock
+* 락을 가질 수 있을 때까지 반복해서 시도하는 방식
+* 락을 기다리는 동안 CPU를 낭비한다는 단점이 존재한다.
 
 
 ## Context Switching이란?
@@ -30,6 +44,9 @@
 
 ## Critical Section(임계 영역)
 * 공유 자원의 무결성을 보장하기 위해 하나의 프로세스/스레드만 진입해서 실행 가능한 영역
+
+## Mutual Exclusion(상호 배제)
+* `하나의 프로세스/스레드만 진입해서 실행 한다`는 의미
 
 ## Monitor 
 * Mutual Exclusion 보장
