@@ -32,6 +32,8 @@
 * Thread에만 영향을 준다.
 * checked exception, unchecked exception으로 구분된다.
   * checked Exception: 컴파일 시에 발생할 수 있는 예상 가능한 문제를 나타낸다.
+    * checked Exception이 발생할 수 있는 method를 호출 할 경우 예외 처리를 해줘야 한다. 하지 않을 경우 compile 시 오류를 내뱉는다.
+    * must be caught or declared to be thrown
   * unchecked Exception: 런타임 시에 발생할 수 있는 예상 가능한 문제를 나타낸다.
 
 ## Error와 Exception 차이점은?
@@ -69,7 +71,7 @@ public enum StatusCode {
 ```
 
 ```java
-public class MismatchPasswordException extends RuntimeException {
+public class MismatchPasswordException extends MismatchPasswordException {
 	public MismatchPasswordException() {
 		super(StatusCode.MISMATCH_PASSWORD.getMessage());
 	}
@@ -77,19 +79,6 @@ public class MismatchPasswordException extends RuntimeException {
 ```
 위의 코드와 같이 `MismatchPasswordException` class명을 통해서 사용자에게 비밀번호가 일치하지 않다는 메시지를 전달함으로써 커뮤니케이션이 가능하다.
 
-## Exception의 종류
-* checked Exception
-* unchecked Exception
-
-
-## Unchecked Exception이란?
-* Compile시에 확인 되지 않은 Exception을 말한다.
-* Exception 하위의 RuntimeException을 상속 받은 class들을 의미한다.
-* NullPonteException, ArrayIndexOutOfBoundException, IllegalArgumentException, ArithmeticException
-
-## Checked Exception이란?
-* Compile시에 잡히는 예외를 말한다?
-* Exception Class를 확장한 class들을 의미한다.
 
 
 
