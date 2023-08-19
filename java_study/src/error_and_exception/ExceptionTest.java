@@ -9,14 +9,14 @@ public class ExceptionTest {
 	private void testException() {
 		try {
 			login(1L, "123456");
-		} catch (MismatchPasswordException e) {
-			System.out.println(e.toString());
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 	
-	private void login(final long id, final String password) throws RuntimeException {
+	private void login(final long id, final String password) throws InterruptedException {
 		if (!password.equals("123455")) {
-			throw new MismatchPasswordException();
+			throw new InterruptedException();
 		}
 	}
 }

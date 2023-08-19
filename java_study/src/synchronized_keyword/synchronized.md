@@ -18,6 +18,7 @@
 > When a thread invokes a synchronized method, it automatically acquires the intrinsic lock for that method's object and releases it when the method returns. The lock release occurs even if the return was caused by an uncaught exception. [Locks In Synchronized Methods](https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html)
 * thread가 synchronized method를 호출할 때, `thread`는 자동적으로 메서드의 공유 자원에 대한 intrinsic lock 을 획득한다!
 * 즉, 내용을 정리 해보면 synchronized method/block을 진입하려는 thread가 객체(공유 자원)에 대한 lock을 획득한다고 이해함.
+* 추가 적으로 객체마다 JVM 내부에서 관리하는 header가 존재한다. 그 안에 is_locked/is_unlocked 변수가 존재하고 해당 객체에 대한 locked여부 상태를 나타낸다.
 
 ## Context Switching이란?
 * 멀티 스레딩 환경에서, 하나의 CPU를 여러 스레드에서 공유하고 있을 때 발생한다.
@@ -25,8 +26,8 @@
 * Context Swithing은 Overhead가 발생하는 작업이다.
 
 ## synchronized와 CAS 속도 차이가 나는 이유
-* Compare and Swap Algorithm을 적용할 때 하드웨어 적인 도움을 받을 수 있기 때문이다.
-  * CPU Atomic Operation(하드웨어의 특정 명령어나 기능을 통해 원자적 연산을 수행한다)
+* Compare and Swap Algorithm을 적용할 때 하드웨어적으로 도움을 받을 수 있기 때문이다.
+  * CPU Atomic Operation은 read-modify-write를 하나의 명령어로 수행한다
   * 그렇기 때문에 `synchronized` 보다 더 낮은 오버헤드가 발생한다.
 * synchronized를 사용할 경우 한 스레드에서 lock을 해제하고 다른 스레드에서 lock을 취득하는 과정에서 `context switching`이 발생하며, 이로 인해 오버헤드가 발생한다.
 
@@ -119,7 +120,10 @@ public class SynchronizedVsCASPerformance {
 * Semaphore
 
 ## Spin lock
-* 락을 가질 수 있을 때까지 반복해서 시도하는 방식
+* 락을 가질 수 있을 때까지 반복해서 진입을 시도하는 방식
+* Spin lock은 Mutual Exclusion으로 만 사용된다.
+* Spin lock은 Critical Section에 접근 하는데 오직 하나의 스레드만 허용한다.
+* busy-wait process이다.
 * 락을 기다리는 동안 CPU를 낭비한다는 단점이 존재한다.
 
 

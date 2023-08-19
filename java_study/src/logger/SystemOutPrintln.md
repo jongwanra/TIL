@@ -100,10 +100,10 @@ public class PrintStream extends FilterOutputStream
 }
 ```
 
-## Blocking I/O방식을 사용한다.
-* System.out.println() method는 내부적으로 Blocking I/O 방식을 사용한다.
+## 사용하면 안되는 이유
+* System.out.println() method는 내부적으로 `Blocking I/O` 방식을 사용한다.
 * console에 출력 작업이 완료되기 전까지 해당 스레드가 블로킹이 되어 멈춰 있어야 한다는 것을 의미한다.
-* 또한 synchronized keyword를 통해 동시성 제어를 하기 때문에 멀티 스레딩 환경에서 다른 스레드가 접근했을 경우에는 블로킹 상태가 되버리게 된다.
+  * console에 출력하는 동안 kernel의 CPU를 점유한다.
 
 
 
