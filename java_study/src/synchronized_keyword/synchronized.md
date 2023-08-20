@@ -79,7 +79,6 @@ public class SynchronizedVsCASPerformance {
 		long performanceTimeWithSynchronized = afterTestWithSynchronized - beforeTestWithSynchronized;
 		
 		// CAS Test
-		
 		long beforeTestWithCAS = System.nanoTime();
 		for (int i = 0; i < NUM_THREADS; i++) {
 			casThreads[i] = new Thread(() -> {
@@ -112,7 +111,6 @@ public class SynchronizedVsCASPerformance {
 }
 
 ```
-
 
 ## Synchronization 3가지 전략
 * Spin lock
