@@ -2,62 +2,71 @@ package dfs_and_bfs.수열_추측하기;
 
 import java.util.*;
 
-// Not Solved 23.08.17
 public class Main {
-	static int[] factorials;
-	static int[] p, b;
-	static int n;
-	static int total;
+	static boolean[] visited;
+	static int[] combinationCases;
+	static int[] answers;
+	static boolean isCompleted = false;
 	
 	public static void main(String[] args) {
-		Main main = new Main();
 		Scanner sc = new Scanner(System.in);
+		Main main = new Main();
+		final int n = sc.nextInt();
+		final int target = sc.nextInt();
+		visited = new boolean[n + 1];
+		answers = new int[n];
+		combinationCases = new int[n];
 		
-		n = sc.nextInt();
-		total = sc.nextInt();
-		
-		b = new int[n];
-		p = new int[n];
-		factorials = new int[n + 1];
-		factorials[0] = 1;
-		factorials[1] = 1;
-		for (int i = 2; i <= n; i++) {
-			factorials[i] = i * factorials[i - 1];
+		for (int i = 0; i < n; i++) {
+			combinationCases[i] = main.factorial(n - 1) / (main.factorial(n - 1 - i) * main.factorial(i));
 		}
 		
-		for (int r = 0; r < n; r++) {
-			b[r] = factorials[n - 1] / (factorials[n - 1 - r] * factorials[r]);
+		main.myDfs230820(n, target, 0, 0);
+		for (int x : answers) {
+			System.out.print(x + " ");
 		}
-		
-		main.myDfs(0, 0);
 	}
 	
-	private void myDfs(final int depth, final int sum) {
-		System.out.println("sum: " + sum + " depth: " + depth);
+	private int factorial(int n) {
+		int sum = 1;
+		for (int i = 2; i <= n; i++) {
+			sum *= i;
+		}
+		return sum;
+	}
+	
+	private void myDfs230820(final int n, final int target, final int sum, final int depth) {
+		if (isCompleted) {
+			return;
+		}
+		
 		if (depth == n) {
-			if (sum == total) {
-				for (int x : p) {
-					System.out.print(x + " ");
-				}
-				System.out.println();
+			if (target == sum) {
+				isCompleted = true;
 			}
 			return;
 		}
 		
-		for (int i = 0; i < n; i++) {
-			if (p[i] > 0) {
+		if (target < sum) {
+			return;
+		}
+		
+		for (int i = 1; i <= n; i++) {
+			// 해당 숫자를 이미 사용했는지 여부 -> visited
+			if (visited[i]) {
 				continue;
 			}
-			p[i] = i + 1;
-			System.out.println("-----");
-			for (int x : p) {
-				System.out.print(x + " ");
+			visited[i] = true;
+			answers[depth] = i;
+			myDfs230820(n, target, sum + (combinationCases[depth] * i), depth + 1);
+			if (isCompleted) {
+				return;
 			}
-			System.out.println("-----");
-			myDfs(depth + 1, sum + (b[i] * p[i]));
-			p[i] = 0;
+			visited[i] = false;
+			answers[depth] = 0;
 			
 		}
+		
 	}
 	
 }
