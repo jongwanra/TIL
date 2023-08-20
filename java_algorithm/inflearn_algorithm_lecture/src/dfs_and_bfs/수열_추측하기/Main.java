@@ -22,9 +22,6 @@ public class Main {
 		}
 		
 		main.myDfs230820(n, target, 0, 0);
-		for (int x : answers) {
-			System.out.print(x + " ");
-		}
 	}
 	
 	private int factorial(int n) {
@@ -43,6 +40,9 @@ public class Main {
 		if (depth == n) {
 			if (target == sum) {
 				isCompleted = true;
+				for (int x : answers) {
+					System.out.print(x + " ");
+				}
 			}
 			return;
 		}
@@ -59,11 +59,7 @@ public class Main {
 			visited[i] = true;
 			answers[depth] = i;
 			myDfs230820(n, target, sum + (combinationCases[depth] * i), depth + 1);
-			if (isCompleted) {
-				return;
-			}
 			visited[i] = false;
-			answers[depth] = 0;
 			
 		}
 		
