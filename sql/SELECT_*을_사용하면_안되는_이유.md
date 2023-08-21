@@ -1,4 +1,4 @@
-# Select All Query를 사용하면 안되는 이유
+# Select *을 사용하면 안되는 이유
 
 ## 5개의 컬럼을 가진 Member Table 대략 200만 건을 통해서 속도 차이를 비교해보자.
 
