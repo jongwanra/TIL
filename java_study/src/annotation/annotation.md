@@ -1,15 +1,18 @@
-# Answer
+# Annotation
 
 ## Annotation이란?
+* Annotation은 프로그램에 추가적인 정보를 제공하는 메타데이터의 일종이다.
+  * 여기서 metadata란? 컴파일/런타임 시에 Annotation이 붙은 코드를 어떻게 처리할 것인지에 대 정보를 의미한다.
 
-* Annotation은 작성한 코드에 대해 추가적인 정보를 제공한다.
-* Annotation을 통해 컴파일 시 혹은 런타임 시에 해당 코드에 필요한 추가적인 처리가 가능하다.
-
-## Annotation을 사용하는 이유?(개인적인 생각)
-* 런타임시에 발생할 수 있는 경고 혹은 에러를 사전에 방지하기 위해서
-  * 해당 예시로는 @Override, @SuppressWarnings가 있다.
-* 중복적으로 작성 되었던 코드에 대해서 편리하게 처리하기 위해서
-  * Getter, Setter 등이 존재한다.
+## Annotation의 용도
+* 컴파일/런타임 시에 프로그램의 동작을 제어하는데 사용된다.
+  * @Override, @Valid
+* 단순하게 반복적으로 작성해 왔던 boiler plate code들을 컴파일 시, 자동으로 생성하는 용도로 사용된다.
+  * @Getter, @Setter, @EqualsAndHashCode, @NoArgsConstructor, @AllArgsConstructor ..
+* 비즈니스 로직과 분리하여 부가적인 기능들을 처리하는데 사용된다.(관심사의 분리)
+  * @Transitional, @Test, @Vaild
+* 단순한 Marking 역할로 사용된다.
+  * @Deprecated
 
 
 ## @Override의 용도?
@@ -36,4 +39,5 @@ User가 해당 Method를 호출 시 Compiler는 경고를 보여준다.(Retentio
 ## Reference
 * 자바의 신(이상민 저)
 * https://veneas.tistory.com/entry/Java-Annotation-%EB%A9%94%ED%83%80%EB%8D%B0%EC%9D%B4%ED%84%B0
-* https://joel-dev.site/83
+* [저는 어노테이션이 처음이라니까요?](https://joel-dev.site/83)
+* [[Java] 어노테이션 (+커스텀 어노테이션 만들기)](https://velog.io/@potato_song/Java-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98-%EC%BB%A4%EC%8A%A4%ED%85%80-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98-%EB%A7%8C%EB%93%A4%EA%B8%B0)
