@@ -5,16 +5,33 @@ import java.util.*;
 public class Main {
 	static int[] answers;
 	static boolean[] visitedNum;
+	static int n, r;
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Main main = new Main();
-		final int n = sc.nextInt();
-		final int r = sc.nextInt();
+		n = sc.nextInt();
+		r = sc.nextInt();
 		answers = new int[r];
 		visitedNum = new boolean[n + 1];
 		
-		main.myDfs(n, r, 0);
+		// main.myDfs(n, r, 0);
+		main.lectureDfs(0, 1);
+	}
+	
+	private void lectureDfs(int depth, int startIndex) {
+		if (depth == r) {
+			for (int x : answers) {
+				System.out.print(x + " ");
+			}
+			System.out.println();
+		} else {
+			for (int i = startIndex; i <= n; i++) {
+				answers[depth] = i;
+				lectureDfs(depth + 1, i + 1);
+			}
+		}
+		
 	}
 	
 	private void myDfs(final int n, final int r, final int depth) {
