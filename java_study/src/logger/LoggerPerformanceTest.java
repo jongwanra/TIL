@@ -1,7 +1,7 @@
 package logger;
 
 public class LoggerPerformanceTest {
-	private static final int DEFAULT_SIZE = 1_000;
+	private static final int DEFAULT_SIZE = 1_000_000;
 	
 	public static void main(String[] args) {
 		LoggerPerformanceTest test = new LoggerPerformanceTest();
