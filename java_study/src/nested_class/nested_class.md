@@ -57,9 +57,6 @@ Static Nested Class와 InnerClass의 차이점은 두 가지로 보인다.
 그렇기 때문에, 바깥 인스턴스에 접근할 일이 없다면 Static Nested Class를 이용하자.
 
 
-## Nested Class는 언제 사용하면 좋을까?
-
-
 
 
 
