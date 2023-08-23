@@ -20,21 +20,18 @@
         * IOException
         * 
 
-## Error란?
-* Java에서 Error란 주로 System Level에서 발생하는 심각한 문제를 나타낸다.
-* 프로그램 외부에서 발생한다.
-* 프로세스에 영향을 준다.
-* StackOverflowError, OutOfMemoryError, NoClassDefFoundError
+## Java에서 Error와 Exception이란?
+Error는 주로 System Level에서 발생하는 예측 불가능하고 심각한 문제를 나타냅니다. 
+프로세스에 영향을 미치며, 프로그램 외부에서 발생합니다. 
+대표적인 Error로 OutOfMemoryError, StackOverFlowError, NoClassDefFound Error 등이 있습니다.
+그리고 Exception은 예측 가능한 문제를 나타냅니다. Error와 다르게 Thread에 영향을 미치며 프로그램 내부에서 발생하는 특징을 가지고 있습니다.
 
-## Exception이란?
-* Java에서 Exception이란 런타임 및 컴파일 시에 발생할 수 있는 예상 가능한 문제를 나타낸다.
-* Program 내부에서 나타낸다.
-* Thread에만 영향을 준다.
-* checked exception, unchecked exception으로 구분된다.
-  * checked Exception: 컴파일 시에 발생할 수 있는 예상 가능한 문제를 나타낸다.
-    * checked Exception이 발생할 수 있는 method를 호출 할 경우 예외 처리를 해줘야 한다. 하지 않을 경우 compile 시 오류를 내뱉는다.
-    * must be caught or declared to be thrown
-  * unchecked Exception: 런타임 시에 발생할 수 있는 예상 가능한 문제를 나타낸다.
+## Checked Exception과 Unchecked Exception?
+Checked Exception과 Unchecked Exception은 어느 시점에 발생하는 문제인지에 따라 나눌 수 있습니다.
+Checked Exception은 컴파일 시에 발생하는 예외이고, Unchecked Exception은 런타임 시에 발생하는 예외입니다.
+계층 구조를 통해 파악해 보면 Exception 하위의 RuntimeException을 포함한 하위 클래스들이 UncheckedException이고, 나머지 Exception을 CheckedException입니다.
+CheckedException 같은 경우 컴파일 시에 예외가 발생하기 때문에 따로 예외처리를 해주거나 throws keyword를 사용하여 호출한 method에게 예외처리를 위임해야 합니다.
+
 
 ## Error와 Exception 차이점은?
 * 각각 개발자가 컨트롤할 수 있는 문제인지 컨트롤 할 수 없는 문제인지에 따라 구분된다.
@@ -77,7 +74,7 @@ public class MismatchPasswordException extends MismatchPasswordException {
 	}
 }
 ```
-위의 코드와 같이 `MismatchPasswordException` class명을 통해서 사용자에게 비밀번호가 일치하지 않다는 메시지를 전달함으로써 커뮤니케이션이 가능하다.
+위의 코드와 같이 `MismatchPasswordException` class명과 "비밀번호가 일치하지 않습니다." 메세지를 통해서 사용자에게 비밀번호가 일치하지 않다는 메시지를 전달함으로써 커뮤니케이션이 가능하다.
 
 
 
