@@ -63,8 +63,8 @@ public class Main {
         // 위와 같이 정보를 가져오게 되면 타입이 Object를 지정해서 반환이 되다보니, 형변환을 해줘야 한다.
         // Object result = dto1.getResult();
         String result = (String) dto1.getResult();
-        StringBuilder result = (String) dto2.getResult();
-        StringBuffer result = (String) dto3.getResult();
+        StringBuilder result = (StringBuilder) dto2.getResult();
+        StringBuffer result = (StringBuilder) dto3.getResult();
     }
 }
 ```
@@ -76,7 +76,7 @@ public class Main {
 
 위의 형변환의 문제점을 사전에 없애기 위해서 Generic이 생기게 되었다.
 
-## Generic을 사용헸을 때 장점이 뭘까?
+## Generic을 사용했을 때 장점이 뭘까?
 
 Generic을 사용 했을 때,
 첫 번째, 안정성이 보장된다는 것이다. Generic으로 선언된 타입은 컴파일 시에 에러를 내뱉는다.
@@ -147,7 +147,7 @@ public class Main {
 }
 ```
 
-위의 코드와 같이 선언, 조회에서는 제약 사항이 생기지 않지만, 상태값을 변경하려고 했을 때, incompativle types 관련 error가 발생한다.
+위의 코드와 같이 선언, 조회에서는 제약 사항이 생기지 않지만, 상태값을 변경하려고 했을 때, incompatible types 관련 error가 발생한다.
 
 ## 메소드를 제네릭하게 선언하려면 리턴 타입 앞에 어떤 것을 추가해 주면 될까?
 return type앞에 <T> 와 같이 작성해 주면 된다.

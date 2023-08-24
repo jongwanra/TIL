@@ -107,3 +107,22 @@ public class PrintStream extends FilterOutputStream
 
 
 
+## 그러면 대안책은 (성능 방면에서만 고려해 보자)
+
+![compare_performance.png](compare_performance.png)
+
+[Logging Performance Comparison](https://blog.sebastian-daschner.com/entries/logging-performance-comparison) 글의 이미지를 발췌해서 가져왔는데,
+Logger Class를 사용한다고 성능이 좋아진다거나 하지않았다. 이 중에서 System.out.print 보다 빠른 것은 총 2개
+1. Log4j2 Async
+2. Buffered Writer
+
+로 보인다.
+
+
+## Log4j2 Async?!
+
+
+
+## Reference
+
+* [Logging Performance Comparison](https://blog.sebastian-daschner.com/entries/logging-performance-comparison)

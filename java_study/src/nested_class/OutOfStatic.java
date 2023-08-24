@@ -1,7 +1,6 @@
 package nested_class;
 
 public class OutOfStatic {
-	
 	static class StaticNested {
 		private int value = 0;
 		
