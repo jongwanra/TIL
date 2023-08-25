@@ -1,5 +1,14 @@
 # Equlas and Hashcode 
 
+### Equals와 HashCode의 차이점은?(23.08.25)
+
+equals() method는 객체가 동등한지를 비교하는 method이며, hashCode() method는 객체의 hashCode 값을 생성하고 int형으로 반환하는 method입니다.
+equals method는 주로  collection package의 contains method에서 사용되며 객체의 동등성을 판단합니다.
+hashCode method는 주로 Hash관련 자료구조인 HashMap, HashSet, HashTable등에서 객체를 조회하고 저장하는데 사용됩니다.
+hashCode() method를 통해 해당 bucket을 찾게 되며 해시 충돌이 난 bucket일 경우 equals method를 통해 동등한 객체가 있는지 여부를 판단하기 때문에 
+equals method와 hashCode method를 재정의하는 것은 매우 중요합니다. 두 개의 method 재정의 시, 동등한 객체일 경우 hashCode값도 같아야 합니다.
+
+
 ## 동일성(Identity)
 
 * 동일성은 `두 객체가 완전히 같은 경우`를 의미한다.
@@ -53,9 +62,9 @@ The general contract of hashCode is:
 > It is not required that if two objects are unequal according to the equals method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables.
 
 
-## HashCode? 
-
-* 해시코드는 해시 알고리즘에 의해 생성된 정수 값이다.
+## HashCode란?
+* Object 클래스의 메서드로, 객체의 해시 코드 값을 정수로 반환한다.
+* hashCode() method의 기분 구현은 객체의 메모리 주소를 기반으로 한 해시 코드를 반환한다. 
 * 해시 코드의 규약
   * equals 비교에 사용되는 정보가 변경되지 않았다면, 애플리케이션이 실행되는 동안 그 객체의 hashCode 메소드는 몇 번을 호출해도 일관되게 항상 같은 값을 반환해야 한다.
   * equlas(Object)가 두 객체를 같다고 판단했다면, 두 객체의 hashCode는 똑같은 값을 반환해야 한다.
