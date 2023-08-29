@@ -47,9 +47,6 @@ public class LinkedHashMapTest {
 		// output: 9999
 		System.out.println(lhm.size());
 	}
-	
-	
-	
 }
 
 ```
