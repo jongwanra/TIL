@@ -14,7 +14,6 @@ public class LinkedHashMap<K,V>
 ## LinkedHashMap을 사용하는 이유?
 LinkedHashMap은 HashMap과 다르게 순서를 보장해주기 때문에 순서의 보장이 필요한 시점에 사용하면 좋다.
 
-
 ## LRU Cache (Least Recently Used)
 
 LinkedHashMap은 Cache를 구현할 때 사용하면 좋은데 특히 LRU Cache를 구현할 때 주로 사용되는 자료구조이다.
