@@ -144,6 +144,18 @@ I/O작업을 하는 주체는 CPU가 아닌 `입출력 장치`이다. CPU는 주
 * 네트워크의 어딘가와 데이터를 주고 받는 것
 * 입출력 장치와 데이터를 주거나 받는 것
 
+
+## CPU 코어 갯수 보다 thread의 갯수가 많은 상황이면?
+
+Context Switching 과 CPU Bound Application 인지 I/O Bound Application인지에 따라 다를 것 같은데요, 
+CPU Bound Application이라고 하면 코어 갯수 보다 많아지면 많아질 수록 좋지 않다라고 판단했습니다. CPU Bound Process이기 때문에 Thread를 코어 수보다 늘리게 된다면 한 개의 코어를 점유하기 위해서 thread간 경합이 벌어지고 그만큼 
+context switching이 발생하면서 application의 thread는 context-switching이 발생한 시간 만큼 멈춰있어야 할 것입니다. CPU Bound Process의 경우에 코어 갯수 아니면 코어 갯수 +1 개 정도가 적절하지 않을 까 생각합니다.
+반면에 일반적인 백엔드 API 서버와 같이 I/O Bounded Application라고 한다면 그만큼 CPU의 노는 시간이 많이 많기 때문에 Thread의 갯수를 2배 3배 정도로 가져가도 큰 문제는 없을 거라고 생각합니다. Context Switching이 많이 발생한다고 하더라도 
+CPU를 기본적으로 CPU를 점유하는 시간이 적기 때문에 문제 없다고 생각했습니다!
+
+
+
+
 ## Reference 
 * [프로세스, 스레드, 멀티태스킹, 멀티스레딩, 멀티프로세싱, 멀티프로그래밍](https://www.youtube.com/watch?v=QmtYKZC0lMU)
 * [컨텍스트 스위칭 뽀개기!](https://www.youtube.com/watch?v=Xh9Nt7y07FE&t=1s)
