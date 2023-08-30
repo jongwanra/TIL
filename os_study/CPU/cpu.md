@@ -1,5 +1,10 @@
 # CPU
 
-## PC
-* Program Counter
-  * MAR(Memory Address Register)
+## CPU란?
+메모리에 저장된 명령어를 읽고, 해석하고, 실행하는 장치를 의미한다.
+CPU는 내부(정확히 말하면 Core)에는 연산을 담당하는 ALU, 제어 신호를 내보내고 명령어를 해석하는 CU, 임시 저장 장치인 Register 등으로 구성된다.
+
+
+## 하드웨어적 스레드
+하나의 코어가 처리하는 명령어의 단위를 의미한다.
+
