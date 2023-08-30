@@ -154,8 +154,6 @@ context switching이 발생하면서 application의 thread는 context-switching�
 CPU를 기본적으로 CPU를 점유하는 시간이 적기 때문에 문제 없다고 생각했습니다!
 
 
-
-
 ## Reference 
 * [프로세스, 스레드, 멀티태스킹, 멀티스레딩, 멀티프로세싱, 멀티프로그래밍](https://www.youtube.com/watch?v=QmtYKZC0lMU)
 * [컨텍스트 스위칭 뽀개기!](https://www.youtube.com/watch?v=Xh9Nt7y07FE&t=1s)
