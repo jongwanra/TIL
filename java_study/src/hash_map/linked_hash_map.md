@@ -12,7 +12,7 @@ public class LinkedHashMap<K,V>
 ```
 
 ## LinkedHashMap을 사용하는 이유?
-LinkedHashMap은 HashMap과 다르게 순서를 보장해주기 때문에 순서의 보장이 필요한 시점에 사용하면 좋다.
+LinkedHashMap은 HashMap과 다르게 입력 혹은 접근 순서(accessOrder)를 보장해주기 때문에 순서의 보장이 필요한 시점에 사용하면 좋다.
 
 ## LRU Cache (Least Recently Used)
 

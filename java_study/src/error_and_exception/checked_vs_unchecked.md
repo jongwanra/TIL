@@ -3,7 +3,7 @@
 ## 우선 정의부터!
 
 Throwable의 자식 클래스로 Error와 Exception이 존재한다. Exception의 하위 클래스로는 RuntimeException과 나머지 Exception Class가 존재하는데, 
-RuntimeException을 포함한 하위 클래스를 Unchecked Exception이라고 하며, 나머지를 CheckedException이라고 한다. 여기서 구분을 하는 기준은 예외가 언제 발생할까인데
+RuntimeException을 포함한 하위 클래스를 Unchecked Exception이라고 하며, 나머지를 Exception을 포함한 하위 클래스를 CheckedException이라고 한다. 여기서 구분을 하는 기준은 예외가 언제 발생할까인데
 UncheckedException은 Runtime 시에 발생하고 checked exception은 컴파일 시에 발생한다.
 
 이 외에 둘의 차이점은 try-catch 또는 throws keyword를 강제로 처리해야하는 checked exception과 처리하지 않아도 되는 unchecked exception이 존재한다.
@@ -64,9 +64,6 @@ checked exception은 따로 강제적으로 try-catch 또는 throws를 처리 �
 wrapping checked exception을 해주지 않는다면, 에러를 핸들링할 방법이 없기 때문에 throws keyword를 통해 최상위 메서드로 위임해야 한다. 이는 OCP를 위반하는 행위이며 exception을 추가하거나 변경 시에 호출한 메서드 만큼 변경해줘야 하는 번거러움과 불편함이 있다.
 또한 Spring framework로 개발을 진행할 때 보통 비즈니스 로직에는 데이터의 무결성을 보장하기 위해서 @Transactional을 사용하게 된다. 이 떄 기본값으로 unchecked exception, error에 대해서만 rollback처리가 되어 있기 때문에
 따로 설정을 해줘야 한다. 이러한 불편함을 해결하기 위한 방법으로 wrapping checked exception 방법을 사용하고 있다.
-
-
-
 
 
 ## Reference

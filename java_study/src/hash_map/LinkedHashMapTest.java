@@ -8,7 +8,27 @@ public class LinkedHashMapTest {
 		LinkedHashMapTest main = new LinkedHashMapTest();
 		
 		// main.checkLinkedHashMap();
-		main.testLRUCache();
+		// main.testLRUCache();
+		
+		main.testAccessOrder();
+	}
+	
+	private void testAccessOrder() {
+		LinkedHashMap<Integer, String> lhm = new LinkedHashMap<>(10, 0.75f, true);
+		for (int i = 1; i <= 10; i++) {
+			lhm.put(i, "a");
+		}
+		
+		lhm.get(5);
+		lhm.get(5);
+		lhm.get(5);
+		lhm.get(6);
+		lhm.get(6);
+		lhm.get(7);
+		
+		for (Integer x : lhm.keySet()) {
+			System.out.println("x = " + x);
+		}
 	}
 	
 	private void testLRUCache() {

@@ -6,7 +6,7 @@ public class ExceptionTest {
 		// main.testException();
 		
 		// main.checkRunTimeException();
-		main.checkPerformanceWithTryCatch(100_000_000);
+		// main.checkPerformanceWithTryCatch(100_000_000);
 		main.checkPerformanceWithoutTryCatch(100_000_000);
 		
 	}
@@ -20,6 +20,7 @@ public class ExceptionTest {
 		long end = System.nanoTime();
 		
 		System.out.println("없을 때: " + (end - start) / 1_000_000 + "ms");
+		
 	}
 	
 	private void checkPerformanceWithTryCatch(final int size) {
