@@ -63,3 +63,4 @@ Client로 부터 암호화된 대칭키를 전달 받은 Server는 가지고 있
 ## Reference 
 * [HTTPS와 SSL 인증서](https://opentutorials.org/course/228/4894)
 * [HTTPS 통신 원리 쉽게 이해하기 (Feat. SSL Handshake, SSL 인증서)](https://nuritech.tistory.com/25)
+* [[네트워크]HTTP와 HTTPS의 차이점 그리고 동작 방식](https://devdy.tistory.com/14)
