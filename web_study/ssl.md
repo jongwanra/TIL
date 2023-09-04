@@ -12,14 +12,14 @@ Server에서 private key를 보관하고 Client에는 비대칭키를 전달하�
 
 ## SSL의 동작 방식은 어떻게 될까?
 
-![hand_shake.png](hand_shake.png)
+![hand_shake.png](images/hand_shake.png)
 * [참고: TLS 핸드셰이크란 무엇일까요?](https://www.cloudflare.com/ko-kr/learning/ssl/what-happens-in-a-tls-handshake/)
 
 0. 위의 이미지의 SYN, SYN ACK, ACK는 TCP의 3-way-handshake를 나타내는데, https는 tcp기반의 프로토콜이기 때문에 SSL HandShake 보다 먼저 연결된다. 
 
 1. ClinetHello
 
-![img.png](img.png)
+![img.png](images/img.png)
 * [참고: HTTPS 통신 원리 쉽게 이해하기 (Feat. SSL Handshake, SSL 인증서)](https://nuritech.tistory.com/25)
 
 이때 Client는 보이지 않게 `ClientHello`를 Server에게 하게 된다. ClientHello를 통해서 서버측에 아래와 같은 내용을 전달하게 된다.
@@ -29,10 +29,10 @@ Server에서 private key를 보관하고 Client에는 비대칭키를 전달하�
 
 2. ServerHello, Certificate
 
-![img_1.png](img_1.png)
+![img_1.png](images/img_1.png)
 * [참고: ServerHello](https://nuritech.tistory.com/25)
 
-![img_2.png](img_2.png)
+![img_2.png](images/img_2.png)
 * [참고: Certificate](https://nuritech.tistory.com/25)
 
 이후에 요청을 받은 Server에서는 `ServerHello`와 `Certificate`를 하게 된다.  Server에서는 아래와 같은 정보를 Client에 전달 하게 된다.
