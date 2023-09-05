@@ -5,16 +5,22 @@
 ```java
 package error_and_exception;
 
+import java.io.Closeable;
 import java.io.FileWriter;
 import java.io.IOException;
 
-// try-catch-finally statement
-public class TryWithResourcesTest {
+
+// TryWithResourcesTest Class에 직접 Closeable Interface를 구현해 봤다.
+public class TryWithResourcesTest implements Closeable {
 	public static void main(String[] args) {
-		TryWithResourcesTest t = new TryWithResourcesTest();
-		t.checkTryWithResources();
+		try (TryWithResourcesTest t = new TryWithResourcesTest()) {
+			t.checkTryWithResources();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
+	// try-catch-finally statement
 	private void checkTryCatchFinally() {
 		FileWriter fw = null;
 		
@@ -40,11 +46,17 @@ public class TryWithResourcesTest {
 			fw.write("Hello");
 		} catch (IOException e) {
 			e.printStackTrace();
-			
+		
 		}
 	}
 	
+	// close() method 재정의
+	@Override
+	public void close() throws IOException {
+		System.out.println("call close() method");
+	}
 }
+
 
 ```
 
@@ -69,6 +81,16 @@ AutoCloseable 또는 Closeable Interface를 구현 했음을 확인할 수 있�
 
 ![img.png](java-api-docs.png)
 
+
+
+## 내부적으로 어떻게 동작할까?
+
+위에 예시 코드에서 `TryWithResourcesTest` Class에 Closeable Interface를 직접 구현해 봤다.
+위의 코드를 실행해보면 
+
+> call close() method
+
+해당 출력 값이 나오는데, try-with-resources 구문에서 try 소괄호에 선언한 자원들에 한해서 close method를 자동으로 호출하게 된다. 
 
 
 ## 정리하며

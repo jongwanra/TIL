@@ -1,12 +1,16 @@
 package error_and_exception;
 
+import java.io.Closeable;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class TryWithResourcesTest {
+public class TryWithResourcesTest implements Closeable {
 	public static void main(String[] args) {
-		TryWithResourcesTest t = new TryWithResourcesTest();
-		t.checkTryWithResources();
+		try (TryWithResourcesTest t = new TryWithResourcesTest()) {
+			t.checkTryWithResources();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	private void checkTryCatchFinally() {
@@ -37,4 +41,8 @@ public class TryWithResourcesTest {
 		}
 	}
 	
+	@Override
+	public void close() throws IOException {
+		System.out.println("call close() method");
+	}
 }
