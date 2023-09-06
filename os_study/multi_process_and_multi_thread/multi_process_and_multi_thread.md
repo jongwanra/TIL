@@ -34,8 +34,7 @@ Multi Process의 주요 특징으로, "각 프로세스는 독립적으로 실�
 Multi Process는 각 프로세스 마다 독립적인 메모리 공간을 할당 받기 때문에 Multi Thread에 비해 메모리 공간 낭비가 심하다.
 
 ### Process Context Switching
-프로세스 마다 Context Switching이 발생할 떄 Thread Context Switching에 비해 가상 메모리 관련 TLB 초기화, PTBR 변경 등 추가적인 처리를 필요로 하고 그 만큼 오버헤드가 발생한다.
-
+프로세스 마다 Context Switching이 발생할 떄 Thread Context Switching에 비해 가상 메모리 관련 TLB(Translation Lookaside Buffer) 초기화, PTBR(Page Table Base Register) 변경 등 추가적인 처리를 필요로 하고 그 만큼 오버헤드가 발생한다.
 
 ## Multi Thread의 장점?
 
