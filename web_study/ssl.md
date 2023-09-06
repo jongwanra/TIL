@@ -1,5 +1,15 @@
 # SSL
 
+
+## SSL 동작 방식을 설명해 보자. 
+우선 http는 tcp기반으로 동작하기 떄문에 3-way-handshake를 통해서 먼터 Client와 Server를 연결하게 된다. 
+그 이후엔 Client는 Server에게 ClientHello 패킷을 전송한다 이 때 보내는 정보에는 Cypher Suites, Random, sessionId,SSL(TLS) 버전 등이 포함된다. Server는 Client에게서 받은 정보를 확인하고 
+Client에게 ServerHello Packet을 전송한다 이 때 클라이언트에게서 받았던 여러 암호화 방식 중 하나를 선택해서 보내고, Server 측에서 Random data와 선택한 버전 그리고 인증서를 보내게 된다(인증서는 따로 다른 Packet으로 전송한다)
+
+브라우저 마다 CA 기관의 리스트와 각 기관마다의 공개키를 가지고 있는데 인증서를 받은 Client는 기관리스트와 공개키를 통해서 인증서를 복호화 하게 되고 복호화된 인증서로 유효기관과 서명이 일치한지 등을 확인하게 된다.  
+검증이 완료되면 클라이언트와 서버가 주고 받았던 랜덤 데이터를 복호화된 인증서 안에 들어 있는 공개키로 암호화 하게 되고 암호화 시킨 키를 서버에게 전송한다. 서버는 기존에 가지고 있던 private key를 이용해 복호화 하고 서로 동일한 대칭키를 가지게 됨으로 서 통신 준비를 완료하게 된다.
+
+---
 ## 대칭키란?
 Client와 Server가 존재할 때  Client와 Server는 동일한 키(=대칭키)를 가지고 있어서 file or data를 
 암호화 및 복호화가 둘 다 가능한 키를 대칭키라고 한다.

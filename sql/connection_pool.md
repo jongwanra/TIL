@@ -9,9 +9,8 @@ DB설정 값 중 max_connections와 DBCP 설정 값 중 maximumPoolSize 값이 �
 예를 들어서 DB에 설정된 max_connections가 10이고 DBCP의 maximumPoolSize값과  minimumIdle값이 10이라고 했을 때 Client로 부터 10,000건의 요청이 들어왔다면,
 pool에서 connection을 받기 위해 대기하다가 connectionTimeout값인 5000ms를 초과해서 발생한 error라고 생각된다. 
 
-
 ## Connection Pool이란?
-미리 여러개의 Connection을 생성해놓고 필요할 때마다 꺼내 쓰는 방법이다. 
+프로그램을 실행 시, 미리 여러 개의 Connection을 생성해놓고 필요할 때마다 꺼내 쓰는 메커니즘을 의미한다. 
 WAS는 DB Connection이 필요할 때 직접 Connection을 생성하지 않고 Connection Pool Container로부터 Connection 하나를 받고, 사용을 마치면 반납하게 된다.
 
 ## Connection Pool은 왜 필요할까?
@@ -54,8 +53,6 @@ idle connection 수가 minimumIdle보다 작고,
 
 ### HikariCP 권장사항
 minimumIdle값과 maximumPoolSize 값을 동일하게 만들자. (pool size 고정)
-
-
 
 ## Reference 
 * [DBCP (DB connection pool)의 개념부터 설정 방법까지! hikariCP와 MySQL을 예제로 설명합니다! 이거 잘 모르면 힘들..](https://www.youtube.com/watch?v=zowzVqx3MQ4)
