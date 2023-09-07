@@ -1,7 +1,6 @@
 # Web Server Vs Web Application Server
 
 ## Web Server란 무엇일까?
-
 Web Server는 클라이언트로 부터 요청에 대한 정적 컨텐츠를 제공하는 소프트웨어이다.
 하지만 SSR로 JSP와 같이 정적 파일을 전달 하는 방식에 적용되는 부분이지 않을까 생각이 든다.(너무 내가 이 정적 컨텐츠라는 키워드에 사로 잡혀있지 않았을까)
 
@@ -37,8 +36,39 @@ Caching, Load Balancing, Logging, 보안적인 부분, WAS를 외부로 부터 �
 WAS는 클라이언트의 요청에 따라 동적인 웹 컨텐츠를 생성하고 처리하는 소프트웨어이다.
 회원 가입과 같은 경우 클라이언트의 요청을 했을 때 유효한 데이터인지, 그리고 중복 데이터 인지 등을 DB Server와 연계해서 처리하고 저장하게 된다.
 이와 같은 동적으로 처리하는 소프트웨어를 WAS라고 한다.
+---
+
+updated 23.09.07
+
+## Web Server란?
+Web Server는 기본적으로 Serving(제공) 하는 소프트웨어이다.
+* Http를 기반으로 동작하는 서버이다.
+* 정적 리소스를 제공하고, 기타 부가기능들을 제공한다.
+* 정정(파일) HTML, CSS, JS, 이미지, 영상
+
+## WAS란?
+
+* http기반으로 동작한다.
+* 웹 서버 기능을 포함 하고 있다.
+* 프로그램 코드를 실행해서 애플리케이션 로직을 수행한다.
+  * 동적 HTML, HTTP API(JSON)
+  * 서블릿, JSP, 스프링 MVC
+* 예) Tomcat, Jetty, Undertow
+
+## WebServer와 WAS의 차이?
+
+크게 웹서버는 정적 리소스(파일)를 제공해준다, WAS는 애플리케이션 로직까지 실행할 수 있는 것
+하지만 둘의 관계 역시 모호하다. 왜냐하면 웹 서버도 플러그인을 설치한다면 프로그램 실행 로직을 포함할 수 있고, was 역시 웹 서버의 기능을 제공하기 떄문이다.
+
+자바 같은 경우에는, 서블릿 컨테이너 기능을 제공하면 was라고 한다. 
+정리하자면, was는 애플리케이션 코드를 실행하는데 더 특화되어 있다고 정리하자.
+
+## web server없이 was와 db server만 가지고 있을 경우?
+was가 너무 많은 역할을 담당하기 때문에 서버 과부하가 우려된다. 
+가장 비싼 애플리케이션 로직이 정적 리소스 때문에 수행이 안될 수 있다.
+그리고, was 장애 시에 오류 화면도 노출이 불가능하다.
 
 
 ## Reference
 [Apache Vs NGINX – Which Is The Best Web Server for You?](https://serverguy.com/comparison/apache-vs-nginx/)
-
+[스프링 MVC 1편](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)
