@@ -60,16 +60,23 @@ updated. 230908
 
 minimumIdle값이 maxmumPoolSize 보다 작을 경우 그리고 동시에 요청 수가 생성 되어 있던 connection 수보다 많을 경우를 생각해보자.
 이런 상황에서는 최소한의 idle 상태인 Connection 수를 유지하기 위해서 maximumPoolSize 만큼 계속 connection을 늘리게 될 것이다.
-connection을 늘리는 작업은 생각보다 비싸고 느리다. connection을 생성하고 과정,  연결해주는 3-way-handshake 과정이 필요하고
+connection을 늘리는 작업은 생각보다 비싸고 느리다. connection을 생성하는 과정, 연결해주는 3-way-handshake 과정이 필요하고
 그만큼 Client는 생성하는 시간 동안 요청을 대기하게 될 것이다. 그렇게 때문에 minimumIdle값과 maximumPoolSize를 동일하게 설정해서 connection을 생성하는 시간을 없애는 것이 중요하다고 생각한다.
 
 ## 그렇다면 connection 수를 무조건 늘려도 괜찮을까?
 
-그렇지 않다. connection수를 늘리면 늘릴수록 WAS, DB Server의 메모리 리소스의 낭비가 생기고, Database와의 connection을 연결시켜 놓는 것이기 때문에 네트워크 부하가 발생할 것이다. 그렇기 때문에 적절한 
-connection 수를 유지하는 것이 중요하다.
+그렇지 않다.
+첫 번째로, WAS에서 DBCP의 Connection을 사용하는 주체는 Thread이다. Thread Pool 보다 DBCP의 크기가 더 크다면 
+크기가 초과된 만큼의 남은 Connection들은 실질적으로는 메모리 공간만 차지하게 된다. 즉 리소스 낭비로 이어진다.
+
+두 번째로, Database Server에서 Disk 경합 측면 성능적인 한계가 존재한다.
+DB는 하드 디스크 하나당 하나의 I/O를 처리하기 때문에 Blocking이 발생한다.(SSD를 사용하면 일부 병렬 처리가 가능하지만 이 또한 한계가 존재한다.)
+즉, 특정 시점 부터는 성능적인 증가가 Disk의 병목으로 인해 미비해진다.
+
+세 번째로, WAS와 DB Server에서 각각 발생하는 Context Switching으로 인한 성능적인 한계가 존재한다.
 
 
-
-## Reference 
+## Reference
+* [내가 만든 서비스는 얼마나 많은 사용자가 이용할 수 있을까? - 3편(DB Connection Pool)](https://hyuntaeknote.tistory.com/12)
 * [DBCP (DB connection pool)의 개념부터 설정 방법까지! hikariCP와 MySQL을 예제로 설명합니다! 이거 잘 모르면 힘들..](https://www.youtube.com/watch?v=zowzVqx3MQ4)
 * [데이터베이스 커넥션 풀 (Connection Pool)과 HikariCP](https://hudi.blog/dbcp-and-hikaricp/)
