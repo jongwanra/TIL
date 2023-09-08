@@ -54,6 +54,22 @@ idle connection 수가 minimumIdle보다 작고,
 ### HikariCP 권장사항
 minimumIdle값과 maximumPoolSize 값을 동일하게 만들자. (pool size 고정)
 
+---
+updated. 230908
+## 왜 minimumIdle값과 maximumPoolSize 값은 동일해야 할까?
+
+minimumIdle값이 maxmumPoolSize 보다 작을 경우 그리고 동시에 요청 수가 생성 되어 있던 connection 수보다 많을 경우를 생각해보자.
+이런 상황에서는 최소한의 idle 상태인 Connection 수를 유지하기 위해서 maximumPoolSize 만큼 계속 connection을 늘리게 될 것이다.
+connection을 늘리는 작업은 생각보다 비싸고 느리다. connection을 생성하고 과정,  연결해주는 3-way-handshake 과정이 필요하고
+그만큼 Client는 생성하는 시간 동안 요청을 대기하게 될 것이다. 그렇게 때문에 minimumIdle값과 maximumPoolSize를 동일하게 설정해서 connection을 생성하는 시간을 없애는 것이 중요하다고 생각한다.
+
+## 그렇다면 connection 수를 무조건 늘려도 괜찮을까?
+
+그렇지 않다. connection수를 늘리면 늘릴수록 WAS, DB Server의 메모리 리소스의 낭비가 생기고, Database와의 connection을 연결시켜 놓는 것이기 때문에 네트워크 부하가 발생할 것이다. 그렇기 때문에 적절한 
+connection 수를 유지하는 것이 중요하다.
+
+
+
 ## Reference 
 * [DBCP (DB connection pool)의 개념부터 설정 방법까지! hikariCP와 MySQL을 예제로 설명합니다! 이거 잘 모르면 힘들..](https://www.youtube.com/watch?v=zowzVqx3MQ4)
 * [데이터베이스 커넥션 풀 (Connection Pool)과 HikariCP](https://hudi.blog/dbcp-and-hikaricp/)
