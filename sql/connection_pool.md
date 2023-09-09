@@ -75,8 +75,16 @@ DB는 하드 디스크 하나당 하나의 I/O를 처리하기 때문에 Blockin
 
 세 번째로, WAS와 DB Server에서 각각 발생하는 Context Switching으로 인한 성능적인 한계가 존재한다.
 
+네 번째로, DB server에서는 connection을 연결한 상태 만으로도 connection을 유지 및 관리를 하는데 메모리 및 CPU를 사용하게 된다. 
+한 예시로 [PostgreSQL에서 하나의 idle Connection 당 1.5MB 메모리 리소스를 사용했다.](https://www.prisma.io/dataguide/database-tools/connection-pooling)
+뿐만 아니라 Idle상태인 Connection을 유지/관리 하기 위해서 CPU 자원을 사용하기 때문에 다른 active상태인 connection의 작업에도 영향을 끼치게된다. 
+한 예시로 [100개 VS 1000개의 IdleConnection수에 따라 TPS가 8.7% 감소했다. ](https://aws.amazon.com/ko/blogs/database/performance-impact-of-idle-postgresql-connections/#:~:text=Transaction%20rate%20impact)
+
+
+
 
 ## Reference
+* [[번역] 커넥션 풀 사이즈에 대하여](https://bugoverdose.github.io/docs/database-connection-pool-sizing/)
 * [내가 만든 서비스는 얼마나 많은 사용자가 이용할 수 있을까? - 3편(DB Connection Pool)](https://hyuntaeknote.tistory.com/12)
 * [DBCP (DB connection pool)의 개념부터 설정 방법까지! hikariCP와 MySQL을 예제로 설명합니다! 이거 잘 모르면 힘들..](https://www.youtube.com/watch?v=zowzVqx3MQ4)
 * [데이터베이스 커넥션 풀 (Connection Pool)과 HikariCP](https://hudi.blog/dbcp-and-hikaricp/)
