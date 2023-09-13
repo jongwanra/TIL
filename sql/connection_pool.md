@@ -81,6 +81,12 @@ DB는 하드 디스크 하나당 하나의 I/O를 처리하기 때문에 Blockin
 한 예시로 [100개 VS 1000개의 IdleConnection수에 따라 TPS가 8.7% 감소했다. ](https://aws.amazon.com/ko/blogs/database/performance-impact-of-idle-postgresql-connections/#:~:text=Transaction%20rate%20impact)
 
 
+## PostgreSQL에서 추천하는 Connection Pool 공식 
+* **Connection Pool Size = (core_count) * 2 + effective_spindle_count**
+
+여기서 말하는 spindle_count는 DB Server가 관리할 수 있는 동시 I/O요청 처리 갯수를 의미한다.
+
+
 
 
 ## Reference
