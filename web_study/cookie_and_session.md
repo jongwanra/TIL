@@ -92,3 +92,88 @@ class Test {
 ```
 세션은 마지막 접근 시간으로부터 일정 시간 이내에 다시 세션에 접근하지 않은 경우 자동으로 세션을 종료하는 기능을 가지고 있다.
 세션 제한 시간이 30분이라고 가정했을 때,  30분이 지나면 자동으로 세션이 종료된다.
+
+
+---
+updated. 23.09.14
+
+## Cookie는 기본적으로 Session Cookie와 Persistent Cookie로 나뉜다.
+
+쿠키는 두 가지 타입으로 나뉜다. 세션 쿠키와 지속 쿠키이다.
+
+
+```java
+
+
+
+package servlet_test.servlet.basic.request;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet(name = "requestTest", urlPatterns = "/request-test")
+public class RequestTestServlet extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// Persistent Cookie
+		Cookie persistentCookie = new Cookie("what1", "persistent");
+		persistentCookie.setMaxAge(1000); // Persistent Cookie일 경우 MaxAge 반드시 설정
+        persistentCookie.setHttpOnly(true);
+        persistentCookie.setSecure(true); // https일 경우에만 쿠키를 전달하는 옵션
+		resp.addCookie(persistentCookie);
+		
+		
+		// Session Cookie(Session Cookie일 경우 setMaxAge 설정 X)
+		Cookie sessionCookie = new Cookie("what2", "session");
+		sessionCookie.setHttpOnly(true);
+		resp.addCookie(sessionCookie);
+		resp.getWriter().write("ok");
+	}		
+}
+
+```
+
+### Session Cookie
+
+![img_1.png](img_1.png)
+
+* Session Cookie는 임시적으로 저장되는 쿠키를 의미한다.
+* 개발자 도구 -> 애플리케이션 -> Cookie의 목록을 들여다 보면 
+* Expires 컬럼에 Session이라고 적히는게 특징이다.
+* Session Cookie는 메모리에 저장이된다.
+* 브라우저를 끄는 순간 Session Cookie도 사라지게 된다.
+
+### Persistent Cookie
+
+![img_2.png](img_2.png)
+
+* Persistent Cookie는 max-age만큼 살아있는 쿠키로, max-age가 만료가 되어야 사라지는 쿠키이다.
+* 지속 쿠키는 메모리가 아닌 디스크에 저장이 된다.
+
+---
+
+## Cookie의 추가 특징
+
+![img_3.png](img_3.png)
+
+쿠키를 네트워크 탭에서 확인해 보면 
+response header, request header에 자동으로 포함되어 있는 걸 확인할 수 있다.
+이는 Http 규약에 명시되어져 있다.
+
+
+
+
+
+
+
+
+
+
+
+
