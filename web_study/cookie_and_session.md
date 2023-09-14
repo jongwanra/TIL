@@ -1,14 +1,12 @@
 # Cookie And Session
 
-## 공부하면서 어려웠던 부분
-정말.. 이해하는 방향을 잡아가는 부분이 너무 어려웠다. 어떤 부분이 어려웠냐면, 책에서 말하는 Cookie와 Session은 어떤 부분을 말하는지를 파악하기가 어려웠다.
-Cookie는 http의 header 속성으로써의 cookie, 브라우저에 내장된 cookie storage에서의 쿠키, server에서 의 Cookie Class 이 중에서 말하는 쿠키는 2번째인 cookie storage에서의 쿠키를 파악하기가 어려웠고,
-더 어려웠던 것은 session이 어떤 부분을 말하는지를 파악하기가 어려웠다. session을 이야기할 때  브라우저의 내장된 session storage를 말하는 걸까 아니면 database에 저장된 데이터를 의미하는 건 아닐까? 이 중에서 1번째 2번째도 아닌
-JSP & Servlet에서는 javax.servlet.http.HttpSession에서의 Session이었다.
+## 쿠키란?
+쿠키란 웹 서버가 생성하여 웹 브라우저로 전송하는 작은 정보 파일을 의미한다.
+웹 브라우저는 수신한 쿠키를 설정에 여부에 따라 만료일 혹은 브라우저 종료시 까지 저장한다.
 
-## 쿠키와 세션?
-쿠키는 웹 브라우저에 내장된 cookie-storage를 의미한다.
-세션은 서버에 내장된 javax.servlet.http.HttpSession과 관련된 storage를 의미한다.
+## 세션이란?
+세션 역시 쿠키를 기반으로 한다. 쿠키는 정보를 웹 브라우저에 저장하지만, 세션은 정보를 서버에 저장하고 서버에 저장한 위치(sessionId)를 브라우저에서 쿠키로 관리한다.
+
 
 ## 쿠키와 세션을 사용하는 이유?
 
@@ -17,8 +15,7 @@ JSP & Servlet에서는 javax.servlet.http.HttpSession에서의 Session이었다.
 client와 server가 로그인을 하기 위해서 통신을 주고 받는 상황이다.
 client는 id와 password를 post method를 통해서 server에 요청했고 server는 로그인이 성공했다고 응답했다.
 하지만 http는 기본적으로 무상태 프로토콜이기 때문에 누가 어떤 요청을 했는지 알 수 없다. 즉 client가 전에 로그인을 했다는 사실을 알 수가 없다. 
-로그인과 같이 `상태를 기억하고자 할 떄` 사용하게 된다.
-
+로그인과 같이 `상태를 기억하고자 할 때` 사용하게 된다.
 
 ## 쿠키의 구성
 ### name
@@ -140,6 +137,7 @@ public class RequestTestServlet extends HttpServlet {
 ```
 
 ### Session Cookie
+주의!) Session Cookie와 위에서 언급한 세션은 다르다.
 
 ![img_1.png](img_1.png)
 
@@ -155,7 +153,8 @@ public class RequestTestServlet extends HttpServlet {
 
 * Persistent Cookie는 max-age만큼 살아있는 쿠키로, max-age가 만료가 되어야 사라지는 쿠키이다.
 * 지속 쿠키는 메모리가 아닌 디스크에 저장이 된다.
-
+  * Chrome Brower라고 가정했을 때 경로는 아래와 같다.
+  * cd Library/Application\ Support/Google/Chrome/Default
 ---
 
 ## Cookie의 추가 특징
@@ -167,9 +166,9 @@ response header, request header에 자동으로 포함되어 있는 걸 확인�
 이는 Http 규약에 명시되어져 있다.
 
 
+## Reference
 
-
-
+* [웹 사이트의 쿠키란?](https://www.cloudflare.com/ko-kr/learning/privacy/what-are-cookies/)
 
 
 
