@@ -16,35 +16,29 @@ class Solution {
 		hm.put('8', new Character[]{'t', 'u','v'});
 		hm.put('9', new Character[]{'w', 'x','y', 'z'});
 		
-		char[] combi = new char[4];
-		Arrays.fill(combi, '0');
 		char[] charArr = digits.toCharArray();
 		if(charArr.length == 0) {
 			return answer;
 		}
-		dfs(charArr, 0, charArr.length, answer, combi);
+		StringBuilder sb = new StringBuilder();
+		dfs(charArr, 0, charArr.length, answer, sb);
 		
 		return answer;
 	}
 	
-	private void dfs(char[] digits, final int curDepth, final int endDepth, List<String> answer, char[] combi) {
+	private void dfs(char[] digits, final int curDepth, final int endDepth, List<String> answer, StringBuilder sb) {
 		// finished
 		if(curDepth == endDepth) {
-			StringBuilder sb = new StringBuilder();
-			for(char x: combi) {
-				if(x != '0') {
-					sb.append(x);
-				}
-				
-			}
 			answer.add(sb.toString());
 			return;
 		}
+		
 		// recursive
 		Character[] curTarget = hm.get(digits[curDepth]);
 		for(int i = 0; i < curTarget.length; i++) {
-			combi[curDepth] = curTarget[i];
-			dfs(digits, curDepth + 1, endDepth, answer, combi);
+			sb.append(curTarget[i]);
+			dfs(digits, curDepth + 1, endDepth, answer, sb);
+			sb.deleteCharAt(sb.length() - 1);
 		}
 	}
 	
