@@ -26,7 +26,7 @@ public class Calculator {
 
 ## 멱등성을 보장해주는 HTTP Method는 어떤 것들이 있을까?
 
-![img.png](img.png)
+![img.png](images/http-method-compare.png)
 [RFC 7231](https://www.rfc-editor.org/rfc/rfc7231#section-8.1.3)에서는 위와 같은 표를 제시한다. 
 
 CONNECT, POST를 제외한 HTTP Method에 대해서 멱등성이 보장된다고 나와있다. (PATCH Method는 역시 기본적으로 멱등성을 보장하지 않는다고 말한다.)

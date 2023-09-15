@@ -11,11 +11,11 @@ Session 방식은 서버에 정보를 저장하고 저장한 위치(sessionId)�
 세션 쿠키로 저장된 SessionId는 사용자 당 1개인 걸 명심하자.
 
 
-![network-response-set-cookies](img_4.png)
+![network-response-set-cookies](images/header_set_cookie_in_header.png)
 
 ## Session 직접 사용해 보기
 
-### Session 생성하기
+### Session 생성하기 및 언제 생성 될까?
 ```java
 public class SessionTestController {
 	@GetMapping("/create-session")
@@ -31,6 +31,9 @@ public class SessionTestController {
 }
 
 ```
+
+자바에서 HttpSession 클래스를 관리하는 주체는 Servlet Container이다. HttpSession은 생성하고 공간을 확보하는 것 자체도 비용이 들기 때문에 생성 시점을 
+위에서 언급한 getSession() method를 통해서 호출했을 떄 생성되게 된다.
 
 ### Session attribute 저장하기 
 ```java

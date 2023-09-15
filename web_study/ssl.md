@@ -29,7 +29,7 @@ Server에서 private key를 보관하고 Client에는 비대칭키를 전달하�
 
 1. ClinetHello
 
-![img.png](images/img.png)
+![img.png](images/client-hello-handshake-detail.png)
 * [참고: HTTPS 통신 원리 쉽게 이해하기 (Feat. SSL Handshake, SSL 인증서)](https://nuritech.tistory.com/25)
 
 이때 Client는 보이지 않게 `ClientHello`를 Server에게 하게 된다. ClientHello를 통해서 서버측에 아래와 같은 내용을 전달하게 된다.
@@ -42,7 +42,7 @@ Server에서 private key를 보관하고 Client에는 비대칭키를 전달하�
 ![img_1.png](images/img_1.png)
 * [참고: ServerHello](https://nuritech.tistory.com/25)
 
-![img_2.png](images/img_2.png)
+![img_2.png](images/cerificate-detail.png)
 * [참고: Certificate](https://nuritech.tistory.com/25)
 
 이후에 요청을 받은 Server에서는 `ServerHello`와 `Certificate`를 하게 된다.  Server에서는 아래와 같은 정보를 Client에 전달 하게 된다.

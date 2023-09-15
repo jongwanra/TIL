@@ -139,7 +139,7 @@ public class RequestTestServlet extends HttpServlet {
 ### Session Cookie
 주의!) Session Cookie와 위에서 언급한 세션은 다르다.
 
-![img_1.png](img_1.png)
+![img_1.png](images/session_cookie_in_network_tab.png)
 
 * Session Cookie는 임시적으로 저장되는 쿠키를 의미한다.
 * 개발자 도구 -> 애플리케이션 -> Cookie의 목록을 들여다 보면 
@@ -149,7 +149,7 @@ public class RequestTestServlet extends HttpServlet {
 
 ### Persistent Cookie
 
-![img_2.png](img_2.png)
+![img_2.png](images/persistent_cookie_in_network_tab.png)
 
 * Persistent Cookie는 max-age만큼 살아있는 쿠키로, max-age가 만료가 되어야 사라지는 쿠키이다.
 * 지속 쿠키는 메모리가 아닌 디스크에 저장이 된다.
@@ -159,7 +159,7 @@ public class RequestTestServlet extends HttpServlet {
 
 ## Cookie의 추가 특징
 
-![img_3.png](img_3.png)
+![img_3.png](images/header_of_cookie_network_tab.png)
 
 쿠키를 네트워크 탭에서 확인해 보면 
 response header, request header에 자동으로 포함되어 있는 걸 확인할 수 있다.
