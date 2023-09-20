@@ -28,7 +28,7 @@ Redis는 String, Set, SortedSet, Hash, List등 다양한 데이터 타입을 지
 
 2. 저장 용량
 Redis는 key와 value 각 512MB에 달하는 저장공간을 가질 수 있다.
-반면에 Memcached는 key 250 byte,  value 1MB로 상대적으로 데이터 저장 공간이 제한적이다.
+반면에 Memcached는 key 250 byte, value 1MB로 상대적으로 데이터 저장 공간이 제한적이다.
 
 3. 데이터 복구 여부
 Redis는 서버 종료와 같은 돌발 상황에서 데이터를 Disk에도 저장하기 때문에 복구가 가능하지만 <br>
