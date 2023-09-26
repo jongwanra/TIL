@@ -1,6 +1,10 @@
 # Servlet
 
 ## Servlet?
+> A servlet is a small Java program that runs with a Web server. Servlet s receive and respond to requests from Web clients, usually across HTTP, 
+> the HyperText Transfer Protocol [Apache Tomcat Docs](https://tomcat.apache.org/tomcat-7.0-doc/servletapi/javax/servlet/Servlet.html)
+
+Servlet은 웹 서버 안에서 동작하는 작은 자바 프로그램이다. Servlet은 보통 Http를 통해 Web Client로 부터의 요청들에 대해서 받고 받아들이고 응답한다.
 
 비즈니스 로직을 제외한 Http 요청과 응답 관련 작업을 수행하는 클래스이다.
 
