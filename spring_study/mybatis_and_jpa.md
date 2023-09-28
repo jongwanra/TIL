@@ -71,11 +71,11 @@ public class Test {
 
 ### JPA란?
 
-Java Persistence API의 약자로 Java ORM 기술에 대한 API 명세를 말한다.
+Java Persistence API의 약자로 Java ORM 기술에 대한 API 표준 명세를 말한다.
 JPA는 단순한 명세이기 때문에 JPA만 가지고는 어떤 구현 기술을 사용할 수 없다. 
 실제로 우리가 사용하는 Repository는 Spring Data JPA로 부터 제공되는 기술이다.
 Spring Data JPA는 JPA를 간편하게 사용하도록 만들어 높은 오픈 소스일 뿐이다. <br>
-이와 비슷 한 기술로  Spring Data Redis, Spring Data MongoDB 등이 존재한다.
+이와 비슷한 기술로  Spring Data Redis, Spring Data MongoDB 등이 존재한다.
 
 
 ### 장점?
@@ -96,7 +96,7 @@ Spring Data JPA는 JPA를 간편하게 사용하도록 만들어 높은 오픈 �
 ## MyBatis, JPA 둘의 주요한 차이점은?
 
 DB와의 상호 작용 방식의 차이가 있다. <br>
-MyBatis는 Database와 상호작용할 때 개발자가 sql query를 직접 작성해서 사용하며, 매핑을 위해 XML 또는 annotation을 사용한디. <br>
+MyBatis는 Database와 상호작용할 때 개발자가 sql query를 직접 작성해서 사용하며, 매핑을 위해 XML 또는 annotation을 사용한다. <br>
 반면에 JPA는 객체와 Database 간의 매핑을 제공하며 JPQL(Java Persistence Query Language)을 사용하여 Database와 상호작용한다.
 
 ## Reference 
