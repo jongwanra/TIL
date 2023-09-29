@@ -6,3 +6,5 @@
 - [ ] else keyword 사용하지 않기
 - [ ] 변수명, 메서드명 줄여쓰지 않기
 
+## *[Optional] ETC*
+
