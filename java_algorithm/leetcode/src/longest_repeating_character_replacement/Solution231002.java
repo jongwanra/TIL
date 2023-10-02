@@ -6,6 +6,7 @@ import java.util.Set;
 
 // Not Solved
 // 재시도 필요
+// ref: https://prepfortech.in/interview-topics/sliding-window/longest-repeating-character/
 public class Solution231002 {
 	public int characterReplacement(String s, int k) {
 		int[] count = new int[26];
