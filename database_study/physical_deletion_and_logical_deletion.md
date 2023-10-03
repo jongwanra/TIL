@@ -31,13 +31,9 @@ row를 실제로 삭제하는 것이 아닌 `is_deleted`와 같은 column을 지
 Logical Deletion을 결정할 때 중요한 요인은 **데이터 복구를 필요로 하는지, 데이터 분석에 활용할 Entity인지 여부**이다.
 그렇지 않다면 Physical Deletion으로 가져가고 그외에는 Logical Deletion으로 가져가면 좋다고 생각한다. 
 
-그런데 Logical Deletion에는 위에서 언급한 것처럼 두 가지 단점을 가지고 있다. 나는 그 중에 `삭제된 데이터인지를 구분하기 위해서 모든 조회 query에 where문을 추가해줘야 한다.` 부분이 
-조금은 치명적으로 느껴진다. Logical Deletion을 where문에 추가해 줌으로 인해서 SQL에서 PK indexing을 활용할 수 없기 때문이다.
-따라서 추가 Indexing이 필요하다. 추가 Indexing을 적용한다면 그만큼 write시 속도가 느려게 된다. 
-
-user, post, comment등은 Logical Deletion을 적용해야할 대상이다. 하지만 정말 Logical Deletion을 추가하는 방법 말고는 없을까?
-deleted_user, deleted_post, deleted_comment table을 따로 구성해서 삭제된 column들은 따로 deleted table에 보관하는 방법으로 가져가면 어떨까?
-그랬을 경우에 위에 첫 번째 단점을 해결하고 pk indexing을 활용할 수 있을 것 같다고 생각한다.
+member, post, comment등은 Logical Deletion을 적용해야할 대상이다. 하지만 정말 Logical Deletion을 추가하는 방법 말고는 없을까?
+deleted_member, deleted_post, deleted_comment table을 따로 구성해서 삭제된 데이터들을 따로 deleted table에 보관하는 방법으로 가져가면 어떨까?
+그랬을 경우에 위에 단점들을 해결할 수 있다고 생각했다.
 
 ## 📗 Reference
 * [physical-vs-logical-hard-vs-soft-delete-of-database-record](https://stackoverflow.com/questions/378331/physical-vs-logical-hard-vs-soft-delete-of-database-record)
