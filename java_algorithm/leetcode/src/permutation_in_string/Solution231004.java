@@ -3,6 +3,9 @@ package permutation_in_string;
 import java.util.HashMap;
 import java.util.Map;
 
+
+// Not Solved
+// 내일 다시 풀어보기
 public class Solution231004 {
 	public boolean checkInclusion(String s1, String s2) {
 		int[] originCount = new int[26];
