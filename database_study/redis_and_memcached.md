@@ -1,6 +1,15 @@
 # Redis vs Memcached 
 
-updated. 23.09.27
+updated. 23.10.05
+
+## 📗 Redis는 왜 빠를까?
+
+![img.png](img.png)
+
+Redis는 데이터를 하드 디스크가 아닌 메모리에 저장해서 read/write를 수행하기 때문에 빠른 이유도 있지만 이 것 뿐만이 아니다.
+Redis는 싱글 스레드 Non Blocking I/O방식으로 데이터를 처리하기 때문에 여러 연산을 동시에 처리할 수 있다. 싱글스레드이기 때문에
+Context Switching에 비용이 발생하지 않으며, 멀티스레드에서 동시성 문제를 처리하기 위해 락을 거는 비용 역시 발생하지 않는다.
+뿐만아니라, I/O Multiplexing 기술을 통해 싱글 스레드에서 여러 소켓을 동시에 관리하면서 입출력 작업을 시스템 콜 기반으로 비동기적으로 처리한다.
 
 ### Redis와 Memcahced는 무엇이고 어떤 차이가 있을까?
 
@@ -24,13 +33,13 @@ Redis에서는 key와 value 각각 512MB의 저장 공간을 가질 수 있다.
 * 트랜잭션(Transaction) 지원
 
 ---
-## Redis란?
+## 📗 Redis란?
 > The open source, in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
 > [Redis Docs](https://redis.io/)
 
 Redis란 **인메모리 데이터 저장소**이다. 
 
-## Memcached란?
+## 📗 Memcached란?
 
 > Memcached is an in-memory key-value store for small chunks of arbitrary data (strings, objects) from results of database calls, API calls, or page rendering.
 > [Memcached Docs](https://memcached.org/)
@@ -40,7 +49,7 @@ Memcached란 **인메모리 key-value 저장소**이다.
 ---
 
 
-## Spring에서는 왜 Memcached 대신 Redis를 선택했을까?
+## 📗 Spring에서는 왜 Memcached 대신 Redis를 선택했을까?
 
 ![redis_and_memchaced_comparison.png](images/redis_and_memcached/redis_and_memchaced_comparison.png)
 
@@ -65,8 +74,10 @@ Redis는 다양한 데이터 타입을 지원해주며, 저장 용량 역시 월
 때문에 Spring에서 Redis를 선택했다고 생각한다.
 
 
-## Reference
+
+## 📗 Reference
 
 * [Redis 를 실무에 사용하기 전 꼭 알아야 하는 전략](https://velog.io/@youngerjesus/Redis-%EB%A5%BC-%EC%8B%A4%EB%AC%B4%EC%97%90-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%A0%84-%EA%BC%AD-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%98%EB%8A%94-%EC%A0%84%EB%9E%B5)
 * [[Spring] Spring은 왜 memcached 대신 Redis를 선택했을까?](https://deveric.tistory.com/65)
 * [Comparing Redis and Memcached](https://aws.amazon.com/ko/elasticache/redis-vs-memcached/)
+* [Redis는 왜 빠를까?](https://ryanpark.dev/24)
