@@ -7,7 +7,8 @@ updated. 23.09.27
 Redis와 Memcached는 `인메모리 데이터 외부 저장소`를 의미한다.
 
 Redis와 Memcached는 데이터를 메모리에 저장한다는 것에서 공통점이 있지만 다양한 차이점이 존재한다.
-우선 Redis와 Memcached에서는 지원하는 데이터 타입이 다르다. Memcached는 String에 한해서만 지원한다. 반면에 Redis는 String, Set, List, Hash등 다양한 데이터 타입을 지원해준다.
+
+우선 스레드 갯수 관련이다. Memcached의 경우 Multi Thread를 지원해준다. 반면에 Redis는 싱글 스레드로 관리된다.
 
 두 번째로는 각 key와 value마다 저장할 수 있는 데이터 용량의 공간에 차이가 있다. Memcached는 key는 250byte, value는 1MB의 최대 저장 공간을 가질 수 있다. 반면에 
 Redis에서는 key와 value 각각 512MB의 저장 공간을 가질 수 있다.
@@ -15,8 +16,7 @@ Redis에서는 key와 value 각각 512MB의 저장 공간을 가질 수 있다.
 세 번째로는 데이터 복구 여부이다. Memcached의 경우 memory에서만 데이터를 관리하기 때문에 장애가 발생했을 경우 데이터 자체가 휘발되고 복구를 할 수 없다.
 반면에 Redis는 따로 Disk에도 데이터를 저장하기 때문에 장애가 발생하더라도 데이터를 복구할 수 있다.
 
-네 번째로는 스레드 갯수 관련이다. Memcached의 경우 Multi Thread를 지원해준다. 반면에 Redis는 싱글 스레드로 관리된다. 
-
+네 번쨰로는 Redis와 Memcached에서는 지원하는 데이터 타입이 다르다. Memcached는 String에 한해서만 지원한다. 반면에 Redis는 String, Set, List, Hash등 다양한 데이터 타입을 지원해준다.
 그리고 Memcached에서는 따로 지원을 하지 않지만 Redis에서는 지원해주는 부분들이 상당히 많다.
 * 다양한 삭제(eviction) 정책 지원 
 * 디스크 영속화(persistence) 지원
