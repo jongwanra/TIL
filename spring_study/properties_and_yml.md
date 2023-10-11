@@ -1,5 +1,18 @@
 # .properties Vs .yml
 
+
+## 요약 해보기(23.10.11)
+application.properties, application.yml file은 애플리케이션 구성에 대한 설정 파일이다.
+데이터베이스 계정 정보, 사용할 포트 번호, 로깅 방식 등을 환경에 따라 정의할 수 있게끔 도와준다. 
+애플리케이션 구동 시 로딩 된다.
+
+properties와 yml파일은 파일의 구문과 표현 방식에 차이가 있다. 
+properties는 평면적 구조, yml은 계층적 구조로 표현하며,
+yml은 리스트와 맵 형식으로 작성이 가능한데, properties는 문자열로만 작성이 가능하다.
+또한 대소문자 구분 여부에서의 차이도 존재한다.
+
+
+
 ## application.yml/ application.properties 파일이란?
 
 application.yml/ application.properties 파일은 Spring Boot 프레임 워크에서 사용하는 설정 파일이다. 이 파일은 애플리케이션의 구성을 정의하고 설정하는데 사용된다.
