@@ -18,8 +18,6 @@ Spring Data JPA는 이 중에 JPA 기술을 다룬다. JPA를 사용함으로서
 ## 📗 Spring Data JPA 특징
 
 
-
-
 ## 📗 Reference 
 * [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
 * [JPA, Hibernate, 그리고 Spring Data JPA의 차이점](https://suhwan.dev/2019/02/24/jpa-vs-hibernate-vs-spring-data-jpa/)
