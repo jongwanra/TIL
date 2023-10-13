@@ -9,7 +9,7 @@
 
 ## JDK/JRE/JVM의 차이
 
-![img_2.png](img_2.png)
+![img_3.png](img_3.png)
 
 * JDK(Java Development Kit)
   * JVM용 소프트웨어 개발 도구
