@@ -9,6 +9,8 @@
 
 ## JDK/JRE/JVM의 차이
 
+![img_2.png](img_2.png)
+
 * JDK(Java Development Kit)
   * JVM용 소프트웨어 개발 도구
 * JRE(Java Runtime Environment)
@@ -59,4 +61,10 @@ public class Start {
 3. 가상 머신인 JVM에 전원을 넣어 부팅한다.
 4. 부팅된 JVM은 목적 파일을 받아 그 목적 파일을 실행한다.
 5. 부팅이 완료된 JVM은 가장 먼저 java.lang 패키지를 T 메모리의 스태틱 영역에 가져다 놓는다.(그렇기 때문에 System.out.println() 같은 메서드를 사용이 가능하다.)
-6. JVM은 개발자가 작성한 모든 클래스와 임포트 패키지 역시 스태틱 영역에 가져다 놓는다.
+6. JVM은 개발자가 작성한 모든 클래스(?)와 임포트 패키지 역시 스태틱 영역에 가져다 놓는다.
+
+
+
+
+## JVM은 정말 모든 클래스(?)를 import 해서 static 영역에 저장하는게 맞을까?
+
