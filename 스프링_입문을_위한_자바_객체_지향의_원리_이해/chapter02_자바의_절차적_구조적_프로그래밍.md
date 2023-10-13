@@ -63,11 +63,29 @@ public class Start {
 1. JRE는 먼저 프로그램 안에 main() method가 있는지를 확인한다.
 2. main() method의 존재를 확인하면 JRE는 프로그램 실행을 위한 사전 준비를 시작한다.
 3. 가상 머신인 JVM에 전원을 넣어 부팅한다.
-4. 부팅된 JVM은 목적 파일을 받아 그 목적 파일을 실행한다.
-5. 부팅이 완료된 JVM은 가장 먼저 java.lang 패키지를 T 메모리의 스태틱 영역에 가져다 놓는다.(그렇기 때문에 System.out.println() 같은 메서드를 사용이 가능하다.)
-6. JVM은 개발자가 작성한 모든 클래스(?)와 임포트 패키지 역시 스태틱 영역에 가져다 놓는다.
+4. 부팅이 완료된 JVM은 가장 먼저 java.lang 패키지를 T 메모리의 스태틱 영역에 가져다 놓는다.(그렇기 때문에 System.out.println() 같은 메서드를 사용이 가능하다.)
+5. JVM은 임포트 패키지를 우선적으로 스태틱 영역에 가져다 놓는다.
+6. 이후에 JVM은 모든 클래스파일을 static 영역에 저장하게 된다.
+7. 부팅된 JVM은 목적 파일을 받아 그 목적 파일을 실행한다.
 
-이후에 실행 순서는 구두로!
+
+```java
+package com.example.flagstudy;
+
+public class FactorialTest {
+  public static void main(String[] args) {
+    System.out.println("answer: " + factorial(3));
+  }
+  private static int factorial(int num) {
+    if(num < 1) {
+      return 1;
+    }
+
+    return factorial(num - 1) * num;
+  }
+}
+
+```
 
 
 
