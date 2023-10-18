@@ -9,7 +9,7 @@ updated. 23.10.05
 Redis는 데이터를 하드 디스크가 아닌 메모리에 저장해서 read/write를 수행하기 때문에 빠른 이유도 있지만 이 것 뿐만이 아니다.
 Redis는 싱글 스레드 Non Blocking I/O방식으로 데이터를 처리하기 때문에 여러 연산을 동시에 처리할 수 있다. 싱글스레드이기 때문에
 Context Switching에 비용이 발생하지 않으며, 멀티스레드에서 동시성 문제를 처리하기 위해 락을 거는 비용 역시 발생하지 않는다.
-뿐만아니라, I/O Multiplexing 기술을 통해 싱글 스레드에서 여러 소켓을 동시에 관리하면서 입출력 작업을 시스템 콜 기반으로 비동기적으로 처리한다.
+뿐만아니라, Redis 6.0 version 부터 I/O Socket read/write시 소요되는 시간을 다른 스레드에 위임함으로써, Redis 프로세스는 데이터를 조작, 저장, 검색하는 데 더 많은 주기를 할애할 수 있어 전반적인 성능이 향상되었다.(약 2.5배) 
 
 ### Redis와 Memcahced는 무엇이고 어떤 차이가 있을까?
 
@@ -81,3 +81,4 @@ Redis는 다양한 데이터 타입을 지원해주며, 저장 용량 역시 월
 * [[Spring] Spring은 왜 memcached 대신 Redis를 선택했을까?](https://deveric.tistory.com/65)
 * [Comparing Redis and Memcached](https://aws.amazon.com/ko/elasticache/redis-vs-memcached/)
 * [Redis는 왜 빠를까?](https://ryanpark.dev/24)
+* [Redis 내부 동작 원리와 최적화 방안](https://s-core.co.kr/insight/view/redis-%EB%82%B4%EB%B6%80-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC%EC%99%80-%EC%B5%9C%EC%A0%81%ED%99%94-%EB%B0%A9%EC%95%88/)
