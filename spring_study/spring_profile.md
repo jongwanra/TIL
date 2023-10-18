@@ -1,5 +1,12 @@
 # Spring Profile
 
+updated. 23.10.18
+
+**Spring Profiles는 특정 환경에 따라 애플리케이션을 동작시킬 수 있게끔 도와주는 기능이다.**
+@Profiles("prod) 와 같은 annotation을 통해서 @Configuration, @Component annotation을 포함한 class에 적용해서  어떤 환경일 때 포함할지를 정할 수 있고
+application-dev.yml 파일 과 같이 spring.profiles.active 와 같은 환경 변수를 가지고 다른 환경에서 애플리케이션을 동작 시킬 수 있다.
+---
+
 ## 📗 Spring Profile이란?
 
 Spring Framework에서 `Spring Profile`은 특정 환경 또는 조건에 따라 애플리케이션의 동작을 설정하는데 사용되는 기능을 의미한다.
@@ -26,7 +33,7 @@ build를 시키면 jar 파일이 생성된다.
 해당 빌드 파일을 실행시킬 때 아래의 옵션을 추가한다.
 
 ```shell
-java -jar -Dspring.profiles.active=dev ./build/libs/datajpa-0.0.1-SNAPSHOT.jar
+java -jar ./build/libs/outfit-of-the-day-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
 ```
 그러면, 아래와 같이 실행시킬 수 있다.
 
@@ -40,4 +47,8 @@ java -jar -Dspring.profiles.active=dev ./build/libs/datajpa-0.0.1-SNAPSHOT.jar
 
 ![spring_profile_04.png](images/spring_profile_04.png)
 
+
+## 참고
+
+* [Part IV. Spring Boot features](https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/boot-features-profiles.html)
 
