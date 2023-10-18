@@ -16,9 +16,9 @@ Foreign Key를 사용하는 이유와 사용하지 않는 이유에 대해서 �
 
 외래키를 설정하게 되면 DB 단에서 따로 무결성이 보장되는지를 체크하게 된다.
 
-a. 자식 릴레이션에 Insert시 참조키가 부모 릴레이션에 있는지 여부
-b. 자식 릴레이션에서 참조키를 update할 때, 변경후 값이 부모 릴레이션에 있는지 여부
-c. 부모 릴레이션에서 delete할 때 자식 릴레이션에서 참조하고 있는지 여부
+a. 자식 릴레이션에 Insert시 참조키가 부모 릴레이션에 있는지 여부<br>
+b. 자식 릴레이션에서 참조키를 update할 때, 변경후 값이 부모 릴레이션에 있는지 여부<br>
+c. 부모 릴레이션에서 delete할 때 자식 릴레이션에서 참조하고 있는지 여부<br>
 
 ["OLTP System에서 Foreign Key는 DML(데이터 조작어) 작업간 Validation 검사부하의 성능 오버헤드가 있지만 무시할만한 정도이다."](https://engineering-skcc.github.io/oracle%20tuning/foreign_key_%EC%97%86%EC%9D%B4_%EA%B5%AC%EC%B6%95%ED%95%98%EB%8A%94_DB/)
 라고 표현한다.

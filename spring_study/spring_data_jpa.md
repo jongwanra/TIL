@@ -15,8 +15,6 @@ Spring Data JPA는 이 중에 JPA 기술을 다룬다. JPA를 사용함으로서
 대한 일관된 인터페이스를 제공해서 개발자가 특정 기술에 의존하지 않고 데이터 엑세스를 다룰 수 있도록 도와준다.
 
 
-## 📗 Spring Data JPA 특징
-
 
 ## 📗 Reference 
 * [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
