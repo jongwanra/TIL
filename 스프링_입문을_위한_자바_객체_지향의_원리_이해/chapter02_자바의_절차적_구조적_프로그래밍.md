@@ -9,7 +9,7 @@
 
 ## JDK/JRE/JVM의 차이
 
-![img_3.png](img_3.png)
+![img_3.png](images/chapter02-04.png)
 
 * JDK(Java Development Kit)
   * JVM용 소프트웨어 개발 도구
@@ -21,7 +21,7 @@
 * **자바 개발 도구인 JDK를 이용해 개발된 프로그램은 JRE에 의해 가상의 컴퓨터인 JVM 상에서 구동된다.**
 * JDK는 자바 소스 컴파일러인 javac.exe를 포함하고 있다. JDK는 javac.exe 뿐만이아니라 정말 다양한 프로그램을 포함하고 있다.
 * 
-![img.png](img.png)
+![img.png](images/chapter02-01.png)
 
 ```shell
 cd /Library/Java/JavaVirtualMachines/
@@ -38,7 +38,7 @@ sudo find / -name "jdk*"
 * JRE는 자바 프로그램 실행기인 java.exe를 포함하고 있다.
 Jdk17을 다운 받아서 살펴 보니, JDK17에서는 따로 JRE 폴더 구분 없이 java.exe 프로그램이 들어 있는걸 확인할 수 있다. JDK8에서는 확실히 jre 폴더 내부에 java.exe 프로그램을 확인할 수 있었다.
 
-![img_1.png](img_1.png)
+![img_1.png](images/chapter02-02.png)
 
 
 ## 함수(Function)와 메서드(Method)의 차이
@@ -58,7 +58,7 @@ public class Start {
 
 우선 메모리 구조는 총 4구역으로 구성된다. 하지만 한 구역은 코드를 읽는 구역이기 때문에 나머지 3구역만을 가지고 확인해보자.
 
-![img_4.png](img_4.png)
+![img_4.png](images/chapter02-05.png)
 
 1. JRE는 먼저 프로그램 안에 main() method가 있는지를 확인한다.
 2. main() method의 존재를 확인하면 JRE는 프로그램 실행을 위한 사전 준비를 시작한다.
