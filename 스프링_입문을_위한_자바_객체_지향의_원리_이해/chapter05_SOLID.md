@@ -62,7 +62,7 @@ public class Americano extends Coffee {
 
 이렇게 했을 때 둘은 아래와 같은 분류도를 가질 수 있다.
 
-![img.png](lsp2.png)
+![img.png](images/lsp2.png)
 
 ```java
 public class Driver {
@@ -201,7 +201,7 @@ public class BoyFriendImpl implements BoyFriend {
 책에서는 예제를 자동차와 예시를 들었다. 
 지금은 겨울이고 자동차 바퀴는 눈길을 오를 수 있는 바퀴로 장착했다.
 
-![img.png](dip1.png)
+![img.png](images/dip1.png)
 
 이걸 코드로 구현해 보면,
 
@@ -259,7 +259,7 @@ public class Car {
 바퀴를 바꾸려고 했는데 자동차 클래스를 건드리게 된 것이다. 이 문제를 DIP 원칙을 적용해서 해결해보자. 그림은 아래와 같다.
 
 
-![img.png](dip2.png)
+![img.png](images/dip2.png)
 
 
 
