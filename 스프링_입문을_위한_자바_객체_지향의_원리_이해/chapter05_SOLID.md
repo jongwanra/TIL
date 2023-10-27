@@ -22,11 +22,16 @@
 
 ## OCP - Open Closed Principal
 
-자신의 확장에 대해서는 열려있어야 하고, 주변의 변화에 대해서는 닫혀 있어야 한다.
+**자신의 확장에 대해서는 열려있어야 하고, 주변의 변화에 대해서는 닫혀 있어야 한다.**
 
-여기서 이 표현에는 주체가 중요하다. 오늘의 커피만을 팔고 있는 가게가 있다고 가정해보자.
 
+### before
 ![img.png](ocp1.png)
+
+
+### after
+
+![img.png](ocp2.png)
 
 오늘은 Americano를 팔 것이고, 내일은 CafeLatte, 모래는 Vanilla Latte.. 
 
