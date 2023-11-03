@@ -172,3 +172,84 @@ public class TemplateMethodTest {
 
 하지만 이렇게 템플릿 메서드 패턴을 이용해서 분리하게 된다면 상속의 문제점을 고스란히 가져가게 된다. <br>
 상속을 했을 경우, 강한 결합으로 인해서 상위 클래스에서의 변화가 상속 받은 하위 클래스에 영향을 미칠 수 있다. 이 것은 상당한 위험을 지니고 있다.
+
+
+## Spring에서 Template Method Pattern은 어떻게 적용되어 있을까?
+
+FrameworkServlet class와 DispathcerServlet Class에서 확인할 수 있다.<br>
+잠시 구조를 보자.<br>
+
+![img_1.png](template_method1.png)
+
+<br>
+FrameworkServlet에서는 doService() method를 따로 하위 클래스에서 구현하도록 위임했다. 그리고 DispatcherServlet에서는 doService() method를 구현했다.
+FrameworkServlet과  DispatcherServlet은 변경되는 로직과 변경되지 않은 로직을 분리하는 작업을 탬플릿 메서드 패턴을 이용하 것으로 확인할 수 있다.
+
+```java
+public abstract class FrameworkServlet extends HttpServletBean implements ApplicationContextAware {
+	// ...
+	protected final void processRequest(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+		
+		long startTime = System.currentTimeMillis();
+		Throwable failureCause = null;
+
+		LocaleContext previousLocaleContext = LocaleContextHolder.getLocaleContext();
+		LocaleContext localeContext = buildLocaleContext(request);
+
+		RequestAttributes previousAttributes = RequestContextHolder.getRequestAttributes();
+		ServletRequestAttributes requestAttributes = buildRequestAttributes(request, response, previousAttributes);
+
+		WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);
+		asyncManager.registerCallableInterceptor(FrameworkServlet.class.getName(), new RequestBindingInterceptor());
+
+		initContextHolders(request, localeContext, requestAttributes);
+
+		try {
+			// 변경되는 로직 하위 클래스로 위임
+            // --------------------
+			doService(request, response);
+			// --------------------
+		}
+		catch (ServletException | IOException ex) {
+			failureCause = ex;
+			throw ex;
+		}
+		catch (Throwable ex) {
+			failureCause = ex;
+			throw new ServletException("Request processing failed: " + ex, ex);
+		}
+
+		finally {
+			resetContextHolders(request, previousLocaleContext, previousAttributes);
+			if (requestAttributes != null) {
+				requestAttributes.requestCompleted();
+			}
+			logResult(request, response, failureCause, asyncManager);
+			publishRequestHandledEvent(request, response, startTime, failureCause);
+		}
+	}
+    
+	// 하위 클래스로 위임한 doService() method
+	protected abstract void doService(HttpServletRequest request, HttpServletResponse response)
+		throws Exception;
+
+}
+```
+
+
+```java
+public class DispatcherServlet extends FrameworkServlet {
+    // FrameworkServlet에서 위임한 doService() method를 하위 클래스인 DispatcherServlet에서 재정의 했다.
+	@Override
+	protected void doService(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//...
+	}
+}
+```
+
+
+
+
+
+
