@@ -179,7 +179,7 @@ public class TemplateMethodTest {
 FrameworkServlet class와 DispathcerServlet Class에서 확인할 수 있다.<br>
 잠시 구조를 보자.<br>
 
-![img_1.png](template_method1.png)
+![img_1.png](images/template_method1.png)
 
 <br>
 FrameworkServlet에서는 doService() method를 따로 하위 클래스에서 구현하도록 위임했다. 그리고 DispatcherServlet에서는 doService() method를 구현했다.

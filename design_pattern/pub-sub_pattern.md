@@ -19,7 +19,7 @@ Pub/Sub Pattern이란, 서로 다른 컴포넌트들이 비동기적으로 상�
 
 이 둘이 당연히 같다고 생각한 나를 반성하며..<br>
 
-![img.png](img.png)
+![img.png](images/pub-sub1.png)
 * Observer Pattern에서 Observer들은 Subject에 대해서 알고 있으며, Subject역시 Observer들에 대해서 알고 있다. 
 * 반면에, Pub/Sub Pattern에서 Publisher과 Subscriber들은 서로 알 필요가 없다. 간단하게 중간의 Message Queue 혹은 Message Broker의 도움을 받아 소통한다.
 * Pub/Sub Pattern에서 Observer Pattern과 달리 느슨하게 결합되어 있다.(loosely coupled)
