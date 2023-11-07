@@ -108,7 +108,7 @@
 
 ## 📗 값 타입 컬렉션
 
-![img.png](img.png)
+![img.png](images/img.png)
 
 ```java
 //...
