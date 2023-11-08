@@ -38,3 +38,8 @@ Spring AOP는 Proxy 기반 runtime weaving 방식으로 동작한다.
 4. 프록시 적용 대상 체크: 앞서 3-1, 3-2에서 조회한 Advisor 에 포함되어 있는 포인트컷을 사용해서 해당 객체가 프록시를 적용할 대상인지 아닌지 판단한다.
 5. 프록시 생성: 프록시 적용 대상이면 프록시를 생성하고 프록시를 반환한다. 프록시 적용 대상이 아니라면 원본 객체를 반환한다.
 6. 빈 등록: 반환된 객체는 스프링 빈으로 등록된다.
+
+
+## 참고
+* [스프링 핵심 원리 - 고급편 섹션 08](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B3%A0%EA%B8%89%ED%8E%B8/dashboard)
+* [Spring AOP의 원리 - CGlib vs Dynamic Proxy](https://huisam.tistory.com/entry/springAOP)
