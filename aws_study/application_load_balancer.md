@@ -57,3 +57,6 @@ AWS에서도 아래와 같이 2개 이상의 가용영역을 사용하는 것을
 여기서 Provisioning은 `AWS로 부터 자원을 공급받는 중`을 의미한다. 
 
 
+## 참고
+
+* [스타트업 성장과 함께하는 AWS 클라우드 아키텍쳐 올인원](https://www.inflearn.com/course/%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-with-aws-1)
