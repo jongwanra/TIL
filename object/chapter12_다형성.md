@@ -12,7 +12,7 @@
   * 유니버셜 다형성은 매개변수 다형성과 포함 다형성으로 분류할 수 있다.
   * 임시 다형성은 오버로딩 다형성과 강제 다형성으로 분류할 수 있다.
 
-![polymorphism-classification.png](polymorphism-classification.png)
+![polymorphism-classification.png](images/polymorphism-classification.png)
 
 
 ### Overloading Polymorphism
