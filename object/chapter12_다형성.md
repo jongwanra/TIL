@@ -17,6 +17,7 @@
 
 ### Overloading Polymorphism
 * 오버로딩 다형성은 하나의 클래스 내에서 동일한 반환값과 동일한 메서드 이름을 가지고 있지만 매개변수가 다른 경우의 다형성을 의미한다.
+* 하나의 클래스 뿐만 아니라 확장한 클래스 내에서 메서드 명은 동일하지만 매개변수가 다른 경우에도 오버로딩 다형성이라고 말할 수 있다.
 
 ```java
 
@@ -60,6 +61,68 @@ public class PolymorphismTest {
 	}
 }
 ```
+
+### Parametric Polymorphism
+
+* 매개변수 다형성은 Generic과 관련이 있다. 
+* 클래스 내부에는 가상의 타입을 부여하고 사용하는 시점에 구체적인 타입을 지정하여 사용한다.
+
+```java
+public class Main {
+  public static void main(String[] args) {
+    List<String> list = new ArrayList<String>();
+  }
+}
+```
+
+위 예제의 String과 같이 구체적인 타입을 사용하는 시점에 지정하여 사용할 수 있다.
+
+### Inclusion Polymorphism
+
+* 포함 다형성은 클라이언트 가 메시지를 전송했을 때 메시지를 수신하는 객체의 타입에 따라 메시지를 수신이 다르다를 의미한다.
+* 일반적으로 의미하는 다형성이다. 따로 서브 타입 다형성이라고도 부른다.
+* **상속을 사용하는 목적은 다형성을 위해 서브 타입 계층을 구축하는 것이다.**
+
+```java
+public class MemberApiService {
+	private MemberService memberService;
+	
+	// 메시지 findBy를 전송했을 때 어떤 객체의 타입이 수신하는지에 따라 다르다.
+    // 주입된 구현 클래스가 V1일 경우와 V2일 경우가 다르다.
+    public void execute() {
+		memberService.findBy("test@gmail.com");
+    }
+}
+
+
+public interface MemberService {
+	Member findBy(String email);
+}
+
+
+public class MemberServiceImplV1 implements MemberService {
+	@Override
+    public Member findBy(String email) {
+		return new Member("v1", email);
+    }
+}
+
+public class MemberServiceImplV2 implements MemberService {
+  @Override
+  public Member findBy(String email) {
+    return new Member("v2", , email);
+  }
+}
+```
+
+## 02. 상속의 양면성
+
+
+* 업캐스팅
+  * 선언된 상위 클래스의 변수 타입에 하위 클래스의 인스턴스를 할당하는 것이 가능하다. 이것을 업 캐스팅이라고 한다.
+* 동적 바인딩
+  * 선언된 변수의 타입이 아니라 메시지를 수신하는 객체의 타입에 따라 실행되는 메서드가 결정된다. 이를 `동적 바인딩`이라고 한다.
+  * 메시지를 처리할 메서드를 컴파일 시점이 아닌 런타임 시점에 결정하기 때문에 가능하다.
 
 
 
